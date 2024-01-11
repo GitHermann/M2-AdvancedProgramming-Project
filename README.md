@@ -3,6 +3,7 @@
 ## Requirements
 
 python 3.12 or higher
+
 poetry 1.7.1 or higher
 
 ## Launch the backend
