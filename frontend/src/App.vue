@@ -4,11 +4,25 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <header>
-    <div>
-      <h1>Hello World !</h1>
+    <div class="header">
+      <img src="./assets/LOGO_EFREI-WEB_blanc.png" alt="LOGO_EFREI-WEB_blanc">
     </div>
   </header>
 </template>
 
 <style scoped>
-</style>
+
+header {
+  background-color: #3571a9;
+  padding: 10px;
+  text-align: left;
+  color: white;
+}
+
+img {
+  width: 100px;
+  margin: 40px;
+}
+
+
+</style>  

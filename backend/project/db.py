@@ -1,19 +1,14 @@
-from flask import current_app, g
-from werkzeug.local import LocalProxy
-from flask_pymongo import PyMongo
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
 
-def get_db():
-    """
-    Configuration method to return db instance
-    """
-    db = getattr(g, "_database", None)
-
-    if db is None:
-
-        db = g._database = PyMongo(current_app).db
-       
-    return db
-
-#Use LocalProxy to access db globally while maintaining thead-safety
-db = LocalProxy(get_db)
-
+def get_db(uri):
+    try:
+        # Create a new client and connect to the server
+        client = MongoClient(uri, server_api=ServerApi('1'))
+        # Send a ping to confirm a successful connection
+        client.admin.command('ping')
+        print("Pinged your deployment. You successfully connected to MongoDB!")
+        return client
+    except Exception as e:
+        print(e)
+        return None
