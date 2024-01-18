@@ -1,6 +1,7 @@
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
+
 def get_db(uri):
     try:
         # Create a new client and connect to the server

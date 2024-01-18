@@ -26,11 +26,11 @@ def add_user():
         name = "Marc Evans"
         address = "Raimon"
 
-        # Insert the user data into the 'Users' collection
+        # Insert the user data into the 'users' collection
         user_data = {"name": name, "address": address}
-        result = database_client["Project"]["Users"].insert_one(user_data)
+        result = database_client["Project"]["users"].insert_one(user_data)
 
-        return jsonify({"message": "User added successfully", "user_id": str(result.inserted_id)}), 201
+        return jsonify({"message": "users added successfully", "user_id": str(result.inserted_id)}), 201
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
