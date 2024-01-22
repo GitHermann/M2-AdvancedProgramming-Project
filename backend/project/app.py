@@ -2,7 +2,7 @@ from flask import Flask, jsonify
 import os
 import configparser
 
-from db import get_db
+from project.db import get_db
 
 config = configparser.ConfigParser()
 config.read(os.path.join(os.path.dirname(__file__), ".ini"))
