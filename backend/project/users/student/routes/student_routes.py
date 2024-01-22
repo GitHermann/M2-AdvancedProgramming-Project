@@ -1,5 +1,18 @@
-from project.app import app
+from flask import request, jsonify
 
+from project.app import app
+from users.student.models.student_model import Student
+
+
+@app.route('/user/student/sign_in', methods=['POST'])
+def student_sign_in():
+    try:
+        data = request.json
+        response = Student.create_student(data)
+        return jsonify({"message": "users added successfully", "user_id": str(response.inserted_id)}), 201
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 @app.route('/user/student', methods=['POST'])
 def add_user_student():
