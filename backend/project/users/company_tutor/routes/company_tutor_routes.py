@@ -1,4 +1,4 @@
-from app import app
+from project.app import app
 
 
 @app.route('/user/tutorEntreprise', methods=['POST'])
