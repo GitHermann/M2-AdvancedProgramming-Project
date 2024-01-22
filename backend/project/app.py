@@ -16,7 +16,7 @@ mongo_uri = config['PROD']['DB_URI']
 # Initialize the database client
 database_client = get_db(mongo_uri)
 
-import project.users.student.routes.student_routes
+import project.importAllRoutes
 
 @app.route("/")
 def hello():
