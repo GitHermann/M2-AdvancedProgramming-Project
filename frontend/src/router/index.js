@@ -1,10 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import LoginView from '../views/LoginView.vue'
-import LoginAcademicTutorView from '../views/LoginAcademicTutorView.vue'
-import LoginAdminView from '../views/LoginAdminView.vue'
-import LoginCompanyTutorView from '../views/LoginCompanyTutorView.vue'
-import LoginStudentView from '../views/LoginStudentView.vue'
+import LoginView from '../views/login/LoginView.vue'
+import LoginAcademicTutorView from '../views/login/LoginAcademicTutorView.vue'
+import LoginAdminView from '../views/login/LoginAdminView.vue'
+import LoginCompanyTutorView from '../views/login/LoginCompanyTutorView.vue'
+import LoginStudentView from '../views/login/LoginStudentView.vue'
 
 
 const router = createRouter({
@@ -13,7 +12,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      redirect: '/login'
     },
     {
       path: '/login',

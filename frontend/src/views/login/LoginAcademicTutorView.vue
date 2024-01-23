@@ -13,7 +13,7 @@ export default {
     },
     methods: {
       login(userData) {
-        console.log('Company tutor Login:', userData);
+        console.log('Academic tutor login:', userData);
       },
     },
 };
