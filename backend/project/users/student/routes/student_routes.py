@@ -2,7 +2,7 @@ from flask import request, jsonify
 
 from project.app import app
 from project.users.student.models.student_model import Student
-
+from __main__ import app
 
 @app.route('/user/student/sign_in', methods=['POST'])
 def student_sign_in():
@@ -13,6 +13,7 @@ def student_sign_in():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 @app.route('/user/student', methods=['POST'])
 def add_user_student():

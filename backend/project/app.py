@@ -18,9 +18,11 @@ database_client = get_db(mongo_uri)
 
 import project.importAllRoutes
 
+
 @app.route("/")
 def hello():
     return "Hello, World!"
+
 
 @app.route('/test', methods=['GET'])
 def add_user():
@@ -36,6 +38,7 @@ def add_user():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 if __name__ == "__main__":
     app.config['DEBUG'] = True
