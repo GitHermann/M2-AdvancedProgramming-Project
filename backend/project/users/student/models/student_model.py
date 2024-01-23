@@ -28,10 +28,20 @@ class Student:
 
     @staticmethod
     def student_log_in(data):
+        # Validation des données
+        if 'email' not in data or 'password' not in data:
+            return {'message': 'Missing email or password'}, 400
+
         existing_user_student = students_collection.find_one(
             {'email': data['email']})
-        if existing_user_student and bcrypt.checkpw(data['password'].encode('utf8'),existing_user_student['password']):
-            return {'message': 'Login successful', 'code': 201}
+
+        if existing_user_student and bcrypt.checkpw(data['password'].encode('utf8'), existing_user_student['password']):
+            return {'message': 'Login successful', 'code': 201, 'user': existing_user_student}
         else:
             return {'message': 'Invalid email or password', 'code': 401}
 
+    @staticmethod
+    def get_student(data):
+        existing_user_student = students_collection.find_one({'email': data['email']})
+        if existing_user_student:
+            return existing_user_student
