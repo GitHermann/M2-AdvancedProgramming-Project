@@ -1,4 +1,5 @@
 from flask import Flask, jsonify
+from flask_cors import CORS
 import os
 import configparser
 
@@ -9,6 +10,7 @@ config.read(os.path.join(os.path.dirname(__file__), ".ini"))
 
 # create and initialize a new Flask app
 app = Flask(__name__)
+CORS(app)
 
 # Get the MongoDB URI from the config file
 mongo_uri = config['PROD']['DB_URI']
