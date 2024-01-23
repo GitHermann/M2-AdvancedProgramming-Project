@@ -8,6 +8,9 @@ import { RouterLink, RouterView } from 'vue-router'
       <img src="./assets/LOGO_EFREI-WEB_blanc.png" alt="LOGO_EFREI-WEB_blanc">
     </div>
   </header>
+  <main>
+    <RouterView />
+  </main>
 </template>
 
 <style scoped>
@@ -17,6 +20,7 @@ header {
   padding: 10px;
   text-align: left;
   color: white;
+  border-radius: 10px;
 }
 
 img {
