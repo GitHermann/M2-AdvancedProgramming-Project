@@ -21,6 +21,7 @@ header {
   text-align: left;
   color: white;
   border-radius: 10px;
+  justify-content: center;
 }
 
 img {

@@ -43,7 +43,7 @@
   border: none;
   border-radius: 10px;
   width: 90%;
-  height: 64px;
+  height: 48px;
   text-decoration: none;
   color: #333232;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
