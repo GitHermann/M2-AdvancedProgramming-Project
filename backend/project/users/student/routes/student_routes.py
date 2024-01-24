@@ -11,7 +11,8 @@ from __main__ import app
 def student_sign_in():
     try:
         data = request.json
-        response = Student.create_student(data)
+        student_instance = Student(collection_name="students")
+        response = student_instance.create_student(data)
         return jsonify({"message": str(response)}), 201
 
     except ValueError as e:
@@ -25,7 +26,8 @@ def student_sign_in():
 def student_log_in():
     try:
         data = request.json
-        response = Student.student_log_in(data)
+        student_instance = Student(collection_name="students")
+        response = student_instance.student_log_in(data)
         # Serialization of ObjectID from user
         user = json.loads(json_util.dumps(response['user']))
         if response['code'] == 201:

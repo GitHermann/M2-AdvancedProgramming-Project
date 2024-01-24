@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
+import project.users.abstractUserModel
 import os
 import configparser
 
@@ -19,6 +20,7 @@ mongo_uri = config['PROD']['DB_URI']
 database_client = get_db(mongo_uri)
 
 import project.importAllRoutes
+
 
 
 @app.route("/")
