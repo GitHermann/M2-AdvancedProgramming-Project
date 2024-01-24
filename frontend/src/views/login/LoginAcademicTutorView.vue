@@ -1,21 +1,21 @@
 <template>
-    <div class="login-form-container">
-        <LoginForm @submit="login" />
-    </div>
+  <div class="login-form-container">
+    <LoginForm @submit="login" />
+  </div>
 </template>
-  
+
 <script>
 import LoginForm from '@/components/LoginForm.vue';
-  
+
 export default {
-    components: {
-      LoginForm,
+  components: {
+    LoginForm,
+  },
+  methods: {
+    login(userData) {
+      console.log('Academic tutor Login:', userData);
     },
-    methods: {
-      login(userData) {
-        console.log('Academic tutor login:', userData);
-      },
-    },
+  },
 };
 </script>
   
