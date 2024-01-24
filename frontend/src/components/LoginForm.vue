@@ -1,15 +1,17 @@
+<!-- LoginForm.vue -->
+
 <template>
-  <form class="login-form" @submit.prevent="login">
-      <div>
-    <h2 class="title">Connexion</h2>
-  </div>
-  <label class="text" for="username">Nom d'utilisateur :</label>
-  <input v-model="username" type="text" id="username" name="username" class="input-form" required>
+  <form class="login-form" @submit.prevent="handleLogin">
+    <div>
+      <h2 class="title">Connexion</h2>
+    </div>
+    <label class="text" for="username">Nom d'utilisateur :</label>
+    <input v-model="username" type="text" id="username" name="username" class="input-form" required>
 
-  <label class="text" for="password">Mot de passe :</label>
-  <input v-model="password" type="password" id="password" name="password" class="input-form" required>
+    <label class="text" for="password">Mot de passe :</label>
+    <input v-model="password" type="password" id="password" name="password" class="input-form" required>
 
-  <button class="submit-button" type="submit">Se connecter</button>
+    <button class="submit-button" type="submit">Se connecter</button>
   </form>
 </template>
   
@@ -23,7 +25,7 @@ export default {
     };
   },
   methods: {
-    login() {
+    handleLogin() {
       this.$emit('submit', {
         username: this.username,
         password: this.password,
@@ -33,6 +35,7 @@ export default {
 };
 </script>
 
+
 <style scoped>
 .container {
     margin: 0 auto;
@@ -41,7 +44,6 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
 }
 
 .login-form {
