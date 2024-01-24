@@ -5,39 +5,24 @@
         <h2 class="title">Vous êtes :</h2>
       </div>
       <RouterLink to="/login/student" class="button">
-        <i class="icon"></i>
+        <i class="icon ri-graduation-cap-line"></i>
         <span class="text">Élève</span>
       </RouterLink>
       <RouterLink to="/login/academic-tutor" class="button">
-        <i class="icon"></i>
+        <i class="icon ri-school-line"></i>
         <span class="text">Tuteur École</span>
       </RouterLink>
       <RouterLink to="/login/company-tutor" class="button">
-        <i class="icon"></i>
+        <i class="icon ri-building-4-line"></i>
         <span class="text">Tuteur Entreprise</span>
       </RouterLink>
       <RouterLink to="/login/admin" class="button">
-        <i class="icon"></i>
+        <i class="icon ri-admin-line"></i>
         <span class="text">Administrateur</span>
       </RouterLink>
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      message: 'Hello, Vue!'
-    }
-  },
-  methods: {
-    showMessage() {
-      alert(this.message);
-    }
-  }
-}
-</script>
 
 <style scoped>
 .button-container {
@@ -52,7 +37,7 @@ export default {
 .button {
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding: 20px;
   margin: 10px;
   background-color: #f0f0f0;
   border: none;
@@ -65,7 +50,9 @@ export default {
 }
 
 .icon {
-  margin-right: 10px;
+  margin-right: 20px;
+  margin-left: 20px;
+  font-size: 40px;
 }
 
 .title {
