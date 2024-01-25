@@ -1,5 +1,3 @@
-<!-- LoginForm.vue -->
-
 <template>
   <form class="login-form" @submit.prevent="handleLogin">
     <div>
@@ -13,9 +11,19 @@
 
     <button class="submit-button" type="submit">Se connecter</button>
   </form>
+  <div class="signin">
+    <span class="text">Vous n'avez pas de compte ? </span> 
+    <RouterLink to="/register">
+       <span class="text">Inscrivez-vous</span>
+    </RouterLink>
+  </div>
 </template>
   
 <script>
+
+import { useStore } from '@/stores/store'
+import { mapWritableState } from 'pinia'
+
 export default {
   props: ['login'],
   data() {
@@ -24,8 +32,11 @@ export default {
       password: '',
     };
   },
+  computed: {
+    ...mapWritableState(useStore, ['userType']),
+  },
   methods: {
-    handleLogin() {
+    login() {
       this.$emit('submit', {
         username: this.username,
         password: this.password,
@@ -35,30 +46,20 @@ export default {
 };
 </script>
 
-
 <style scoped>
-.container {
-    margin: 0 auto;
-    margin-top: 50px;
-    width: 600px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .login-form {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 10px;
     margin: 10px;
+    margin-bottom: 30px;
     background-color: #f0f0f0;
     border: none;
     border-radius: 10px;
     width: 90%;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); 
 }
-
 
 .input-form {
   display: flex;
