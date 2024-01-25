@@ -1,3 +1,5 @@
+import json
+import bson.json_util as json_util
 from flask import request, jsonify
 
 from project.app import app
@@ -16,7 +18,11 @@ def add_internship():
 
 @app.route('/internships/<id>', methods=['GET'])
 def get_internship(id):
-    return 'Hello World!'
+    try:
+        response = Internship.getInternship(id)
+        return json.loads(json_util.dumps(response[0])), response[1]
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 @app.route('/internships/<id>', methods=['PUT'])
