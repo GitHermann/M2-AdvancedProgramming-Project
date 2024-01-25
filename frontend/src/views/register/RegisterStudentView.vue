@@ -19,7 +19,7 @@ export default {
   
 .login-form-container {
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 40px;
   width: 600px;
 }
 

@@ -3,39 +3,49 @@
     <div>
       <h2 class="title">Inscription</h2>
     </div>
-    
-      <label class="text" for="username">Username:</label>
+    <div class="input-form-container">
+      <label class="text" for="username">Nom d'utilisateur</label>
       <input type="text" id="username" v-model="username" class="input-form" required>
-    
-    
-      <label class="text" for="firstName">First Name:</label>
+    </div>
+    <div class="input-form-container">
+      <label class="text" for="firstName">Prénom</label>
       <input type="text" id="firstName" v-model="firstName" class="input-form" required>
-  
-  
-      <label class="text" for="lastName">Last Name:</label>
+    </div>
+    <div class="input-form-container">
+      <label class="text" for="lastName">Nom</label>
       <input type="text" id="lastName" v-model="lastName" class="input-form" required>
-  
-    
-      <label class="text" for="email">Email:</label>
+    </div>
+    <div class="input-form-container">
+      <label class="text" for="email">Email</label>
       <input type="email" id="email" v-model="email" class="input-form" required>
-  
-    
-      <label class="text" for="password">Password:</label>
+    </div>
+    <div class="input-form-container">
+      <label class="text" for="password">Mot de passe</label>
       <input type="password" id="password" v-model="password" class="input-form" required>
-    
-    
-      <label class="text" for="phone">Phone:</label>
+    </div>
+    <div class="input-form-container">
+      <label class="text" for="phone">Téléphone</label>
       <input type="tel" id="phone" v-model="phone" class="input-form" required>
-    
-    
-      <label class="text" for="promotion">Promotion:</label>
+    </div>
+    <div class="input-form-container">
+      <label class="text" for="promotion">Promotion</label>
       <input type="text" id="promotion" v-model="promotion" class="input-form" required>
-  
-    <button class="submit-button" type="submit">Creer un compte</button>
+    </div>
+    <button class="submit-button" type="submit">Créer un compte</button>
   </form>
+  <div class="signin">
+    <span class="text">Vous avez déjà un compte ? </span> 
+    <RouterLink :to="`/login/${userType}`">
+      <span class="text">Connectez-vous</span>
+    </RouterLink>
+  </div>
 </template>
 
 <script>
+
+import { useStore } from '@/stores/store'
+import { mapWritableState } from 'pinia'
+
 export default {
   data() {
     return {
@@ -47,11 +57,21 @@ export default {
       phone: '',
       promotion: ''
     };
-  }
+  },
+  computed: {
+    ...mapWritableState(useStore, ['userType']),
+  },
 };
 </script>
 
 <style scoped>
+
+.input-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 80%;
+}
 .login-form {
     display: flex;
     flex-direction: column;
@@ -70,11 +90,10 @@ export default {
   display: flex;
   align-items: center;
   padding: 10px;
-  margin-top: 20px;
+  margin-top: 4px;
   margin-bottom: 20px;
   background-color: #f7f7f7;
   border-radius: 10px;
-  width: 80%;
   height: 20px;
   border: solid 1px #c7c4c4;
 }

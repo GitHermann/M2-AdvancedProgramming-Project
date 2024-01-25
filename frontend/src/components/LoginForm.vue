@@ -3,10 +3,10 @@
     <div>
       <h2 class="title">Connexion</h2>
     </div>
-    <label class="text" for="username">Nom d'utilisateur :</label>
+    <label class="text" for="username">Nom d'utilisateur</label>
     <input v-model="username" type="text" id="username" name="username" class="input-form" required>
 
-    <label class="text" for="password">Mot de passe :</label>
+    <label class="text" for="password">Mot de passe</label>
     <input v-model="password" type="password" id="password" name="password" class="input-form" required>
 
     <button class="submit-button" type="submit">Se connecter</button>
