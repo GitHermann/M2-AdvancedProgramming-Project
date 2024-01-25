@@ -7,6 +7,7 @@ import LoginStudentView from '../views/login/LoginStudentView.vue'
 import RegisterAcademicTutorView from '../views/register/registerAcademicTutorView.vue'
 import RegisterCompanyTutorView from '../views/register/RegisterCompanyTutorView.vue'
 import RegisterStudentView from '../views/register/RegisterStudentView.vue'
+import AdminSpaceHomeView from '../views/admin/AdminSpaceHomeView.vue'
 
 
 const router = createRouter({
@@ -56,6 +57,11 @@ const router = createRouter({
       path: '/register/student',
       name: 'register-student',
       component: RegisterStudentView
+    },
+    {
+      path: '/admin',
+      name: 'admin-space-home',
+      component: AdminSpaceHomeView
     }
   ]
 })

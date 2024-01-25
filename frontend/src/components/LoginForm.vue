@@ -37,10 +37,7 @@ export default {
   },
   methods: {
     handleLogin() {
-      this.$emit('submit', {
-        username: this.username,
-        password: this.password,
-      });
+      console.log('Login:', this.username, this.password);
     },
   },
 };

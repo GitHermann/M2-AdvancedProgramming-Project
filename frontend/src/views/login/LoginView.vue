@@ -4,19 +4,19 @@
       <div>
         <h2 class="title">Vous êtes :</h2>
       </div>
-      <RouterLink to="/login/student" class="button">
+      <RouterLink to="/login/student" class="button" @click="updateUserType('student')">
         <i class="icon ri-graduation-cap-line"></i>
         <span class="text">Élève</span>
       </RouterLink>
-      <RouterLink to="/login/academic-tutor" class="button">
+      <RouterLink to="/login/academic-tutor" class="button" @click="updateUserType('academic-tutor')">
         <i class="icon ri-school-line"></i>
         <span class="text">Tuteur École</span>
       </RouterLink>
-      <RouterLink to="/login/company-tutor" class="button">
+      <RouterLink to="/login/company-tutor" class="button" @click="updateUserType('company-tutor')">
         <i class="icon ri-building-4-line"></i>
         <span class="text">Tuteur Entreprise</span>
       </RouterLink>
-      <RouterLink to="/login/admin" class="button">
+      <RouterLink to="/login/admin" class="button" @click="updateUserType('admin')">
         <i class="icon ri-admin-line"></i>
         <span class="text">Administrateur</span>
       </RouterLink>
@@ -25,7 +25,6 @@
 </template>
 
 <script>
-
 import { useStore } from '@/stores/store'
 import { mapWritableState } from 'pinia'
 
@@ -41,13 +40,13 @@ export default {
     ...mapWritableState(useStore, ['userType']),
   },
   methods: {
-    updateUserType() {
-      this.userType = 'new user type'
+    updateUserType(type) {
+      this.userType = type;
     },
   },
-  
 };
 </script>
+
 
 <style scoped>
 .button-container {
