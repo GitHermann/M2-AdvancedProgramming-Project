@@ -1,9 +1,15 @@
 from project.app import database_client, session
 import datetime
 from bson.objectid import ObjectId
+from enum import Enum
+
+class ValidationStatus(Enum):
+  ONGOING = 0
+  VALIDATED = 1
+  REJECTED = 2
 
 class Internship:
-  internships_collection = database_client['Project']['Internships']
+  internships_collection = database_client['Project']['internships']
 
   def __init__(self, data):
     self.title = data['title']
@@ -14,6 +20,7 @@ class Internship:
     self.academicTutor = data['academicTutor']
     self.companyTutor = data['companyTutor']
     self.internshipSpace = data['internshipSpace']
+    self.status = ValidationStatus.ONGOING
 
   def jsonify(self):
     return {
@@ -24,7 +31,8 @@ class Internship:
       'student': ObjectId(self.student),
       'academicTutor': self.academicTutor,
       'companyTuto': self.companyTutor,
-      'internshipSpace': self.internshipSpace
+      'internshipSpace': self.internshipSpace,
+      'status': self.status.value
     }
 
   @staticmethod
@@ -36,4 +44,13 @@ class Internship:
     
     Internship.internships_collection.insert_one(newInternship.jsonify())
     return {'message': 'internship successfully created'}, 201
+  
+  
+  @staticmethod
+  def getInternship(id):
+    internship = Internship.internships_collection.find_one({'_id': ObjectId(id)})
+    if internship:
+      return internship, 200
+    else:
+      return {'message': 'Resource not found'}, 404
 
