@@ -3,7 +3,7 @@ import json
 from flask import request, jsonify
 import bson.json_util as json_util
 from project.users.company_tutor.models.company_tutor_model import CompanyTutor
-from __main__ import app
+from project.app import app
 @app.route('/user/company-tutor/signin', methods=['POST'])
 def company_tutor_sign_in():
     try:

@@ -1,5 +1,6 @@
-from project.app import database_client
+from project.app import database_client, session
 import datetime
+from bson.objectid import ObjectId
 
 class Internship:
   internships_collection = database_client['Project']['Internships']
@@ -9,7 +10,7 @@ class Internship:
     self.startDate = datetime.datetime(data['startDate'][0],data['startDate'][1],data['startDate'][2])
     self.endDate = datetime.datetime(data['endDate'][0],data['endDate'][1],data['endDate'][2])
     self.company = data['company']
-    self.student = data['student']
+    self.student = session['user']
     self.academicTutor = data['academicTutor']
     self.companyTutor = data['companyTutor']
     self.internshipSpace = data['internshipSpace']
@@ -20,7 +21,7 @@ class Internship:
       'startDate': self.startDate,
       'endDate': self.endDate,
       'company': self.company,
-      'student': self.student,
+      'student': ObjectId(self.student),
       'academicTutor': self.academicTutor,
       'companyTuto': self.companyTutor,
       'internshipSpace': self.internshipSpace
@@ -29,10 +30,10 @@ class Internship:
   @staticmethod
   def createInternship(data):
     newInternship = Internship(data)
-    existingInternship = Internship.internships_collection.find_one({'internshipSpace': newInternship.internshipSpace, 'student': newInternship.student})
+    existingInternship = Internship.internships_collection.find_one({'internshipSpace': newInternship.internshipSpace, 'student': ObjectId(newInternship.student)})
     if existingInternship:
       return {'message': 'Stage déjà créé'}, 400
     
     Internship.internships_collection.insert_one(newInternship.jsonify())
-    return {'message': 'internship successfully created'}
+    return {'message': 'internship successfully created'}, 201
 

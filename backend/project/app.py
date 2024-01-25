@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, session
 from flask_cors import CORS
 import project.users.abstractUserModel
 import os
@@ -19,12 +19,17 @@ mongo_uri = config['PROD']['DB_URI']
 # Initialize the database client
 database_client = get_db(mongo_uri)
 
-import project.importAllRoutes
+# Initialize secret key
+secret_key = os.urandom(12).hex()
+app.config['SECRET_KEY'] = secret_key
 
+import project.importAllRoutes
 
 
 @app.route("/")
 def hello():
+    #Placeholder
+    session['user'] = '65b12927b91ba67d6de2eaad'
     return "Hello, World!"
 
 

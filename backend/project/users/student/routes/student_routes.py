@@ -4,7 +4,7 @@ from flask import request, jsonify
 import bson.json_util as json_util
 
 from project.users.student.models.student_model import Student
-from __main__ import app
+from project.app import app, session
 
 
 @app.route('/user/student/signin', methods=['POST'])
@@ -30,6 +30,7 @@ def student_log_in():
         response = student_instance.student_log_in(data)
         # Serialization of ObjectID from user
         user = json.loads(json_util.dumps(response['user']))
+        session['user'] = user["_id"]["$oid"]
         if response['code'] == 201:
             return jsonify({"message": response['message'], "user": user}), 201
         else:
