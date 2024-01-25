@@ -9,7 +9,7 @@ def add_internship():
     try:
         data = request.json
         response = Internship.createInternship(data)
-        return jsonify({"message": "Internship added successfully"}), 201
+        return jsonify(response[0]), response[1]
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
