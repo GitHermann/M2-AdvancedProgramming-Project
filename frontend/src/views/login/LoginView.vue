@@ -24,12 +24,37 @@
   </div>
 </template>
 
+<script>
+
+import { useStore } from '@/stores/store'
+import { mapWritableState } from 'pinia'
+
+export default {
+  props: ['login'],
+  data() {
+    return {
+      username: '',
+      password: '',
+    };
+  },
+  computed: {
+    ...mapWritableState(useStore, ['userType']),
+  },
+  methods: {
+    updateUserType() {
+      this.userType = 'new user type'
+    },
+  },
+  
+};
+</script>
+
 <style scoped>
 .button-container {
   margin: 0 auto;
   margin-top: 50px;
-  width: 90%; /* Use a percentage for width to make it more responsive */
-  max-width: 600px; /* Set a maximum width to prevent it from becoming too wide */
+  width: 90%;
+  max-width: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;

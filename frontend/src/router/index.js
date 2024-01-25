@@ -4,7 +4,9 @@ import LoginAcademicTutorView from '../views/login/LoginAcademicTutorView.vue'
 import LoginAdminView from '../views/login/LoginAdminView.vue'
 import LoginCompanyTutorView from '../views/login/LoginCompanyTutorView.vue'
 import LoginStudentView from '../views/login/LoginStudentView.vue'
-
+import RegisterAcademicTutorView from '../views/register/registerAcademicTutorView.vue'
+import RegisterCompanyTutorView from '../views/register/RegisterCompanyTutorView.vue'
+import RegisterStudentView from '../views/register/RegisterStudentView.vue'
 
 
 const router = createRouter({
@@ -39,6 +41,21 @@ const router = createRouter({
       path: '/login/student',
       name: 'login-student',
       component: LoginStudentView
+    },
+    {
+      path: '/register/academic-tutor',
+      name: 'register-academic-tutor',
+      component: RegisterAcademicTutorView
+    },
+    {
+      path: '/register/company-tutor',
+      name: 'register-company-tutor',
+      component: RegisterCompanyTutorView
+    },
+    {
+      path: '/register/student',
+      name: 'register-student',
+      component: RegisterStudentView
     }
   ]
 })

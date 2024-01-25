@@ -13,8 +13,8 @@
   </form>
   <div class="signin">
     <span class="text">Vous n'avez pas de compte ? </span> 
-    <RouterLink to="/register">
-       <span class="text">Inscrivez-vous</span>
+    <RouterLink :to="`/register/${userType}`">
+      <span class="text">Inscrivez-vous</span>
     </RouterLink>
   </div>
 </template>
@@ -36,7 +36,7 @@ export default {
     ...mapWritableState(useStore, ['userType']),
   },
   methods: {
-    login() {
+    handleLogin() {
       this.$emit('submit', {
         username: this.username,
         password: this.password,
