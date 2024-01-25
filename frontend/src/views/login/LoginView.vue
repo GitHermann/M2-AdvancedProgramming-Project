@@ -6,7 +6,7 @@
       </div>
       <RouterLink to="/login/student" class="button" @click="updateUserType('student')">
         <i class="icon ri-graduation-cap-line"></i>
-        <span class="text">Élève</span>
+        <span class="text">Étudiant</span>
       </RouterLink>
       <RouterLink to="/login/academic-tutor" class="button" @click="updateUserType('academic-tutor')">
         <i class="icon ri-school-line"></i>
