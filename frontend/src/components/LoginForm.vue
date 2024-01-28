@@ -94,6 +94,15 @@ export default {
   border: solid 1px #c7c4c4;
 }
 
+.submit-button:hover {
+  background-color: #135c91;
+}
+
+.link {
+  width: 100%;
+  cursor: pointer;
+}
+
 .title {
   font-size: 25px;
   font-family: Verdana, sans-serif;

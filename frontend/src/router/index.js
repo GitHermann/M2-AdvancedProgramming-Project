@@ -7,7 +7,8 @@ import LoginStudentView from '../views/login/LoginStudentView.vue'
 import RegisterAcademicTutorView from '../views/register/registerAcademicTutorView.vue'
 import RegisterCompanyTutorView from '../views/register/RegisterCompanyTutorView.vue'
 import RegisterStudentView from '../views/register/RegisterStudentView.vue'
-import AdminInternshipSpacesView from '../views/admin/AdminInternshipSpacesView.vue'
+import InternshipSpacesView from '../views/admin/InternshipSpacesView.vue'
+import AddInternshipSpaceView from '../views/admin/AddInternshipSpaceView.vue'
 import InternshipsView from '../views/InternshipsView.vue'
 
 
@@ -62,12 +63,17 @@ const router = createRouter({
     {
       path: '/admin/internship-spaces',
       name: 'admin-internship-spaces',
-      component: AdminInternshipSpacesView
+      component: InternshipSpacesView
     },
     {
       path: '/student/internships',
       name: 'student-internships',
       component: InternshipsView
+    },
+    {
+      path: '/admin/internship-spaces/add',
+      name: 'admin-add-internship-space',
+      component: AddInternshipSpaceView
     }
   ]
 })
