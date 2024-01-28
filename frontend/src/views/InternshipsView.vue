@@ -15,14 +15,41 @@ export default {
   data() {
     return {
       tableColumns: [
-        { key: "id", label: "ID" },
-        { key: "name", label: "Name" },
-        { key: "position", label: "Position" },
-        { key: "salary", label: "Salary" },
+        { key: "year", label: "Année" },
+        { key: "status", label: "Status" },
+        { key: "title", label: "Intitulé" },
+        { key: "company", label: "Entreprise" },
+        { key: "startDate", label: "Début"},
+        { key: "endDate", label: "Fin"},
       ],
       tableData: [
-        { id: 1, name: "John Doe", position: "Developer", salary: 50000 },
-        { id: 2, name: "Jane Doe", position: "Designer", salary: 60000 },
+        {
+          id: 1,
+          year: "2020-2021",
+          status: "En cours",
+          title: "Stage ingénieur M2",
+          company: "Sopra Steria",
+          startDate: "2020-09-01",
+          endDate: "2021-02-28",
+        },
+        {
+          id: 2,
+          year: "2019-2020",
+          status: "Validé",
+          title: "Stage technique M1",
+          company: "Sopra Steria",
+          startDate: "2019-09-01",
+          endDate: "2020-02-28",
+        },
+        {
+          id: 3,
+          year: "2018-2019",
+          status: "Validé",
+          title: "Stage découvert L2",
+          company: "Sopra Steria",
+          startDate: "2018-09-01",
+          endDate: "2019-02-28",
+        },
       ],
     };
   },
@@ -30,5 +57,6 @@ export default {
 </script>
 
 <style scoped>
+
 
 </style>

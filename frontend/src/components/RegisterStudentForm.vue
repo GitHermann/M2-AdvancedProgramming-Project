@@ -70,20 +70,20 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: left;
-  width: 80%;
+  width: 90%;
 }
 .login-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    margin: 10px;
-    margin-bottom: 30px;
-    background-color: #f0f0f0;
-    border: none;
-    border-radius: 10px;
-    width: 90%;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+  margin-bottom: 30px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 10px;
+  width: 90%;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); 
 }
 
 .input-form {
@@ -123,6 +123,12 @@ export default {
 .text {
   font-size: 16px;
   font-family: Verdana, sans-serif;
+}
+
+.signin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 </style>

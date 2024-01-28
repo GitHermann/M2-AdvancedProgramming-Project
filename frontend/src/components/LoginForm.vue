@@ -3,12 +3,14 @@
     <div>
       <h2 class="title">Connexion</h2>
     </div>
-    <label class="text" for="username">Nom d'utilisateur</label>
-    <input v-model="username" type="text" id="username" name="username" class="input-form" required>
-
-    <label class="text" for="password">Mot de passe</label>
-    <input v-model="password" type="password" id="password" name="password" class="input-form" required>
-
+    <div class="input-form-container">
+      <label class="text" for="username">Nom d'utilisateur</label>
+      <input v-model="username" type="text" id="username" name="username" class="input-form" required>
+    </div>
+    <div class="input-form-container">
+      <label class="text" for="password">Mot de passe</label>
+      <input v-model="password" type="password" id="password" name="password" class="input-form" required>
+    </div>
     <button class="submit-button" type="submit">Se connecter</button>
   </form>
   <div class="signin">
@@ -44,30 +46,35 @@ export default {
 </script>
 
 <style scoped>
+.input-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 90%;
+}
 .login-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    margin: 10px;
-    margin-bottom: 30px;
-    background-color: #f0f0f0;
-    border: none;
-    border-radius: 10px;
-    width: 90%;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+  margin-bottom: 30px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 10px;
+  width: 90%;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); 
 }
 
 .input-form {
   display: flex;
   align-items: center;
   padding: 10px;
-  margin-top: 20px;
+  margin-top: 8px;
   margin-bottom: 20px;
   background-color: #f7f7f7;
   border-radius: 10px;
-  width: 80%;
-  height: 32px;
+  height: 30px;
   border: solid 1px #c7c4c4;
 }
 
@@ -96,6 +103,12 @@ export default {
 .text {
   font-size: 16px;
   font-family: Verdana, sans-serif;
+}
+
+.signin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 </style>

@@ -34,6 +34,9 @@ export default {
 .table {
   width: 100%;
   border-collapse: collapse;
+  font-size: 16px;
+  font-family: Verdana, sans-serif;
+
 }
 
 .table th,
