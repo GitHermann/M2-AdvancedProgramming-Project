@@ -7,7 +7,9 @@ import { mapWritableState } from 'pinia'
 <template>
   <header>
     <div class="header">
+      <RouterLink to="/">
         <img src="./assets/LOGO_EFREI-WEB_blanc.png" alt="LOGO_EFREI-WEB_blanc">
+      </RouterLink>
         <div v-if="userType=='student'" class="user-type-container">
           <i class="icon ri-graduation-cap-line"></i>
           <span class="text">Étudiant</span>
