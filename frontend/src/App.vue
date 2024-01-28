@@ -61,6 +61,7 @@ export default {
   flex-direction: row;
   align-items: center;
   height: 75px;
+  margin-bottom: 40px;
 }
 
 img {
@@ -103,6 +104,10 @@ img {
 
 p {
   margin: 0;
+}
+
+main {
+  margin: 24px;
 }
 
 </style>  

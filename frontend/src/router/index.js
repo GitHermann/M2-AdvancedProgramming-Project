@@ -7,7 +7,7 @@ import LoginStudentView from '../views/login/LoginStudentView.vue'
 import RegisterAcademicTutorView from '../views/register/registerAcademicTutorView.vue'
 import RegisterCompanyTutorView from '../views/register/RegisterCompanyTutorView.vue'
 import RegisterStudentView from '../views/register/RegisterStudentView.vue'
-import AdminSpaceHomeView from '../views/admin/AdminSpaceHomeView.vue'
+import AdminInternshipSpacesView from '../views/admin/AdminInternshipSpacesView.vue'
 import InternshipsView from '../views/InternshipsView.vue'
 
 
@@ -60,9 +60,9 @@ const router = createRouter({
       component: RegisterStudentView
     },
     {
-      path: '/admin',
-      name: 'admin-space-home',
-      component: AdminSpaceHomeView
+      path: '/admin/internship-spaces',
+      name: 'admin-internship-spaces',
+      component: AdminInternshipSpacesView
     },
     {
       path: '/student/internships',

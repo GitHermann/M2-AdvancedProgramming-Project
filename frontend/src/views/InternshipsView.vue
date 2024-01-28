@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h2>Mes stages</h2>
+    <div class="page-title">
+      <h1>Mes stages</h1>
+    </div>
     <Table :columns="tableColumns" :items="tableData" />
   </div>
 </template>
@@ -45,7 +47,7 @@ export default {
           id: 3,
           year: "2018-2019",
           status: "Validé",
-          title: "Stage découvert L2",
+          title: "Stage découverte L2",
           company: "Sopra Steria",
           startDate: "2018-09-01",
           endDate: "2019-02-28",
@@ -57,6 +59,15 @@ export default {
 </script>
 
 <style scoped>
+.page-title {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
 
+h1 {
+  font-size: 32px;
+  font-family: Verdana, sans-serif;
+}
 
 </style>
