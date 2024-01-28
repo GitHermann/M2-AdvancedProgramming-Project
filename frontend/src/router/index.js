@@ -10,6 +10,7 @@ import RegisterStudentView from '../views/register/RegisterStudentView.vue'
 import InternshipSpacesView from '../views/admin/InternshipSpacesView.vue'
 import AddInternshipSpaceView from '../views/admin/AddInternshipSpaceView.vue'
 import InternshipsView from '../views/InternshipsView.vue'
+import AddInternshipView from '../views/AddInternshipView.vue'
 
 
 const router = createRouter({
@@ -74,6 +75,11 @@ const router = createRouter({
       path: '/admin/internship-spaces/add',
       name: 'admin-add-internship-space',
       component: AddInternshipSpaceView
+    },
+    {
+      path: '/student/internships/add',
+      name: 'student-add-internship',
+      component: AddInternshipView
     }
   ]
 })

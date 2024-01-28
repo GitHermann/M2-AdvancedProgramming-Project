@@ -18,7 +18,7 @@ export default {
     return {
       tableColumns: [
         { key: "year", label: "Année" },
-        { key: "status", label: "Status" },
+        { key: "status", label: "Statut" },
         { key: "title", label: "Intitulé" },
         { key: "company", label: "Entreprise" },
         { key: "startDate", label: "Début"},
