@@ -49,6 +49,7 @@ export default {
 
 
 <style scoped>
+
 .button-container {
   margin: 0 auto;
   margin-top: 50px;
@@ -67,11 +68,20 @@ export default {
   background-color: #f0f0f0;
   border: none;
   border-radius: 10px;
-  width: 100%; /* Use 100% width for responsiveness */
+  width: 100%;
   height: 48px;
   text-decoration: none;
   color: #333232;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #e0e0e0;
+}
+
+.button:active {
+  background-color: #d0d0d0;
 }
 
 .icon {

@@ -112,6 +112,7 @@ export default {
   font-family: Verdana, sans-serif;
   font-weight: 800;
   border: solid 1px #c7c4c4;
+  cursor: pointer;
 }
 
 .title {
