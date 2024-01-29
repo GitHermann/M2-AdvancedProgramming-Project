@@ -25,3 +25,5 @@ janv. 29, 2024 10:53:45 AM hudson.remoting.jnlp.Main$CuiListener status
 INFO: Remote identity confirmed: f5:90:c7:a3:09:e5:19:da:a9:1f:40:03:3e:87:86:65
 janv. 29, 2024 10:53:45 AM hudson.remoting.jnlp.Main$CuiListener status
 INFO: Connected
+janv. 29, 2024 11:12:34 AM org.jvnet.winp.Native loadByUrl
+WARNING: DLL and EXE are inconsistenly present on disk

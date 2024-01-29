@@ -54,7 +54,7 @@ pipeline {
       steps {
         script {
           dir('backend/project/users') {
-            bat 'docker build -t docker push francoischarvet/advanced-programming-users:1.0 .'
+            bat 'docker build -t francoischarvet/advanced-programming-users:1.0 .'
           }
         }
       }
