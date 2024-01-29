@@ -5,7 +5,7 @@ import bson.json_util as json_util
 from admin.models.admin_model import Admin
 from app import app
 
-@app.route('/user/admin/signin', methods=['POST'])
+@app.route('/users/admin/signin', methods=['POST'])
 def admin_sign_in():
     try:
         data = request.json
@@ -20,7 +20,7 @@ def admin_sign_in():
         return jsonify({"error": str(e)}), 500
 
 
-@app.route('/user/admin/login', methods=['POST'])
+@app.route('/users/admin/login', methods=['POST'])
 def admin_log_in():
     try:
         data = request.json
@@ -39,21 +39,21 @@ def admin_log_in():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route('/user/admin', methods=['POST'])
+@app.route('/users/admin', methods=['POST'])
 def add_user_admin():
     return 'Hello World!'
 
 
-@app.route('/user/admin/<id>', methods=['GET'])
+@app.route('/users/admin/<id>', methods=['GET'])
 def get_user_admin(id):
     return 'Hello World!'
 
 
-@app.route('/user/admin/<id>', methods=['PUT'])
+@app.route('/users/admin/<id>', methods=['PUT'])
 def update_user_admin(id):
     return 'Hello World!'
 
 
-@app.route('/user/admin/<id>', methods=['DELETE'])
+@app.route('/users/admin/<id>', methods=['DELETE'])
 def delete_user_admin(id):
     return 'Hello World!'

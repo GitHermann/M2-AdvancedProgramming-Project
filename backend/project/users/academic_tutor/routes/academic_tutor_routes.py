@@ -6,7 +6,7 @@ from academic_tutor.models.academic_tutor_model import AcademicTutor
 from app import app
 
 
-@app.route('/user/academic-tutor/signin', methods=['POST'])
+@app.route('/users/academic-tutor/signin', methods=['POST'])
 def academic_tutor_sign_in():
     try:
         data = request.json
@@ -21,7 +21,7 @@ def academic_tutor_sign_in():
         return jsonify({"error": str(e)}), 500
 
 
-@app.route('/user/academic-tutor/login', methods=['POST'])
+@app.route('/users/academic-tutor/login', methods=['POST'])
 def academic_tutor_log_in():
     try:
         data = request.json
@@ -41,21 +41,21 @@ def academic_tutor_log_in():
         return jsonify({"error": str(e)}), 500
 
 
-@app.route('/user/tutorAcademic', methods=['POST'])
+@app.route('/users/tutorAcademic', methods=['POST'])
 def add_user_tutor_academic():
     return 'Hello World!'
 
 
-@app.route('/user/tutorAcademic/<id>', methods=['GET'])
+@app.route('/users/tutorAcademic/<id>', methods=['GET'])
 def get_user_tutor_academic(id):
     return 'Hello World!'
 
 
-@app.route('/user/tutorAcademic/<id>', methods=['PUT'])
+@app.route('/users/tutorAcademic/<id>', methods=['PUT'])
 def update_user_tutor_academic(id):
     return 'Hello World!'
 
 
-@app.route('/user/tutorAcademic/<id>', methods=['DELETE'])
+@app.route('/users/tutorAcademic/<id>', methods=['DELETE'])
 def delete_user_tutor_academic(id):
     return 'Hello World!'
