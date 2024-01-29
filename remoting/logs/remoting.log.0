@@ -1,0 +1,27 @@
+janv. 29, 2024 10:53:43 AM hudson.remoting.jnlp.Main createEngine
+INFO: Setting up agent: advancedProgramming-slave
+janv. 29, 2024 10:53:43 AM hudson.remoting.Engine startEngine
+INFO: Using Remoting version: 3160.vd76b_9ddd10cc
+janv. 29, 2024 10:53:43 AM org.jenkinsci.remoting.engine.WorkDirManager initializeWorkDir
+INFO: Using C:\Users\fchar\Bureau\Cours EFREI\M2\Semestre 9\Advanced Programming\M2-AdvancedProgramming-Project\remoting as a remoting work directory
+janv. 29, 2024 10:53:43 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Locating server among [http://localhost:8080/]
+janv. 29, 2024 10:53:43 AM org.jenkinsci.remoting.engine.JnlpAgentEndpointResolver resolve
+INFO: Remoting server accepts the following protocols: [JNLP4-connect, Ping]
+janv. 29, 2024 10:53:43 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Agent discovery successful
+  Agent address: localhost
+  Agent port:    50000
+  Identity:      f5:90:c7:a3:09:e5:19:da:a9:1f:40:03:3e:87:86:65
+janv. 29, 2024 10:53:43 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Handshaking
+janv. 29, 2024 10:53:43 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Connecting to localhost:50000
+janv. 29, 2024 10:53:43 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Trying protocol: JNLP4-connect
+janv. 29, 2024 10:53:43 AM org.jenkinsci.remoting.protocol.impl.BIONetworkLayer$Reader run
+INFO: Waiting for ProtocolStack to start.
+janv. 29, 2024 10:53:45 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Remote identity confirmed: f5:90:c7:a3:09:e5:19:da:a9:1f:40:03:3e:87:86:65
+janv. 29, 2024 10:53:45 AM hudson.remoting.jnlp.Main$CuiListener status
+INFO: Connected
