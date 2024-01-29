@@ -7,7 +7,7 @@ from student.models.student_model import Student
 from app import app, session
 
 
-@app.route('/user/student/signin', methods=['POST'])
+@app.route('/users/student/signin', methods=['POST'])
 def student_sign_in():
     try:
         data = request.json
@@ -22,7 +22,7 @@ def student_sign_in():
         return jsonify({"error": str(e)}), 500
 
 
-@app.route('/user/student/login', methods=['POST'])
+@app.route('/users/student/login', methods=['POST'])
 def student_log_in():
     try:
         data = request.json
@@ -43,21 +43,21 @@ def student_log_in():
         return jsonify({"error": str(e)}), 500
 
 
-@app.route('/user/student', methods=['POST'])
+@app.route('/users/student', methods=['POST'])
 def add_user_student():
     return 'Hello World!'
 
 
-@app.route('/user/student/<id>', methods=['GET'])
+@app.route('/users/student/<id>', methods=['GET'])
 def get_user_student(id):
     return 'Hello World!'
 
 
-@app.route('/user/student/<id>', methods=['PUT'])
+@app.route('/users/student/<id>', methods=['PUT'])
 def update_user_student(id):
     return 'Hello World!'
 
 
-@app.route('/user/student/<id>', methods=['DELETE'])
+@app.route('/users/student/<id>', methods=['DELETE'])
 def delete_user_student(id):
     return 'Hello World!'

@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: advanced-programming-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: advanced-programming-frontend
+  template:
+    metadata:
+      labels:
+        app: advanced-programming-frontend
+    spec:
+      containers:
+        - name: advanced-programming-frontend
+          image: francoischarvet/advanced-programming-frontend:1.0
+          imagePullPolicy: Always
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: advanced-programming-internships
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: advanced-programming-internships
+  template:
+    metadata:
+      labels:
+        app: advanced-programming-internships
+    spec:
+      containers:
+        - name: advanced-programming-internships
+          image: francoischarvet/advanced-programming-internships:1.0
+          imagePullPolicy: Always
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: advanced-programming-internshipspaces
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: advanced-programming-internshipspaces
+  template:
+    metadata:
+      labels:
+        app: advanced-programming-internshipspaces
+    spec:
+      containers:
+        - name: advanced-programming-internshipspaces
+          image: francoischarvet/advanced-programming-internshipspaces:1.0
+          imagePullPolicy: Always
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: advanced-programming-users
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: advanced-programming-users
+  template:
+    metadata:
+      labels:
+        app: advanced-programming-users
+    spec:
+      containers:
+        - name: advanced-programming-users
+          image: francoischarvet/advanced-programming-users:1.0
+          imagePullPolicy: Always

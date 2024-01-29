@@ -4,7 +4,7 @@ from flask import request, jsonify
 import bson.json_util as json_util
 from company_tutor.models.company_tutor_model import CompanyTutor
 from app import app
-@app.route('/user/company-tutor/signin', methods=['POST'])
+@app.route('/users/company-tutor/signin', methods=['POST'])
 def company_tutor_sign_in():
     try:
         data = request.json
@@ -19,7 +19,7 @@ def company_tutor_sign_in():
         return jsonify({"error": str(e)}), 500
 
 
-@app.route('/user/company-tutor/login', methods=['POST'])
+@app.route('/users/company-tutor/login', methods=['POST'])
 def company_tutor_log_in():
     try:
         data = request.json
@@ -39,21 +39,21 @@ def company_tutor_log_in():
         return jsonify({"error": str(e)}), 500
 
 
-@app.route('/user/tutorEntreprise', methods=['POST'])
+@app.route('/users/tutorEntreprise', methods=['POST'])
 def add_user_tutor_entreprise():
     return 'Hello World!'
 
 
-@app.route('/user/tutorEntreprise/<id>', methods=['GET'])
+@app.route('/users/tutorEntreprise/<id>', methods=['GET'])
 def get_user_tutor_entreprise(id):
     return 'Hello World!'
 
 
-@app.route('/user/tutorEntreprise/<id>', methods=['PUT'])
+@app.route('/users/tutorEntreprise/<id>', methods=['PUT'])
 def update_user_tutor_entreprise(id):
     return 'Hello World!'
 
 
-@app.route('/user/tutorEntreprise/<id>', methods=['DELETE'])
+@app.route('/users/tutorEntreprise/<id>', methods=['DELETE'])
 def delete_user_tutor_entreprise(id):
     return 'Hello World!'
