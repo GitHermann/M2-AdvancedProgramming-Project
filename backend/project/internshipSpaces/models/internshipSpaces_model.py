@@ -3,8 +3,8 @@ import datetime
 
 from bson.objectid import ObjectId
 
-class InternshipsSpace:
-  internshipsSpace_collection = database_client['Project']['internships_space']
+class InternshipSpaces:
+  internshipSpaces_collection = database_client['Project']['internship_spaces']
 
   def __init__(self, data):
     self.name = data['name']
@@ -25,40 +25,40 @@ class InternshipsSpace:
     }
   
   @staticmethod
-  def createIntershipsSpace(data):
-    newInternshipsSpace = InternshipsSpace(data)
+  def createIntershipSpaces(data):
+    newInternshipSpaces = InternshipSpaces(data)
     
-    InternshipsSpace.internshipsSpace_collection.insert_one(newInternshipsSpace.jsonify())
-    return {'message': 'Interships space successfully created'}, 201
+    InternshipSpaces.internshipSpaces_collection.insert_one(newInternshipSpaces.jsonify())
+    return {'message': 'Intership spaces successfully created'}, 201
   
   @staticmethod
-  def getAllInternshipsSpace():
-    return [x for x in InternshipsSpace.internshipsSpace_collection.find()], 201
+  def getAllInternshipSpaces():
+    return [x for x in InternshipSpaces.internshipSpaces_collection.find()], 201
   
   @staticmethod
-  def getInternshipsSpace(id):
-    internshipsSpace = InternshipsSpace.internshipsSpace_collection.find_one({'_id': ObjectId(id)})
-    if internshipsSpace:
-      return internshipsSpace, 200
+  def getInternshipSpaces(id):
+    internshipSpaces = InternshipSpaces.internshipSpaces_collection.find_one({'_id': ObjectId(id)})
+    if internshipSpaces:
+      return internshipSpaces, 200
     else:
       return {'message': 'Resource not found'}, 404
     
   @staticmethod
-  def editInternshipsSpace(id, data):
-    updatedInternshipsSpace = InternshipsSpace(data)
-    updateResult = InternshipsSpace.internshipsSpace_collection.update_one({'_id': ObjectId(id)}, { '$set': updatedInternshipsSpace.jsonify()})
+  def editInternshipSpaces(id, data):
+    updatedInternshipSpaces = InternshipSpaces(data)
+    updateResult = InternshipSpaces.internshipSpaces_collection.update_one({'_id': ObjectId(id)}, { '$set': updatedInternshipSpaces.jsonify()})
     if updateResult.matched_count and updateResult.modified_count:
-      return {'message': 'Internships space found and modified'}, 200
+      return {'message': 'Internship spaces found and modified'}, 200
     elif updateResult.matched_count and not updateResult.modified_count:
-      return {'message': 'Internships space unmodified'}, 204
+      return {'message': 'Internship spaces unmodified'}, 204
     else:
       return {'message': 'Resource not found'}, 404
     
   
   @staticmethod
-  def deleteInternshipsSpace(id):
-    deleteResult = InternshipsSpace.internshipsSpace_collection.delete_one({'_id': ObjectId(id)})
+  def deleteInternshipSpaces(id):
+    deleteResult = InternshipSpaces.internshipSpaces_collection.delete_one({'_id': ObjectId(id)})
     if deleteResult.deleted_count:
-      return {'message': 'Internships space successfully deleted'}, 200
+      return {'message': 'Internship spaces successfully deleted'}, 200
     else:
-      return {'message': 'Internships space not found'}, 204 
+      return {'message': 'Internship spaces not found'}, 204

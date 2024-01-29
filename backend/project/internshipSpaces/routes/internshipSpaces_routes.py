@@ -3,46 +3,46 @@ import bson.json_util as json_util
 from flask import request, jsonify
 
 from app import app
-from models.internshipsSpace_model import InternshipsSpace
+from models.internshipSpaces_model import InternshipSpaces
 
-@app.route('/internships_space', methods=['POST'])
-def add_internships_space():
+@app.route('/internship_spaces', methods=['POST'])
+def add_internship_spaces():
   try:
     data = request.json
-    response = InternshipsSpace.createIntershipsSpace(data)
+    response = InternshipSpaces.createIntershipSpaces(data)
     return jsonify(response[0]), response[1]
   except Exception as e:
     return jsonify({'error': str(e)}), 500
   
-@app.route('/internships_space', methods=['GET'])
-def get_all_internships_space():
+@app.route('/internship_spaces', methods=['GET'])
+def get_all_internship_spaces():
   try:
-    response = InternshipsSpace.getAllInternshipsSpace()
+    response = InternshipSpaces.getAllInternshipSpaces()
     return json.loads(json_util.dumps(response[0])), response[1]
   except Exception as e:
     return jsonify({'error': str(e)}), 500
   
-@app.route('/internships_space/<id>', methods=['GET'])
-def get_internships_space(id):
+@app.route('/internship_spaces/<id>', methods=['GET'])
+def get_internship_spaces(id):
   try:
-    response = InternshipsSpace.getInternshipsSpace(id)
+    response = InternshipSpaces.getInternshipSpaces(id)
     return json.loads(json_util.dumps(response[0])), response[1]
   except Exception as e:
     return jsonify({'error': str(e)}), 500
   
-@app.route('/internships_space/<id>', methods=['POST'])
-def edit_internships_space(id):
+@app.route('/internship_spaces/<id>', methods=['POST'])
+def edit_internship_spaces(id):
   try:
     data = request.json
-    response = InternshipsSpace.editInternshipsSpace(id, data)
+    response = InternshipSpaces.editInternshipSpaces(id, data)
     return jsonify(response[0]), response[1]
   except Exception as e:
     return jsonify({'error': str(e)}), 500
   
-@app.route('/internships_space/<id>', methods=['DELETE'])
-def delete_internships_space(id):
+@app.route('/internship_spaces/<id>', methods=['DELETE'])
+def delete_internship_spaces(id):
   try:
-    response = InternshipsSpace.deleteInternshipsSpace(id)
+    response = InternshipSpaces.deleteInternshipSpaces(id)
     return jsonify(response[0]), response[1]
   except Exception as e:
     return jsonify({'error': str(e)}), 500
