@@ -6,7 +6,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="item in items" :key="item.id" @click="navigateToDetails(item.id)">
+      <tr v-for="item in items" :key="item.id" @click="navigateToDetails(item)">
         <td v-for="column in columns" :key="column.key">{{ item[column.key] }}</td>
       </tr>
     </tbody>
@@ -14,6 +14,9 @@
 </template>
 
 <script>
+import { useStore } from '@/stores/store'
+import { mapWritableState } from 'pinia'
+
 export default {
   props: {
     columns: {
@@ -26,14 +29,18 @@ export default {
     },
   },
   methods: {
-    navigateToDetails(itemId) {
+    navigateToDetails(item) {
       if (this.$route.path.includes('student')) {
-        this.$router.push(`/student/internships/${itemId}`);
+        this.internship = item;
+        this.$router.push(`/student/internships/${item.id}`);
       }
       else if (this.$route.path.includes('admin')) {
         this.$router.push(`/admin/internship-spaces/${itemId}`);
       }
     },
+  },
+  computed: {
+    ...mapWritableState(useStore, ['internship']),
   },
 };
 </script>

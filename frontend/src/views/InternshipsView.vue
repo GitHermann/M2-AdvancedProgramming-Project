@@ -3,25 +3,14 @@
     <div class="page-title">
       <h1>Mes stages</h1>
     </div>
-    <Table :columns="tableColumns" :items="tableData">
-      <template #default="{ item }">
-        <router-link :to="`/student/${item.id}`">
-          <tr>
-            <td>{{ item.year }}</td>
-            <td>{{ item.status }}</td>
-            <td>{{ item.title }}</td>
-            <td>{{ item.company }}</td>
-            <td>{{ item.startDate }}</td>
-            <td>{{ item.endDate }}</td>
-          </tr>
-        </router-link>
-      </template>
-    </Table>
+    <Table :columns="tableColumns" :items="internships" />
   </div>
 </template>
   
 <script>
 import Table from "@/components/Table.vue";
+import { useStore } from '@/stores/store'
+import { mapWritableState } from 'pinia'
 
 export default {
   components: {
@@ -37,7 +26,7 @@ export default {
         { key: "startDate", label: "Début"},
         { key: "endDate", label: "Fin"},
       ],
-      tableData: [
+      internships: [
         {
           id: 1,
           year: "2020-2021",
@@ -65,8 +54,17 @@ export default {
           startDate: "2018-09-01",
           endDate: "2019-02-28",
         },
+        
       ],
     };
+  },
+  computed: {
+    ...mapWritableState(useStore, ['internship']),
+  },
+  methods: {
+    updateInternshipId(internshipId) {
+      this.internshipId = internshipId;
+    },
   },
 };
 </script>
