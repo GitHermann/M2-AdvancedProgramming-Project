@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: advanced-programming-frontend
+spec:
+  ports:
+    - name: http
+      targetPort: 8082
+      port: 80
+  type: ClusterIP
+  selector:
+    app: advanced-programming-frontend
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: advanced-programming-internships
+spec:
+  ports:
+    - name: http
+      targetPort: 5001
+      port: 80
+  type: ClusterIP
+  selector:
+    app: advanced-programming-internships
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: advanced-programming-internshipspaces
+spec:
+  ports:
+    - name: http
+      targetPort: 5002
+      port: 80
+  type: ClusterIP
+  selector:
+    app: advanced-programming-internshipspaces
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: advanced-programming-users
+spec:
+  ports:
+    - name: http
+      targetPort: 5003
+      port: 80
+  type: ClusterIP
+  selector:
+    app: advanced-programming-users
