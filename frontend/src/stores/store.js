@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 
 export const useStore = defineStore('store', {
   state: () => ({
-    userType: 'admin',
+    userType: 'student',
     userFirstName: 'John',
     userLastName: 'DOE',
   }),

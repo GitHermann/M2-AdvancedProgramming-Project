@@ -1,18 +1,16 @@
 <template>
-  <div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th v-for="column in columns" :key="column.key">{{ column.label }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="item in items" :key="item.id">
-          <td v-for="column in columns" :key="column.key">{{ item[column.key] }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th v-for="column in columns" :key="column.key">{{ column.label }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="item in items" :key="item.id" @click="navigateToDetails(item.id)">
+        <td v-for="column in columns" :key="column.key">{{ item[column.key] }}</td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 <script>
@@ -25,6 +23,16 @@ export default {
     items: {
       type: Array,
       required: true,
+    },
+  },
+  methods: {
+    navigateToDetails(itemId) {
+      if (this.$route.path.includes('student')) {
+        this.$router.push(`/student/internships/${itemId}`);
+      }
+      else if (this.$route.path.includes('admin')) {
+        this.$router.push(`/admin/internship-spaces/${itemId}`);
+      }
     },
   },
 };
@@ -57,6 +65,7 @@ export default {
 
 .table tbody tr:hover {
   background-color: #f5f5f5;
+  cursor: pointer;
 }
 
 </style>
