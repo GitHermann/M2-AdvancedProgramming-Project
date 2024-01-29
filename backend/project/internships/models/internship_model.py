@@ -1,4 +1,4 @@
-from project.app import database_client, session
+from app import database_client, session
 import datetime
 from bson.objectid import ObjectId
 from enum import Enum

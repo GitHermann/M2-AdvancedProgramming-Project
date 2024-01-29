@@ -2,7 +2,7 @@ import bcrypt
 
 from abc import ABC
 
-from project.users.abstractUserModel.user_model import User
+from abstractUserModel.user_model import User
 
 
 class Student(User):

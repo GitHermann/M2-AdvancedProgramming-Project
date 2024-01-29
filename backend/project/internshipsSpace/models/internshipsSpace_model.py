@@ -1,4 +1,4 @@
-from project.app import database_client
+from app import database_client
 import datetime
 
 from bson.objectid import ObjectId

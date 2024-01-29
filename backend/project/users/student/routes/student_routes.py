@@ -3,8 +3,8 @@ import json
 from flask import request, jsonify
 import bson.json_util as json_util
 
-from project.users.student.models.student_model import Student
-from project.app import app, session
+from student.models.student_model import Student
+from app import app, session
 
 
 @app.route('/user/student/signin', methods=['POST'])

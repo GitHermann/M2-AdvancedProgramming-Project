@@ -2,8 +2,8 @@ import json
 import bson.json_util as json_util
 from flask import request, jsonify
 
-from project.users.academic_tutor.models.academic_tutor_model import AcademicTutor
-from project.app import app
+from academic_tutor.models.academic_tutor_model import AcademicTutor
+from app import app
 
 
 @app.route('/user/academic-tutor/signin', methods=['POST'])

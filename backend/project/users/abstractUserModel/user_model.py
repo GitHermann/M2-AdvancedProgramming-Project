@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 import bcrypt
-from project.app import database_client
+from app import database_client
 
 
 class User:
