@@ -2,8 +2,8 @@ import json
 from flask import request, jsonify
 import bson.json_util as json_util
 
-from project.users.admin.models.admin_model import Admin
-from project.app import app
+from admin.models.admin_model import Admin
+from app import app
 
 @app.route('/user/admin/signin', methods=['POST'])
 def admin_sign_in():

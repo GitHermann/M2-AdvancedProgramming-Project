@@ -2,8 +2,8 @@ import json
 import bson.json_util as json_util
 from flask import request, jsonify
 
-from project.app import app
-from project.internshipsSpace.models.internshipsSpace_model import InternshipsSpace
+from app import app
+from models.internshipsSpace_model import InternshipsSpace
 
 @app.route('/internships_space', methods=['POST'])
 def add_internships_space():
