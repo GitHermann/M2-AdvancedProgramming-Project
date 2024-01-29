@@ -7,7 +7,6 @@ spec:
     - name: http
       targetPort: 8082
       port: 80
-  type: ClusterIP
   selector:
     app: advanced-programming-frontend
 
