@@ -3,10 +3,23 @@
     <div class="page-title">
       <h1>Mes stages</h1>
     </div>
-    <Table :columns="tableColumns" :items="tableData" />
+    <Table :columns="tableColumns" :items="tableData">
+      <template #default="{ item }">
+        <router-link :to="`/student/${item.id}`">
+          <tr>
+            <td>{{ item.year }}</td>
+            <td>{{ item.status }}</td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.company }}</td>
+            <td>{{ item.startDate }}</td>
+            <td>{{ item.endDate }}</td>
+          </tr>
+        </router-link>
+      </template>
+    </Table>
   </div>
 </template>
-
+  
 <script>
 import Table from "@/components/Table.vue";
 
