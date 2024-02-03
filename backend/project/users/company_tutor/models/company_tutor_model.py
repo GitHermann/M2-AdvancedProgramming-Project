@@ -13,3 +13,6 @@ class CompanyTutor(User, ABC):
 
     def get_additional_fields(self, data):
         return {"company_tutor_id": data['company_tutor_id']}
+
+    def get_company_tutor_by_id(self, company_tutor_id):
+        return self.get_user_by_id(company_tutor_id)

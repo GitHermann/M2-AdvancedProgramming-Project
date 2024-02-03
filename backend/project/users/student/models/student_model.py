@@ -14,3 +14,6 @@ class Student(User):
 
     def get_additional_fields(self, data):
         return {"student_id": data['student_id'], "promotion": data['promotion']}
+
+    def get_student_by_id(self, student_id):
+        return self.get_user_by_id(student_id)

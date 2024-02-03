@@ -13,3 +13,6 @@ class Admin(User, ABC):
 
     def get_additional_fields(self, data):
         return {"test": data['test']}
+
+    def get_admin_by_id(self, admin_id):
+        return self.get_user_by_id(admin_id)

@@ -43,21 +43,94 @@ def student_log_in():
         return jsonify({"error": str(e)}), 500
 
 
-@app.route('/users/student', methods=['POST'])
-def add_user_student():
-    return 'Hello World!'
-
 
 @app.route('/users/student/<id>', methods=['GET'])
-def get_user_student(id):
-    return 'Hello World!'
+def get_student_by_id(id):
+    try:
+        student_instance = Student(collection_name="students")
+        user_data = student_instance.get_user_by_id(id)
+        print(user_data)
+        if user_data:
+            user_data['user'].pop('password', None)
+            user = json.loads(json_util.dumps(user_data['user']))
+            return jsonify({"user": user}), 200
+        else:
+            return jsonify({"message": "User not found"}), 404
+
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
-@app.route('/users/student/<id>', methods=['PUT'])
+@app.route('/users/student/profile', methods=['GET'])
+def get_authenticated_student_profile():
+    try:
+        if 'user' in session:
+            user_id = session['user']
+            student_instance = Student(collection_name="students")
+            user_data = student_instance.get_student_by_id(user_id)
+            user = json.loads(json_util.dumps(user_data['user']))
+            if user_data:
+                user_data.pop('password', None)
+                return jsonify({"user": user}), 200
+            else:
+                return jsonify({"message": "User not found"}), 404
+        else:
+            return jsonify({"message": "User not authenticated"}), 401
+
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route('/users/student/logout', methods=['POST'])
+def student_logout():
+    try:
+        if 'user' in session:
+            session.pop('user', None)
+            return jsonify({"message": "Logout successful"}), 200
+        else:
+            return jsonify({"message": "User not authenticated"}), 401
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route('/users/student/update', methods=['PUT'])
+def update_user_profile():
+    try:
+        if 'user' in session:
+            user_id = session['user']
+            data = request.json
+
+            student_instance = Student(collection_name="students")
+            response = student_instance.update_student(user_id, data)
+
+            if response.get("error"):
+                return jsonify({"error": response["error"]}), 400
+            elif response.get("message"):
+                return jsonify({"message": response["message"]}), 200
+            else:
+                return jsonify({"message": "Update failed"}), 500
+        else:
+            return jsonify({"message": "User not authenticated"}), 401
+
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route('/users/student/update<id>', methods=['PUT'])
 def update_user_student(id):
     return 'Hello World!'
 
 
-@app.route('/users/student/<id>', methods=['DELETE'])
+@app.route('/users/student/delete/<id>', methods=['DELETE'])
 def delete_user_student(id):
     return 'Hello World!'

@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 import bcrypt
 from app import database_client
+from bson import ObjectId
 
 
 class User:
@@ -37,6 +38,14 @@ class User:
             return {'message': 'Login successful', 'code': 201, 'user': existing_user}
         else:
             return {'message': 'Invalid email or password', 'code': 401}
+
+    def get_user_by_id(self, user_id):
+
+        user_data = self.users_collection.find_one({"_id": ObjectId(user_id)})
+        if user_data:
+            return {'user': user_data}
+        else:
+            return {'message': 'User does not exist', 'code': 404}
 
     @abstractmethod
     def get_additional_fields(self, data):
