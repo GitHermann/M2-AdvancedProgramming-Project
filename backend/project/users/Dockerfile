@@ -23,5 +23,4 @@ EXPOSE 5003
 ENV FLASK_APP=app.py
 
 # Run app.py when the container launches
-CMD ["poetry", "run", "python", "app.py"]
-
+CMD ["poetry", "run", "flask", "run", "--host=0.0.0.0"]
