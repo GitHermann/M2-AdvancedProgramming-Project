@@ -26,8 +26,6 @@ import importAllRoutes
 
 @app.route("/")
 def hello():
-    #Placeholder
-    session['user'] = '65b12927b91ba67d6de2eaad'
     return "Hello, World!"
 
 if __name__ == "__main__":

@@ -2,22 +2,30 @@ import json
 
 from flask import request, jsonify
 import bson.json_util as json_util
-
-from student.models.student_model import Student
+from internship_report.models.internship_report_model import InternshipReport
 from app import app, session
 
 
-@app.route('/documents/', methods=['POST'])
+@app.route('/documents/upload', methods=['POST'])
 def add_document():
     try:
-        data = request.json
-        InternshipReport = InternshipReport(data)
-        response = student_instance.create_student(data)
-        return jsonify({"message": str(response)}), 201
+        data_body = {
+            'internship': request.form.get('internship'),
+            'document_name': request.files.get('file').filename,
+            'level_of_confidentiality': request.form.get('level_of_confidentiality')
+        }
+
+        file_data = request.files.get('file')
+        if not file_data:
+            return jsonify({"error": "No file provided"}), 400
+
+        document_instance = InternshipReport(data_body, file_data)
+        response = document_instance.create_document(data_body, file_data)
+
+        return jsonify(response), 201
 
     except ValueError as e:
         return jsonify({"error": str(e)}), 400
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
