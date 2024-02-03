@@ -1,5 +1,8 @@
+import gridfs
 from asbtract_document_model.document_model import AbstractDocument
 from app import database_client
+from bson import ObjectId
+from flask import send_file
 
 
 class InternshipReport(AbstractDocument):
@@ -22,3 +25,15 @@ class InternshipReport(AbstractDocument):
         new_document.jsonify()['file_id'] = file_id
 
         return {'message': 'Document successfully created'}, 201
+
+    def get_document(self, file_id):
+        try:
+            _id = ObjectId(file_id)
+            fs = gridfs.GridFS(self.internships_reports_collection.database, collection='internships_reports')
+            file_data = fs.get(_id)
+            content_type = 'application/octet-stream'
+            return send_file(file_data, mimetype=content_type, as_attachment=True, download_name=file_data.filename)
+
+        except Exception as e:
+            return {'error': str(e)}, 500
+

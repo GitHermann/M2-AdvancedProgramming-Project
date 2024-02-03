@@ -23,6 +23,11 @@ class AbstractDocument:
         file_id = fs.put(file_data, filename=filename, metadata=data_body)
         return file_id
 
+
     @abstractmethod
     def create_document(self, data, file_data):
+        pass
+
+    @abstractmethod
+    def get_document(self, file_id):
         pass

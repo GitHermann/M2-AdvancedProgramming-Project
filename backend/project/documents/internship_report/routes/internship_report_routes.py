@@ -6,8 +6,8 @@ from internship_report.models.internship_report_model import InternshipReport
 from app import app, session
 
 
-@app.route('/documents/upload', methods=['POST'])
-def add_document():
+@app.route('/documents/internship-report/upload', methods=['POST'])
+def upload_internship_report():
     try:
         data_body = {
             'internship': request.form.get('internship'),
@@ -29,3 +29,15 @@ def add_document():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+
+@app.route('/documents/internship-report/download/<file_id>', methods=['GET'])
+def download_internship_report(file_id):
+    data_body = {
+        'internship': None,
+        'document_name': None,
+        'level_of_confidentiality': None
+    }
+    file_data = None
+    document_instance = InternshipReport(data_body, file_data)
+    return document_instance.get_document(file_id)
