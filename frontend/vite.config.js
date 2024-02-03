@@ -14,6 +14,7 @@ export default defineConfig({
     }
   },
   server: {
-    port: 8082,
+    host: 'my-internships.com',
+    port: 8082
   },
 })
