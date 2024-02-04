@@ -20,7 +20,7 @@ class User:
             'last_name': data['last_name'],
             'email': data['email'],
             'password': hashed_password,
-            'phone': data['phone'],
+            'phone': data['phone']
         }
         new_user.update(self.get_additional_fields(data))
         self.users_collection.insert_one(new_user)
@@ -35,7 +35,7 @@ class User:
             {'email': data['email']})
 
         if existing_user and bcrypt.checkpw(data['password'].encode('utf8'), existing_user['password']):
-            return {'message': 'Login successful', 'code': 201, 'user': existing_user}
+            return {'message': 'Login successful', 'code': 200, 'user': existing_user}
         else:
             return {'message': 'Invalid email or password', 'code': 401}
 
