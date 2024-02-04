@@ -79,3 +79,24 @@ spec:
         - name: advanced-programming-users
           image: francoischarvet/advanced-programming-users:1.0
           imagePullPolicy: Always
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: advanced-programming-documents
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: advanced-programming-documents
+  template:
+    metadata:
+      labels:
+        app: advanced-programming-documents
+    spec:
+      containers:
+        - name: advanced-programming-documents
+          image: francoischarvet/advanced-programming-documents:1.0
+          imagePullPolicy: Always
