@@ -9,7 +9,37 @@ const getAllinternshipSpaces = async () => {
     }
 };
 
-export { getAllinternshipSpaces };
+
+const createInternshipSpace = async (internshipSpace) => {
+    try {
+        const startSubmissionDateArray = internshipSpace.startSubmissionDate.split('-').map(Number);
+        const endSubmissionDateArray = internshipSpace.endSubmissionDate.split('-').map(Number);
+
+        const formattedInternshipSpace = {
+            name: internshipSpace.name,
+            promotion: internshipSpace.promotion,
+            students_instruction: internshipSpace.students_instruction,
+            tutors_instruction: internshipSpace.tutors_instruction,
+            startSubmissionDate: startSubmissionDateArray,
+            endSubmissionDate: endSubmissionDateArray,
+        };
+
+        const response = await fetch(`${baseUrl}/internship_spaces`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formattedInternshipSpace),
+        });
+
+        return await response.json();
+    } catch (error) {
+        return { error: error.message || 'An error occurred' };
+    }
+};
+
+
+export { getAllinternshipSpaces, createInternshipSpace };
 
 
 

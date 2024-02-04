@@ -3,7 +3,7 @@
 		<div class="page-title">
       <h1>Ajouter un espace de stage</h1>
     </div>
-		<form class="login-form">
+		<form class="login-form" @submit.prevent="submitForm">
 			<div class="input-form-container">
 				<label class="text" for="name">Intitulé</label>
 				<input type="text" id="name" v-model="name" class="input-form" required>
@@ -34,6 +34,8 @@
 </template>
 
 <script>
+import { createInternshipSpace } from "@/api/internshipSpaces";
+
 export default {
   data() {
     return {
@@ -45,6 +47,26 @@ export default {
       endSubmissionDate: '',
     };
   },
+  methods: {
+    submitForm() {
+      createInternshipSpace({
+        name: this.name,
+        promotion: this.promotion,
+        tutors_instruction: this.tutors_instruction,
+        students_instruction: this.students_instruction,
+        startSubmissionDate: this.startSubmissionDate,
+        endSubmissionDate: this.endSubmissionDate,
+      });
+    },
+    resetForm() {
+      this.name = '';
+      this.promotion = '';
+      this.tutors_instruction = '';
+      this.students_instruction = '';
+      this.startSubmissionDate = '';
+      this.endSubmissionDate = '';
+    }
+  }
 };
 </script>
 
