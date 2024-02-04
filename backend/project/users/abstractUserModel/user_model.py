@@ -24,6 +24,7 @@ class User:
         }
         new_user.update(self.get_additional_fields(data))
         self.users_collection.insert_one(new_user)
+        new_user.pop('password')
         return {'message': 'Sign In successful', 'user': new_user}, 201
 
     def user_log_in(self, data):
@@ -35,17 +36,17 @@ class User:
             {'email': data['email']})
 
         if existing_user and bcrypt.checkpw(data['password'].encode('utf8'), existing_user['password']):
-            return {'message': 'Login successful', 'code': 200, 'user': existing_user}
+            return {'message': 'Login successful',  'user': existing_user}, 200
         else:
-            return {'message': 'Invalid email or password', 'code': 401}
+            return {'message': 'Invalid email or password'}, 400
 
     def get_user_by_id(self, user_id):
 
         user_data = self.users_collection.find_one({"_id": ObjectId(user_id)})
         if user_data:
-            return {'user': user_data}
+            return {'user': user_data}, 200
         else:
-            return {'message': 'User does not exist', 'code': 404}
+            return {'message': 'User does not exist'}, 404
 
     @abstractmethod
     def get_additional_fields(self, data):
