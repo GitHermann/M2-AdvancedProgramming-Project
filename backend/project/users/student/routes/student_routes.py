@@ -28,13 +28,13 @@ def student_log_in():
         data = request.json
         student_instance = Student(collection_name="students")
         response = student_instance.student_log_in(data)
-
-        if response['code'] == 200:
-            user = json.loads(json_util.dumps(response['user']))
+        message, status_code = response
+        if status_code == 200:
+            user = json.loads(json_util.dumps(message['user'], default=str))
             session['user'] = user["_id"]["$oid"]
-            return jsonify({"message": response['message'], "user": user})
+            return jsonify({"message": message['message'], "user": user}), 200
         else:
-            return jsonify({"message": response['message'], "code": response['code']})
+            return jsonify({"message": message, "code": status_code}), 400
 
     except ValueError as e:
         return jsonify({"error": str(e)}), 400
@@ -48,9 +48,9 @@ def student_log_in():
 def get_student_by_id(id):
     try:
         student_instance = Student(collection_name="students")
-        user_data = student_instance.get_user_by_id(id)
-        print(user_data)
-        if user_data:
+        response = student_instance.get_user_by_id(id)
+        user_data, status_code = response
+        if user_data and status_code == 200:
             user_data['user'].pop('password', None)
             user = json.loads(json_util.dumps(user_data['user']))
             return jsonify({"user": user}), 200
@@ -70,9 +70,11 @@ def get_authenticated_student_profile():
         if 'user' in session:
             user_id = session['user']
             student_instance = Student(collection_name="students")
-            user_data = student_instance.get_student_by_id(user_id)
-            user = json.loads(json_util.dumps(user_data['user']))
-            if user_data:
+            response = student_instance.get_student_by_id(user_id)
+            print(response)
+            user_data, status_code = response
+            if user_data and status_code == 200:
+                user = json.loads(json_util.dumps(user_data['user']))
                 user_data.pop('password', None)
                 return jsonify({"user": user}), 200
             else:
