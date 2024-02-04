@@ -3,7 +3,7 @@
     <div class="page-title">
       <h1>Espaces de stage</h1>
     </div>
-    <Table :columns="tableColumns" :items="tableData" />
+    <Table :columns="tableColumns" :items="internshipSpaces" />
     <div class="submit-button-container">
       <RouterLink to="/admin/internship-spaces/add" class="link">
         <button class="submit-button" type="submit">Créer un espace de stage</button>
@@ -14,6 +14,7 @@
 
 <script>
 import Table from "@/components/Table.vue";
+import { getAllinternshipSpaces } from "@/api/internshipSpaces";
 
 export default {
   components: {
@@ -27,36 +28,23 @@ export default {
         { key: "startSubmissionDate", label: "Début des soumissions" },
         { key: "endSubmissionDate", label: "Fin des soumissions" },
       ],
-      tableData: [
-        {
-          id: 1,
-          name: "Stage ingénieur M2",
-          promotion: "2020-2021",
-          tutors_instruction: "Instructions pour les tuteurs",
-          students_instruction: "Instructions pour les étudiants",
-          startSubmissionDate: "2020-09-01",
-          endSubmissionDate: "2021-02-28",
-        },
-        {
-          id: 2,
-          name: "Stage technique M1",
-          promotion: "2019-2020",
-          tutors_instruction: "Instructions pour les tuteurs",
-          students_instruction: "Instructions pour les étudiants",
-          startSubmissionDate: "2019-09-01",
-          endSubmissionDate: "2020-02-28",
-        },
-        {
-          id: 3,
-          name: "Stage découverte L2",
-          promotion: "2018-2019",
-          tutors_instruction: "Instructions pour les tuteurs",
-          students_instruction: "Instructions pour les étudiants",
-          startSubmissionDate: "2018-09-01",
-          endSubmissionDate: "2019-02-28",
-        },
-      ],
+      internshipSpaces : [],
     };
+  },
+  mounted() {
+    this.fetchInternshipSpaces();
+  },
+  methods: {
+    async fetchInternshipSpaces() {
+      try {
+        this.internshipSpaces = await getAllinternshipSpaces();
+      } catch (error) {
+        console.error('An error occurred while fetching internship spaces:', error);
+      }
+    },
+    print() {
+      console.log(this.internshipSpaces);
+    }
   },
 };
 </script>

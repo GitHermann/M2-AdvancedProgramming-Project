@@ -33,7 +33,23 @@ class InternshipSpaces:
   
   @staticmethod
   def getAllInternshipSpaces():
-    return [x for x in InternshipSpaces.internship_spaces_collection.find()], 201
+
+    internship_spaces = InternshipSpaces.internship_spaces_collection.find()
+
+    transformed_internship_spaces = [
+      {
+        "id": str(internship_space["_id"]),
+        "name": internship_space["name"],
+        "promotion": internship_space["promotion"],
+        "students_instruction": internship_space["students_instruction"],
+        "tutors_instruction": internship_space["tutors_instruction"],
+        "startSubmissionDate": internship_space["startSubmissionDate"].isoformat(),
+        "endSubmissionDate": internship_space["endSubmissionDate"].isoformat()
+      }
+      for internship_space in internship_spaces
+    ]
+    
+    return transformed_internship_spaces, 201
   
   @staticmethod
   def getInternshipSpaces(id):
