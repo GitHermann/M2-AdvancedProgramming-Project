@@ -4,7 +4,7 @@ import datetime
 from bson.objectid import ObjectId
 
 class InternshipSpaces:
-  internshipSpaces_collection = database_client['Project']['internship_spaces']
+  internship_spaces_collection = database_client['Project']['internship_spaces']
 
   def __init__(self, data):
     self.name = data['name']
@@ -28,16 +28,16 @@ class InternshipSpaces:
   def createIntershipSpaces(data):
     newInternshipSpaces = InternshipSpaces(data)
     
-    InternshipSpaces.internshipSpaces_collection.insert_one(newInternshipSpaces.jsonify())
+    InternshipSpaces.internship_spaces_collection.insert_one(newInternshipSpaces.jsonify())
     return {'message': 'Intership spaces successfully created'}, 201
   
   @staticmethod
   def getAllInternshipSpaces():
-    return [x for x in InternshipSpaces.internshipSpaces_collection.find()], 201
+    return [x for x in InternshipSpaces.internship_spaces_collection.find()], 201
   
   @staticmethod
   def getInternshipSpaces(id):
-    internshipSpaces = InternshipSpaces.internshipSpaces_collection.find_one({'_id': ObjectId(id)})
+    internshipSpaces = InternshipSpaces.internship_spaces_collection.find_one({'_id': ObjectId(id)})
     if internshipSpaces:
       return internshipSpaces, 200
     else:
@@ -46,7 +46,7 @@ class InternshipSpaces:
   @staticmethod
   def editInternshipSpaces(id, data):
     updatedInternshipSpaces = InternshipSpaces(data)
-    updateResult = InternshipSpaces.internshipSpaces_collection.update_one({'_id': ObjectId(id)}, { '$set': updatedInternshipSpaces.jsonify()})
+    updateResult = InternshipSpaces.internship_spaces_collection.update_one({'_id': ObjectId(id)}, { '$set': updatedInternshipSpaces.jsonify()})
     if updateResult.matched_count and updateResult.modified_count:
       return {'message': 'Internship spaces found and modified'}, 200
     elif updateResult.matched_count and not updateResult.modified_count:
@@ -57,7 +57,7 @@ class InternshipSpaces:
   
   @staticmethod
   def deleteInternshipSpaces(id):
-    deleteResult = InternshipSpaces.internshipSpaces_collection.delete_one({'_id': ObjectId(id)})
+    deleteResult = InternshipSpaces.internship_spaces_collection.delete_one({'_id': ObjectId(id)})
     if deleteResult.deleted_count:
       return {'message': 'Internship spaces successfully deleted'}, 200
     else:
