@@ -41,7 +41,7 @@ class InternshipSpaces:
     if internshipSpaces:
       return internshipSpaces, 200
     else:
-      return {'message': 'Resource not found'}, 404
+      return {'message': 'Internship space not found'}, 404
     
   @staticmethod
   def editInternshipSpaces(id, data):
