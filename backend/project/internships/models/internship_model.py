@@ -47,8 +47,8 @@ class Internship:
             {'internshipSpace': ObjectId(newInternship.internshipSpace), 'student': ObjectId(newInternship.student)})
             if existingInternship:
                 return {'message': 'Stage déjà créé'}, 400
-            Internship.internships_collection.insert_one(newInternship.jsonify())
-            return {'message': 'Internship successfully created'}, 201
+            response = Internship.internships_collection.insert_one(newInternship.jsonify())
+            return {'message': 'Internship successfully created', 'inserted_id': str(response.inserted_id)}, 201
         else:
             return {'message': 'Internship space not found'}, 404
 
@@ -64,4 +64,17 @@ class Internship:
                 return {'message': 'Internship not found'}, 404
         else:
             return {'message': 'Internship space not found'}, 404
+        
+    @staticmethod
+    def deleteInternship(id, internship_space_id):
+        internshipSpace = Internship.internship_spaces_collection.find_one({'_id': ObjectId(internship_space_id)})
+        if internshipSpace:
+            deleteResult = Internship.internships_collection.delete_one({'_id': ObjectId(id)})
+            if deleteResult.deleted_count:
+                return {'message': 'Internship successfully deleted'}, 200
+            else:
+                return {'message': 'Internship not found'}, 204
+        else:
+            return {'message': 'Internship space not found'}, 404
+        
 

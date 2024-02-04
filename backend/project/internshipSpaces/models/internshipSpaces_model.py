@@ -28,8 +28,8 @@ class InternshipSpaces:
   def createIntershipSpaces(data):
     newInternshipSpaces = InternshipSpaces(data)
     
-    InternshipSpaces.internship_spaces_collection.insert_one(newInternshipSpaces.jsonify())
-    return {'message': 'Intership spaces successfully created'}, 201
+    response = InternshipSpaces.internship_spaces_collection.insert_one(newInternshipSpaces.jsonify())
+    return {'message': 'Intership spaces successfully created', 'inserted_id': str(response.inserted_id)}, 201
   
   @staticmethod
   def getAllInternshipSpaces():
