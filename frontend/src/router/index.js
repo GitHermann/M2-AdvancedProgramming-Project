@@ -32,22 +32,25 @@ const router = createRouter({
     {
       path: '/academic-tutor/login',
       name: 'login-academic-tutor',
-      component: LoginAcademicTutorView
+      component: LoginAcademicTutorView,
     },
     {
       path: '/admin/login',
       name: 'login-admin',
-      component: LoginAdminView
+      component: LoginAdminView,
+      redirect: '/admin/internship-spaces'
     },
     {
       path: '/company-tutor/login',
       name: 'login-company-tutor',
-      component: LoginCompanyTutorView
+      component: LoginCompanyTutorView,
+      redirect: '/company-tutor/evaluation-forms'
     },
     {
       path: '/student/login',
       name: 'login-student',
-      component: LoginStudentView
+      component: LoginStudentView,
+      redirect: '/student/internships'
     },
     {
       path: '/register/academic-tutor',
