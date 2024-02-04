@@ -35,3 +35,10 @@ spec:
                 name: advanced-programming-users
                 port:
                   number: 5003
+          - path: /documents
+            pathType: Prefix
+            backend:
+              service:
+                name: advanced-programming-documents
+                port:
+                  number: 5004

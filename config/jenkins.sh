@@ -64,6 +64,20 @@ pipeline {
         bat 'docker push francoischarvet/advanced-programming-users:1.0'
       }
     }
+    stage('Building Documents Service Image') {
+      steps {
+        script {
+          dir('backend/project/documents') {
+            bat 'docker build -t francoischarvet/advanced-programming-documents:1.0 .'
+          }
+        }
+      }
+    }
+	  stage('Publish Documents Service Image') {
+      steps {
+        bat 'docker push francoischarvet/advanced-programming-documents:1.0'
+      }
+    }
 	  stage('Starting Minikube') {
 	    steps {
 	      script {
