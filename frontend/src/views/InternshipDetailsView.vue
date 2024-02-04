@@ -10,6 +10,9 @@
 			<h2>Début : {{ internship.startDate }}</h2>
 			<h2>Fin : {{ internship.endDate }}</h2>
 		</div>
+    <div>
+      
+    </div>
   </div>
 </template>
 

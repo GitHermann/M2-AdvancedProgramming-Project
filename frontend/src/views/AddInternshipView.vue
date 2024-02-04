@@ -20,7 +20,7 @@
 				<label class="text" for="endSubmissionDate">Date de fin</label>
 				<input type="date" id="endDate" v-model="endDate" class="input-form" required>
 			</div>
-  		<button class="submit-button" type="submit">Créer un espace de stage</button>
+  		<button class="submit-button" type="submit">Sauvegarder</button>
   </form>
 	</div>
 </template>
