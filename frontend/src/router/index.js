@@ -38,19 +38,16 @@ const router = createRouter({
       path: '/admin/login',
       name: 'login-admin',
       component: LoginAdminView,
-      redirect: '/admin/internship-spaces'
     },
     {
       path: '/company-tutor/login',
       name: 'login-company-tutor',
       component: LoginCompanyTutorView,
-      redirect: '/company-tutor/evaluation-forms'
     },
     {
       path: '/student/login',
       name: 'login-student',
       component: LoginStudentView,
-      redirect: '/student/internships'
     },
     {
       path: '/register/academic-tutor',
