@@ -23,15 +23,15 @@ def company_tutor_sign_in():
 def company_tutor_log_in():
     try:
         data = request.json
-        company_tutor_instance = CompanyTutor(collection_name="academic_tutors")
+        company_tutor_instance = CompanyTutor(collection_name="company_tutors")
         response = company_tutor_instance.company_tutor_log_in(data)
-
-        if response['code'] == 200:
-            user = json.loads(json_util.dumps(response['user']))
+        message, status_code = response
+        if status_code == 200:
+            user = json.loads(json_util.dumps(message['user']))
             session['user'] = user["_id"]["$oid"]
-            return jsonify({"message": response['message'], "user": user})
+            return jsonify({"message": message['message'], "user": user}), 200
         else:
-            return jsonify({"message": response['message'], "code": response['code']})
+            return jsonify({"message": message['message'], "code": status_code}), 400
 
     except ValueError as e:
         return jsonify({"error": str(e)}), 400
@@ -56,9 +56,9 @@ def company_tutor_logout():
 def get_company_tutor_by_id(id):
     try:
         company_tutor_instance = CompanyTutor(collection_name="company_tutors")
-        user_data = company_tutor_instance.get_user_by_id(id)
-        print(user_data)
-        if user_data:
+        response = company_tutor_instance.get_user_by_id(id)
+        user_data, status_code = response
+        if user_data and status_code == 200:
             user_data['user'].pop('password', None)
             user = json.loads(json_util.dumps(user_data['user']))
             return jsonify({"user": user}), 200
@@ -78,9 +78,10 @@ def get_authenticated_company_tutor_profile():
         if 'user' in session:
             user_id = session['user']
             company_tutor_instance = CompanyTutor(collection_name="company_tutors")
-            user_data = company_tutor_instance.get_company_tutor_by_id(user_id)
-            user = json.loads(json_util.dumps(user_data['user']))
-            if user_data:
+            response = company_tutor_instance.get_company_tutor_by_id(user_id)
+            user_data, status_code = response
+            if user_data and status_code == 200:
+                user = json.loads(json_util.dumps(user_data['user']))
                 user_data.pop('password', None)
                 return jsonify({"user": user}), 200
             else:
