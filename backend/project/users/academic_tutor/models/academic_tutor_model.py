@@ -6,7 +6,10 @@ from abstractUserModel.user_model import User
 class AcademicTutor(User, ABC):
 
     def create_academic_tutor(self, data):
-        return self.create_user(data)
+        if data['email'].endswith('@academictutor.efrei.net'):
+            return self.create_user(data)
+        else:
+            return 'Wrong email structure'
 
     def academic_tutor_log_in(self, data):
         return self.user_log_in(data)
