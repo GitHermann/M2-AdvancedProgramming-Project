@@ -39,7 +39,20 @@ const createInternshipSpace = async (internshipSpace) => {
 };
 
 
-export { getAllinternshipSpaces, createInternshipSpace };
+const deleteInternshipSpace = async (internshipSpacedId) => {
+    try {
+        const response = await fetch(`${baseUrl}/internship_spaces/${internshipSpacedId}`, {
+            method: 'DELETE',
+        });
+
+        return await response.json();
+    } catch (error) {
+        return { error: error.message || 'An error occurred' };
+    }
+};
+
+
+export { getAllinternshipSpaces, createInternshipSpace, deleteInternshipSpace };
 
 
 

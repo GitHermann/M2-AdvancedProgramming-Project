@@ -10,8 +10,9 @@
 			<h2>Date de début des soumissions : {{ internshipSpace.startSubmissionDate }}</h2>
 			<h2>Date de fin des soumissions :{{ internshipSpace.endSubmissionDate }}</h2>
 		</div>
-    <div>
-
+    <div class="action-buttons-container">
+      <button class="action-button" id="edit">Modifier</button>
+      <button class="action-button" id="delete" @click="deleteSpace">Supprimer</button>
     </div>
   </div>
 </template>
@@ -20,6 +21,7 @@
 <script>
 import { useStore } from '@/stores/store'
 import { mapWritableState } from 'pinia'
+import { deleteInternshipSpace } from '@/api/internshipSpaces'
 
 export default {
 	data() {
@@ -27,10 +29,11 @@ export default {
 		}
 	},
 	methods: {
-		// Add your methods here
+		deleteSpace() {
+      deleteInternshipSpace(this.internshipSpace.id)
+    }
 	},
 	computed: {
-    ...mapWritableState(useStore, ['internship']),
     ...mapWritableState(useStore, ['internshipSpace']),
   },
 }
@@ -66,5 +69,40 @@ h1 {
   font-size: 32px;
   font-family: Verdana, sans-serif;
 }
+
+.action-buttons-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 auto;
+  width: 81%;
+}
+
+.action-button {
+  width: 100%;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  margin-left: 20px;
+  margin-right: 00px;
+  height: 50px;
+  border: solid 1px #c7c4c4;
+  font-size: 15px;
+  color: #f7f7f7;
+  font-family: Verdana, sans-serif;
+  font-weight: 800;
+  border: solid 1px #c7c4c4;
+  cursor: pointer;
+}
+
+#edit {
+  background-color: #3571a9;
+}
+
+#delete {
+  background-color: #CA2424;
+}
+
 
 </style>

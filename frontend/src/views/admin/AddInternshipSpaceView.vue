@@ -3,7 +3,7 @@
 		<div class="page-title">
       <h1>Ajouter un espace de stage</h1>
     </div>
-		<form class="login-form" @submit.prevent="submitForm">
+		<form class="login-form" @submit.prevent="submitForm" :class="{ 'loading': loading }">
 			<div class="input-form-container">
 				<label class="text" for="name">Intitulé</label>
 				<input type="text" id="name" v-model="name" class="input-form" required>
@@ -28,7 +28,10 @@
 				<label class="text" for="endSubmissionDate">Date de fin des soumissions</label>
 				<input type="date" id="endSubmissionDate" v-model="endSubmissionDate" class="input-form" required>
 			</div>
-  		<button class="submit-button" type="submit">Créer un espace de stage</button>
+  		<button class="submit-button" type="submit" :disabled="loading">
+        <span v-if="!loading">Créer un espace de stage</span>
+        <span v-else>Création de l'espace de stage...</span>
+      </button>
   </form>
 	</div>
 </template>
@@ -39,6 +42,7 @@ import { createInternshipSpace } from "@/api/internshipSpaces";
 export default {
   data() {
     return {
+      loading: false,
       name: '',
       promotion: '',
       tutors_instruction: '',
@@ -48,15 +52,25 @@ export default {
     };
   },
   methods: {
-    submitForm() {
-      createInternshipSpace({
-        name: this.name,
-        promotion: this.promotion,
-        tutors_instruction: this.tutors_instruction,
-        students_instruction: this.students_instruction,
-        startSubmissionDate: this.startSubmissionDate,
-        endSubmissionDate: this.endSubmissionDate,
-      });
+    async submitForm() {
+      try {
+        this.loading = true;
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        await createInternshipSpace({
+          name: this.name,
+          promotion: this.promotion,
+          tutors_instruction: this.tutors_instruction,
+          students_instruction: this.students_instruction,
+          startSubmissionDate: this.startSubmissionDate,
+          endSubmissionDate: this.endSubmissionDate,
+        });
+        this.resetForm();
+      } catch (error) {
+          console.error('Error submitting form:', error);
+      } finally {
+        this.loading = false;
+        this.$router.push('/admin/internship-spaces');
+      }
     },
     resetForm() {
       this.name = '';
@@ -166,6 +180,11 @@ h1 {
 .text {
   font-size: 16px;
   font-family: Verdana, sans-serif;
+}
+
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
 }
 
 </style>
