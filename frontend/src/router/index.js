@@ -13,7 +13,8 @@ import InternshipsView from '../views/InternshipsView.vue'
 import InternshipDetailsView from '../views/InternshipDetailsView.vue'
 import AddInternshipView from '../views/AddInternshipView.vue'
 import InternshipSpaceDetailsView from '../views/admin/InternshipSpaceDetailsView.vue'
-
+import EvaluationFormsView from '../views/company-tutor/EvaluationFormsView.vue'
+import EvaluationFormDetailsView from '../views/company-tutor/EvaluationFormDetailsView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -92,6 +93,16 @@ const router = createRouter({
       path: '/student/internships/add',
       name: 'student-add-internship',
       component: AddInternshipView
+    },
+    {
+      path: '/company-tutor/evaluation-forms',
+      name: 'company-tutor-evaluation-forms',
+      component: EvaluationFormsView
+    },
+    {
+      path: '/company-tutor/evaluation-forms/:id',
+      name: 'company-tutor-evaluation-form-details',
+      component: EvaluationFormDetailsView
     }
   ]
 })

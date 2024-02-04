@@ -3,7 +3,7 @@
     <div class="page-title">
       <h1>{{ internship.title }}</h1>
     </div>
-		<div>
+		<div class="details-container" >
 			<h2>Année : {{ internship.year }}</h2>
 			<h2>Statut : {{ internship.status }}</h2>
 			<h2>Entreprise : {{ internship.company }}</h2>
@@ -11,7 +11,7 @@
 			<h2>Fin : {{ internship.endDate }}</h2>
 		</div>
     <div>
-      
+
     </div>
   </div>
 </template>
@@ -37,6 +37,23 @@ export default {
 
 
 <style scoped>
+
+.details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  padding: 10px;
+  margin: 0 auto;
+  padding-left: 40px;
+  margin-bottom: 30px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 10px;
+  width: 80%;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); 
+  font-size: 12px;
+  font-family: Verdana, sans-serif;
+}
 
 .page-title {
   margin-bottom: 20px;

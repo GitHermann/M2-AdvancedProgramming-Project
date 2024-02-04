@@ -34,9 +34,13 @@ export default {
         this.internship = item;
         this.$router.push(`/student/internships/${item.id}`);
       }
-      else if (this.$route.path.includes('admin')) {
-        this.$router.push(`/admin/internship-spaces/${itemId}`);
+      else if (this.$route.path.includes('company-tutor')) {
+        this.$router.push(`/company-tutor/evaluation-forms/${item.id}`);
       }
+      else if (this.$route.path.includes('admin')) {
+        this.$router.push(`/admin/internship-spaces/${item.id}`);
+      }
+      
     },
   },
   computed: {
