@@ -41,3 +41,16 @@ def download_internship_report(file_id):
     file_data = None
     document_instance = InternshipReport(data_body, file_data)
     return document_instance.get_document(file_id)
+
+
+@app.route('/documents/internship-report/delete/<file_id>', methods=['DELETE'])
+def delete_internship_report(file_id):
+    data_body = {
+        'internship': None,
+        'document_name': None,
+        'level_of_confidentiality': None
+    }
+    file_data = None
+
+    document_instance = InternshipReport(data_body, file_data)
+    return document_instance.delete_document(file_id)

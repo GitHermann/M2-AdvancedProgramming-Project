@@ -37,3 +37,16 @@ class InternshipReport(AbstractDocument):
         except Exception as e:
             return {'error': str(e)}, 500
 
+    def delete_document(self, file_id):
+        try:
+            file_id = ObjectId(file_id)
+
+            fs = gridfs.GridFS(self.internships_reports_collection.database, collection='internships_reports')
+            fs.delete(file_id)
+
+            self.internships_reports_collection.delete_one({'file_id': file_id})
+
+            return {'message': 'Document successfully deleted'}, 200
+
+        except Exception as e:
+            return {'error': str(e)}, 500
