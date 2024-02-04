@@ -38,6 +38,7 @@ export default {
         this.$router.push(`/company-tutor/evaluation-forms/${item.id}`);
       }
       else if (this.$route.path.includes('admin')) {
+        this.internshipSpace = item;
         this.$router.push(`/admin/internship-spaces/${item.id}`);
       }
       
@@ -45,6 +46,7 @@ export default {
   },
   computed: {
     ...mapWritableState(useStore, ['internship']),
+    ...mapWritableState(useStore, ['internshipSpace']),
   },
 };
 </script>

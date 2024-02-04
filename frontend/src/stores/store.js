@@ -7,5 +7,7 @@ export const useStore = defineStore('store', {
     userLastName: 'DOE',
     internshipId: 0,
     internship: {},
+    internshipSpaceId: 0,
+    internshipSpace: {},
   }),
 })
