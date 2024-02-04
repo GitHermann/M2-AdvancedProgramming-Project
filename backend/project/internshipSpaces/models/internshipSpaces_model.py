@@ -43,12 +43,12 @@ class InternshipSpaces:
         "promotion": internship_space["promotion"],
         "students_instruction": internship_space["students_instruction"],
         "tutors_instruction": internship_space["tutors_instruction"],
-        "startSubmissionDate": internship_space["startSubmissionDate"].isoformat(),
-        "endSubmissionDate": internship_space["endSubmissionDate"].isoformat()
+        "startSubmissionDate": internship_space["startSubmissionDate"].date().isoformat(),
+        "endSubmissionDate": internship_space["endSubmissionDate"].date().isoformat()
       }
       for internship_space in internship_spaces
     ]
-    
+
     return transformed_internship_spaces, 201
   
   @staticmethod

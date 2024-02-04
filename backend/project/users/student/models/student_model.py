@@ -7,7 +7,10 @@ from abstractUserModel.user_model import User
 
 class Student(User):
     def create_student(self, data):
-        return self.create_user(data)
+        if data['email'].endswith('@efrei.net'):
+            return self.create_user(data)
+        else:
+            return 'Wrong email structure'
 
     def student_log_in(self, data):
         return self.user_log_in(data)

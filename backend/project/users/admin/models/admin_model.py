@@ -6,7 +6,10 @@ from abstractUserModel.user_model import User
 class Admin(User, ABC):
 
     def create_admin(self, data):
-        return self.create_user(data)
+        if data['email'].endswith('@admin.efrei.net'):
+            return self.create_user(data)
+        else:
+            return 'Wrong email structure'
 
     def admin_log_in(self, data):
         return self.user_log_in(data)

@@ -6,7 +6,10 @@ from abstractUserModel.user_model import User
 class CompanyTutor(User, ABC):
 
     def create_company_tutor(self, data):
-        return self.create_user(data)
+        if data['email'].endswith('@companytutor.efrei.net'):
+            return self.create_user(data)
+        else:
+            return 'Wrong email structure'
 
     def company_tutor_log_in(self, data):
         return self.user_log_in(data)

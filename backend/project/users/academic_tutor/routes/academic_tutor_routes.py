@@ -27,12 +27,12 @@ def academic_tutor_log_in():
         data = request.json
         academic_tutor_instance = AcademicTutor(collection_name="academic_tutors")
         response = academic_tutor_instance.academic_tutor_log_in(data)
-        user = json.loads(json_util.dumps(response['user']))
-        session['user'] = user["_id"]["$oid"]
-        if response['code'] == 201:
-            return jsonify({"message": response['message'], "user": user}), 201
+        if response['code'] == 200:
+            user = json.loads(json_util.dumps(response['user']))
+            session['user'] = user["_id"]["$oid"]
+            return jsonify({"message": response['message'], "user": user})
         else:
-            return jsonify({"message": response['message']}), 401
+            return jsonify({"message": response['message'], "code": response['code']})
 
     except ValueError as e:
         return jsonify({"error": str(e)}), 400
