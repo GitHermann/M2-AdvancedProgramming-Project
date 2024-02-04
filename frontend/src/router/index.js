@@ -29,22 +29,22 @@ const router = createRouter({
       component: LoginView
     },
     {
-      path: '/login/academic-tutor',
+      path: '/academic-tutor/login',
       name: 'login-academic-tutor',
       component: LoginAcademicTutorView
     },
     {
-      path: '/login/admin',
+      path: '/admin/login',
       name: 'login-admin',
       component: LoginAdminView
     },
     {
-      path: '/login/company-tutor',
+      path: '/company-tutor/login',
       name: 'login-company-tutor',
       component: LoginCompanyTutorView
     },
     {
-      path: '/login/student',
+      path: '/student/login',
       name: 'login-student',
       component: LoginStudentView
     },

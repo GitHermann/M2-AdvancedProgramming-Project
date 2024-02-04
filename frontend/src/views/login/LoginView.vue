@@ -4,19 +4,19 @@
       <div>
         <h2 class="title">Vous êtes :</h2>
       </div>
-      <RouterLink to="/login/student" class="button" @click="updateUserType('student')">
+      <RouterLink to="/student/login" class="button" @click="updateUserType('student')">
         <i class="icon ri-graduation-cap-line"></i>
         <span class="text">Étudiant</span>
       </RouterLink>
-      <RouterLink to="/login/academic-tutor" class="button" @click="updateUserType('academic-tutor')">
+      <RouterLink to="/academic-tutor/login" class="button" @click="updateUserType('academic-tutor')">
         <i class="icon ri-school-line"></i>
         <span class="text">Tuteur École</span>
       </RouterLink>
-      <RouterLink to="/login/company-tutor" class="button" @click="updateUserType('company-tutor')">
+      <RouterLink to="/company-tutor/login" class="button" @click="updateUserType('company-tutor')">
         <i class="icon ri-building-4-line"></i>
         <span class="text">Tuteur Entreprise</span>
       </RouterLink>
-      <RouterLink to="/login/admin" class="button" @click="updateUserType('admin')">
+      <RouterLink to="/admin/login" class="button" @click="updateUserType('admin')">
         <i class="icon ri-admin-line"></i>
         <span class="text">Administrateur</span>
       </RouterLink>
