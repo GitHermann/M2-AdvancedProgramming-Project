@@ -1,4 +1,4 @@
-const baseUrl = 'https://my-internships.com';
+const baseUrl = 'https://my-internships.com:5002';
 
 const getAllInternshipSpaces = async () => {
     try {
@@ -8,7 +8,6 @@ const getAllInternshipSpaces = async () => {
         return { error: error.message || 'An error occurred' };
     }
 };
-
 
 const getOneInternshipSpace = async (internshipSpaceId) => {
     try {
@@ -89,8 +88,4 @@ const deleteInternshipSpace = async (internshipSpacedId) => {
     }
 };
 
-
 export { getAllInternshipSpaces, getOneInternshipSpace, createInternshipSpace, editInternshipSpace, deleteInternshipSpace };
-
-
-
