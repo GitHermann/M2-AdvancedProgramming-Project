@@ -37,8 +37,10 @@
 
 <script>
 import { useStore } from '@/stores/store'
+import {useUserStore} from "@/stores/store";
 import { mapWritableState } from 'pinia'
 import { studentLogin } from '@/api/users/student'
+
 
 export default {
   props: ['login'],
@@ -53,6 +55,7 @@ export default {
   },
   methods: {
     async handleLogin() {
+      const store = useUserStore()
       console.log('Login:', this.username, this.password)
       if (this.$route.path.includes('student')) {
         try {
@@ -62,6 +65,8 @@ export default {
             email: this.username,
             password: this.password
           })
+          store.setUser(response.user);
+          store.setToken(response.token);
           console.log('userId', response)
           //this.resetForm();
         } catch (error) {

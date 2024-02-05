@@ -40,7 +40,7 @@ def student_log_in():
             token = jwt.encode({'user': user}, 'ssss', algorithm='HS256')
 
             # Create an HTTP-only cookie
-            resp = make_response(jsonify({"message": message['message']}))
+            resp = make_response(jsonify({"message": message['message'], "user": user}))
             resp.set_cookie('access_token', token, httponly=True, expires=datetime.now() + timedelta(days=30))
             return resp, 200
         else:
