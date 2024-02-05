@@ -57,7 +57,13 @@ class Internship:
     def getInternship(id, internship_space_id):
         internshipSpace = Internship.internship_spaces_collection.find_one({'_id': ObjectId(internship_space_id)})
         if internshipSpace:
-            internship = Internship.internships_collection.find_one({'_id': ObjectId(id)})
+            filter_condition = {
+                '$or': [
+                    {'_id': ObjectId(id)},
+                    {'student': ObjectId(id)}
+                ]
+            }
+            internship = Internship.internships_collection.find_one(filter_condition)
             if internship:
                 return internship, 200
             else:
