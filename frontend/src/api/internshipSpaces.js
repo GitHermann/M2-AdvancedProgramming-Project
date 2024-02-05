@@ -1,4 +1,4 @@
-const baseUrl = 'https://my-internships.com:5002';
+const baseUrl = 'https://localhost:5002';
 
 const getAllInternshipSpaces = async () => {
     try {
