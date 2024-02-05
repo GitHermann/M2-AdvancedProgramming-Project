@@ -9,30 +9,30 @@ import { getAuthenticatedUser } from '@/api/users/student'
   <header>
     <div class="header">
       <RouterLink to="/">
-        <img src="./assets/LOGO_EFREI-WEB_blanc.png" alt="LOGO_EFREI-WEB_blanc">
+        <img src="./assets/LOGO_EFREI-WEB_blanc.png" alt="LOGO_EFREI-WEB_blanc" />
       </RouterLink>
-        <div v-if="this.$route.path.includes('student')" class="user-type-container">
-          <i class="icon ri-graduation-cap-line"></i>
-          <span class="text">Étudiant</span>
-        </div>
-        <div v-if="this.$route.path.includes('academic-tutor')" class="user-type-container">
-          <i class="icon ri-school-line"></i>
-          <span class="text">Tuteur École</span>
-        </div>
-        <div v-if="this.$route.path.includes('company-tutor')" class="user-type-container">
-          <i class="icon ri-building-4-line"></i>
-          <span class="text">Tuteur Entreprise</span>
-        </div>
-        <div v-if="this.$route.path.includes('admin')" class="user-type-container">
-          <i class="icon ri-admin-line"></i>
-          <span class="text">Administrateur</span>
-        </div>
-        <div class="user-name-container">
-          <p>{{ userFirstName }} {{ userLastName }}</p>
-        </div>
-        <div class="user-icon-container">
-          <i class="icon ri-account-circle-line"></i>
-        </div>
+      <div v-if="this.$route.path.includes('student')" class="user-type-container">
+        <i class="icon ri-graduation-cap-line"></i>
+        <span class="text">Étudiant</span>
+      </div>
+      <div v-if="this.$route.path.includes('academic-tutor')" class="user-type-container">
+        <i class="icon ri-school-line"></i>
+        <span class="text">Tuteur École</span>
+      </div>
+      <div v-if="this.$route.path.includes('company-tutor')" class="user-type-container">
+        <i class="icon ri-building-4-line"></i>
+        <span class="text">Tuteur Entreprise</span>
+      </div>
+      <div v-if="this.$route.path.includes('admin')" class="user-type-container">
+        <i class="icon ri-admin-line"></i>
+        <span class="text">Administrateur</span>
+      </div>
+      <div class="user-name-container">
+        <p>{{ userFirstName }} {{ userLastName }}</p>
+      </div>
+      <div class="user-icon-container">
+        <i class="icon ri-account-circle-line"></i>
+      </div>
     </div>
   </header>
   <main>
@@ -44,23 +44,21 @@ import { getAuthenticatedUser } from '@/api/users/student'
 export default {
   computed: {
     ...mapWritableState(useStore, ['userFirstName']),
-    ...mapWritableState(useStore, ['userLastName']),
+    ...mapWritableState(useStore, ['userLastName'])
   },
   methods: {
     async logUser() {
       try {
-        this.user = await getAuthenticatedUser();
+        this.user = await getAuthenticatedUser()
       } catch (error) {
-        console.error('An error occurred while fetching user:', error);
+        console.error('An error occurred while fetching user:', error)
       }
     }
-};
+  }
+}
 </script>
 
-
-
 <style scoped>
-
 .header {
   background-color: #3571a9;
   padding: 10px;
@@ -119,5 +117,4 @@ p {
 main {
   margin: 24px;
 }
-
-</style>  
+</style>
