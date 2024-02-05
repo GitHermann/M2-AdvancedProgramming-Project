@@ -23,4 +23,4 @@ EXPOSE 5002
 ENV FLASK_APP=app.py
 
 # Run app.py when the container launches
-CMD ["flask", "run", "--host=my-internships.com", "--port=5002"]
+CMD ["poetry", "run", "flask", "run", "--host=my-internships.com", "--port=5002"]
