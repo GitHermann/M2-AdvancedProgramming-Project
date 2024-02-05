@@ -87,13 +87,13 @@ const router = createRouter({
        component: StudentInternshipSpaceDetailsView
     },
     {
-      path: '/student/internships',
-      name: 'student-internships',
+      path: '/admin/internship-spaces/:id/internships',
+      name: 'admin-internships',
       component: InternshipsView
     },
     {
-      path: '/student/internships/:id',
-      name: 'student-internship-details',
+      path: '/admin/internship-spaces/:internshipSpaceId/internships/:intershipId',
+      name: 'admin-internship-details',
       component: InternshipDetailsView
     },
     {

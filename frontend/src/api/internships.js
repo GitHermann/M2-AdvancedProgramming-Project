@@ -9,6 +9,15 @@ const getOneInternship = async (internshipSpaceId, internshipOrStudentId) => {
   }
 };
 
+const getAllInternshipsInSpace = async (internshipSpaceId) => {
+  try {
+    const response = await fetch(`${baseUrl}/internship_spaces/${internshipSpaceId}/internships`);
+    return await response.json();
+  } catch (error) {
+    return { error: error.message || 'An error occured' };
+  }
+}
+
 const addInternship = async (internship, internshipSpaceId, internshipOrStudentId) => {
   try {
     const startDateArray = internship.startDate.split('-').map(Number);
@@ -36,4 +45,4 @@ const addInternship = async (internship, internshipSpaceId, internshipOrStudentI
   }
 }
 
-export { getOneInternship, addInternship };
+export { getOneInternship, getAllInternshipsInSpace, addInternship };

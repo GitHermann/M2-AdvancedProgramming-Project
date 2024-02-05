@@ -1,14 +1,34 @@
 <template>
-  <div>
+  <div class="StudentInternshipSpaceDetailsViewBody">
     <div class="page-title">
       <h1>{{ internshipSpace.name }}</h1>
     </div>
-    <div class="details-container">
+    <div class="details-container-internship-space">
+      <main>
+        <article>
+          <h2>Promotion</h2>
+          <p>{{ internshipSpace.promotion }}</p>
+        </article>
+        <article>
+          <h2>Instructions pour les étudiants</h2>
+          <p>{{ internshipSpace.students_instruction }}</p>
+        </article>
+        <article>
+          <h2>Date de début des soumissions</h2>
+          <p>{{ internshipSpace.startSubmissionDate }}</p>
+        </article>
+        <article>
+          <h2>Date de fin des soumissions</h2>
+          <p>{{ internshipSpace.endSubmissionDate }}</p>
+        </article>
+      </main>
+    </div>
+    <!-- <div class="details-container-internship-space">
       <h2>Promotion : {{ internshipSpace.promotion }}</h2>
       <h2>Instructions pour les étudiants : {{ internshipSpace.students_instruction }}</h2>
       <h2>Date de début des soumissions : {{ internshipSpace.startSubmissionDate }}</h2>
       <h2>Date de fin des soumissions :{{ internshipSpace.endSubmissionDate }}</h2>
-    </div>
+    </div> -->
     <div class="details-container" v-if="found">
       <h2>Intitulé du stage : {{ internship.title }}</h2>
       <h2>Status : {{ internship.status }}</h2>
@@ -63,6 +83,43 @@ export default {
 </script>
 
 <style scoped>
+.StudentInternshipSpaceDetailsViewBody {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.details-container-internship-space {
+  width: 80%;
+  margin-bottom: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-family: Verdana, sans-serif;
+  font-size: 12px;
+  text-align: center;
+  border-radius: 10px;
+}
+.details-container-internship-space main {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.details-container-internship-space main article {
+  width: 20%;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-color: rgba(250, 250, 250, 1);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 10px;
+}
+.details-container-internship-space main article h2 {
+  width: 100%;
+}
+
 .details-container {
   display: flex;
   flex-direction: column;

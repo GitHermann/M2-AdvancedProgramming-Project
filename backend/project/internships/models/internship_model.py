@@ -43,11 +43,11 @@ class Internship:
         status = str()
         match (internship["status"]):
             case 0:
-                status = "Ongoing"
+                status = "En cours de validation"
             case 1:
-                status = "Validated"
+                status = "Validé"
             case 2:
-                status = "Rejected"
+                status = "Rejeté"
         
         return {
             "id": str(internship["_id"]),
