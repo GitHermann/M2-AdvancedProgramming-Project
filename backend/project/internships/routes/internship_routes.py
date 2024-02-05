@@ -34,6 +34,10 @@ def delete_internship(id, internship_space_id):
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-@app.route('/internships/student/<student_id>', methods=['GET'])
-def get_all_internships(student_id):
-    return 'Hello World!'
+@app.route('/internship_spaces/<internship_space_id>/internships', methods=['GET'])
+def get_all_internships(internship_space_id):
+    try:
+        response = Internship.getAllInternshipsInSpace(internship_space_id)
+        return jsonify(response[0]), response[1]
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500

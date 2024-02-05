@@ -96,6 +96,16 @@ class Internship:
             return {'message': 'Internship space not found'}, 404
         
     @staticmethod
+    def getAllInternshipsInSpace(internship_space_id):
+        internshipSpace = Internship.internship_spaces_collection.find_one({'_id': ObjectId(internship_space_id)})
+        if internshipSpace:
+            internships = Internship.internships_collection.find({'internshipSpace': ObjectId(internship_space_id)})
+            if internships:
+                return [Internship.returnFormat(internship) for internship in internships], 200
+        else:
+            return {'message': 'Internship space not found'}, 404
+        
+    @staticmethod
     def deleteInternship(id, internship_space_id):
         internshipSpace = Internship.internship_spaces_collection.find_one({'_id': ObjectId(internship_space_id)})
         if internshipSpace:

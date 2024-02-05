@@ -27,7 +27,7 @@ def test_add_internship():
       "companyTutor": "companyTutor"
     }
 
-    response = tester.post("/internship_spaces/65bfa8b4d66a31ac48d56197/internships", json= json_data)
+    response = tester.post("/internship_spaces/65bfa8b4d66a31ac48d56197/internships/65b12927b91ba67d6de2eaad", json= json_data)
 
     assert response.status_code == 201
 
@@ -39,6 +39,11 @@ def test_get_internship():
     response = tester.get("/internship_spaces/65bfa8b4d66a31ac48d56197/internships/"+internship_id)
 
     assert response.status_code == 200
+
+def test_get_all_internship_in_space():
+    response = tester.get("/internship_spaces/65bfa8b4d66a31ac48d56197/internships")
+
+    assert response.status_code ==200
 
 def test_delete_internship():
     response = tester.delete("/internship_spaces/65bfa8b4d66a31ac48d56197/internships/"+internship_id)
