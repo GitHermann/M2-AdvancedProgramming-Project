@@ -10,6 +10,8 @@
 <script>
 import Table from '@/components/Table.vue'
 import { getAllInternshipSpaces } from '@/api/internshipSpaces'
+import { useStore } from '@/stores/store'
+import { mapWritableState } from 'pinia'
 
 export default {
   components: {
@@ -31,6 +33,7 @@ export default {
   },
   methods: {
     async fetchInternshipSpaces() {
+      this.userId = '65b12927b91ba67d6de2eaad'
       try {
         this.internshipSpaces = await getAllInternshipSpaces()
       } catch (error) {
@@ -40,6 +43,9 @@ export default {
     print() {
       console.log(this.internshipSpaces)
     }
+  },
+  computed: {
+    ...mapWritableState(useStore, ['userId'])
   }
 }
 </script>

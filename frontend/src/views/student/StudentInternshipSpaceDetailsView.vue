@@ -9,6 +9,15 @@
       <h2>Date de début des soumissions : {{ internshipSpace.startSubmissionDate }}</h2>
       <h2>Date de fin des soumissions :{{ internshipSpace.endSubmissionDate }}</h2>
     </div>
+    <div class="details-container">
+      <h2>Intitulé du stage : {{ internship.title }}</h2>
+      <h2>Status : {{ internship.status }}</h2>
+      <h2>Nom de l'entreprise : {{ internship.company }}</h2>
+      <h2>Nom du tuteur entreprise : {{ internship.companyTutor }}</h2>
+      <h2>Nom du tuteur école : {{ internship.academicTutor }}</h2>
+      <h2>Début du stage : {{ internship.startDate }}</h2>
+      <h2>Fin du stage : {{ internship.endDate }}</h2>
+    </div>
     <div class="action-buttons-container"></div>
   </div>
 </template>
@@ -16,15 +25,30 @@
 <script>
 import { useStore } from '@/stores/store'
 import { mapWritableState } from 'pinia'
-import { deleteInternshipSpace } from '@/api/internshipSpaces'
+import { getOneInternship } from '@/api/internships'
 
 export default {
   data() {
-    return {}
+    return {
+      internship: []
+    }
   },
-  methods: {},
+  mounted() {
+    this.fetchInternship()
+  },
+  methods: {
+    async fetchInternship() {
+      console.log(this.userId)
+      try {
+        this.internship = await getOneInternship(this.internshipSpace.id, this.userId)
+      } catch (error) {
+        console.error('An error occurred while fetching internships:', error)
+      }
+    }
+  },
   computed: {
-    ...mapWritableState(useStore, ['internshipSpace'])
+    ...mapWritableState(useStore, ['internshipSpace']),
+    ...mapWritableState(useStore, ['userId'])
   }
 }
 </script>
