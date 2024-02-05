@@ -9,7 +9,7 @@
 
 <script>
 import Table from '@/components/Table.vue'
-import { getAllinternshipSpaces } from '@/api/internshipSpaces'
+import { getAllInternshipSpaces } from '@/api/internshipSpaces'
 
 export default {
   components: {
@@ -32,7 +32,7 @@ export default {
   methods: {
     async fetchInternshipSpaces() {
       try {
-        this.internshipSpaces = await getAllinternshipSpaces()
+        this.internshipSpaces = await getAllInternshipSpaces()
       } catch (error) {
         console.error('An error occurred while fetching internship spaces:', error)
       }
