@@ -9,4 +9,33 @@ const getOneInternship = async (internshipSpaceId, internshipOrStudentId) => {
   }
 };
 
-export { getOneInternship };
+const addInternship = async (internship, internshipSpaceId, internshipOrStudentId) => {
+  try {
+    const startDateArray = internship.startDate.split('-').map(Number);
+    const endDateArray = internship.endDate.split('-').map(Number);
+
+    console.log("WE FETCH")
+    const formattedInternship = {
+      title: internship.title,
+      startDate: startDateArray,
+      endDate: endDateArray,
+      company: internship.company,
+      academicTutor: internship.academicTutor,
+      companyTutor: internship.companyTutor
+    }
+    console.log("Hey!: "+ internshipSpaceId)
+    console.log(internshipOrStudentId)
+    const response = await fetch(`${baseUrl}/internship_spaces/${internshipSpaceId}/internships/${internshipOrStudentId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formattedInternship)
+    });
+    return await response.json();
+  } catch (error) {
+    return { error: error.message || 'An error occurred' };
+  }
+}
+
+export { getOneInternship, addInternship };

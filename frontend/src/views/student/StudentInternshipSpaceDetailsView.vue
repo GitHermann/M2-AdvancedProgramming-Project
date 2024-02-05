@@ -9,7 +9,7 @@
       <h2>Date de début des soumissions : {{ internshipSpace.startSubmissionDate }}</h2>
       <h2>Date de fin des soumissions :{{ internshipSpace.endSubmissionDate }}</h2>
     </div>
-    <div class="details-container">
+    <div class="details-container" v-if="found">
       <h2>Intitulé du stage : {{ internship.title }}</h2>
       <h2>Status : {{ internship.status }}</h2>
       <h2>Nom de l'entreprise : {{ internship.company }}</h2>
@@ -18,7 +18,12 @@
       <h2>Début du stage : {{ internship.startDate }}</h2>
       <h2>Fin du stage : {{ internship.endDate }}</h2>
     </div>
-    <div class="action-buttons-container"></div>
+    <div class="action-buttons-container" v-if="!found">
+      <RouterLink to="/student/internships/add" class="button" @click="">
+        <i class="ri-file-add-line"></i>
+        <span class="text">Ajouter un stage</span>
+      </RouterLink>
+    </div>
   </div>
 </template>
 
@@ -30,6 +35,7 @@ import { getOneInternship } from '@/api/internships'
 export default {
   data() {
     return {
+      found: true,
       internship: []
     }
   },
@@ -38,9 +44,12 @@ export default {
   },
   methods: {
     async fetchInternship() {
-      console.log(this.userId)
       try {
         this.internship = await getOneInternship(this.internshipSpace.id, this.userId)
+        //console.log(this.internship.message)
+        if (this.internship.message == 'Internship not found') {
+          this.found = false
+        }
       } catch (error) {
         console.error('An error occurred while fetching internships:', error)
       }
@@ -106,6 +115,41 @@ h1 {
   font-weight: 800;
   border: solid 1px #c7c4c4;
   cursor: pointer;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  margin: 10px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  height: 48px;
+  text-decoration: none;
+  color: #333232;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #e0e0e0;
+}
+
+.button:active {
+  background-color: #d0d0d0;
+}
+
+.icon {
+  margin-right: 20px;
+  margin-left: 20px;
+  font-size: 40px;
+}
+
+.text {
+  font-size: 16px;
+  font-family: Verdana, sans-serif;
 }
 
 #edit {

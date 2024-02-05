@@ -5,61 +5,75 @@
     </div>
     <div class="input-form-container">
       <label class="text" for="username">Nom d'utilisateur</label>
-      <input v-model="username" type="text" id="username" name="username" class="input-form" required>
+      <input
+        v-model="username"
+        type="text"
+        id="username"
+        name="username"
+        class="input-form"
+        required
+      />
     </div>
     <div class="input-form-container">
       <label class="text" for="password">Mot de passe</label>
-      <input v-model="password" type="password" id="password" name="password" class="input-form" required>
+      <input
+        v-model="password"
+        type="password"
+        id="password"
+        name="password"
+        class="input-form"
+        required
+      />
     </div>
     <button class="submit-button" type="submit">Se connecter</button>
   </form>
   <div class="signin">
-    <span class="text">Vous n'avez pas de compte ? </span> 
+    <span class="text">Vous n'avez pas de compte ? </span>
     <RouterLink :to="`/register/${userType}`">
       <span class="text">Inscrivez-vous</span>
     </RouterLink>
   </div>
 </template>
-  
+
 <script>
 import { useStore } from '@/stores/store'
 import { mapWritableState } from 'pinia'
-import { studentLogin } from '@/api/users/student'
+//import { studentLogin } from '@/api/users/student'
 
 export default {
   props: ['login'],
   data() {
     return {
       username: '',
-      password: '',
-    };
+      password: ''
+    }
   },
   computed: {
-    ...mapWritableState(useStore, ['userType']),
+    ...mapWritableState(useStore, ['userType'])
   },
   methods: {
     async handleLogin() {
-      console.log('Login:', this.username, this.password);
+      console.log('Login:', this.username, this.password)
       if (this.$route.path.includes('student')) {
         try {
-        this.loading = true;
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        const response = await studentLogin({
-          email: this.username,
-          password: this.password,
-        });
-        console.log('userId', response);
-        //this.resetForm();
-      } catch (error) {
-          console.error('Error submitting form:', error);
-      } finally {
-        this.loading = false;
-        //this.$router.push('/admin/internship-spaces');
+          this.loading = true
+          await new Promise((resolve) => setTimeout(resolve, 2000))
+          const response = await studentLogin({
+            email: this.username,
+            password: this.password
+          })
+          console.log('userId', response)
+          //this.resetForm();
+        } catch (error) {
+          console.error('Error submitting form:', error)
+        } finally {
+          this.loading = false
+          //this.$router.push('/admin/internship-spaces');
+        }
       }
-      }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style scoped>
@@ -80,7 +94,7 @@ export default {
   border: none;
   border-radius: 10px;
   width: 90%;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); 
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 .input-form {
@@ -137,5 +151,4 @@ export default {
   flex-direction: column;
   align-items: center;
 }
-
 </style>
