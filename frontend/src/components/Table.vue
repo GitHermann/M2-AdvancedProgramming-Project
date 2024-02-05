@@ -21,38 +21,34 @@ export default {
   props: {
     columns: {
       type: Array,
-      required: true,
+      required: true
     },
     items: {
       type: Array,
-      required: true,
-    },
+      required: true
+    }
   },
   methods: {
     navigateToDetails(item) {
       if (this.$route.path.includes('student')) {
-        this.internship = item;
-        this.$router.push(`/student/internships/${item.id}`);
+        this.internshipSpace = item
+        this.$router.push(`/student/internship-spaces/${item.id}`)
+      } else if (this.$route.path.includes('company-tutor')) {
+        this.$router.push(`/company-tutor/evaluation-forms/${item.id}`)
+      } else if (this.$route.path.includes('admin')) {
+        this.internshipSpace = item
+        this.$router.push(`/admin/internship-spaces/${item.id}`)
       }
-      else if (this.$route.path.includes('company-tutor')) {
-        this.$router.push(`/company-tutor/evaluation-forms/${item.id}`);
-      }
-      else if (this.$route.path.includes('admin')) {
-        this.internshipSpace = item;
-        this.$router.push(`/admin/internship-spaces/${item.id}`);
-      }
-      
-    },
+    }
   },
   computed: {
     ...mapWritableState(useStore, ['internship']),
-    ...mapWritableState(useStore, ['internshipSpace']),
-  },
-};
+    ...mapWritableState(useStore, ['internshipSpace'])
+  }
+}
 </script>
 
 <style scoped>
-
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -80,5 +76,4 @@ export default {
   background-color: #f5f5f5;
   cursor: pointer;
 }
-
 </style>

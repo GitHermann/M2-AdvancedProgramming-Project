@@ -10,6 +10,15 @@ const getAllInternshipSpaces = async () => {
 };
 
 
+const getOneInternshipSpace = async (internshipSpaceId) => {
+    try {
+        const response = await fetch(`${baseUrl}/internship_spaces/${internshipSpaceId}`);
+        return await response.json();
+    } catch (error) {
+        return { error: error.message || 'An error occurred' };
+    }
+};
+
 const createInternshipSpace = async (internshipSpace) => {
     try {
         const startSubmissionDateArray = internshipSpace.startSubmissionDate.split('-').map(Number);
@@ -39,6 +48,35 @@ const createInternshipSpace = async (internshipSpace) => {
 };
 
 
+const editInternshipSpace = async (internshipSpace) => {
+    try {
+        const startSubmissionDateArray = internshipSpace.startSubmissionDate.split('-').map(Number);
+        const endSubmissionDateArray = internshipSpace.endSubmissionDate.split('-').map(Number);
+
+        const formattedInternshipSpace = {
+            name: internshipSpace.name,
+            promotion: internshipSpace.promotion,
+            students_instruction: internshipSpace.students_instruction,
+            tutors_instruction: internshipSpace.tutors_instruction,
+            startSubmissionDate: startSubmissionDateArray,
+            endSubmissionDate: endSubmissionDateArray,
+        };
+
+        const response = await fetch(`${baseUrl}/internship_spaces/${internshipSpace.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formattedInternshipSpace),
+        });
+
+        return await response.json();
+    } catch (error) {
+        return { error: error.message || 'An error occurred' };
+    }
+};
+
+
 const deleteInternshipSpace = async (internshipSpacedId) => {
     try {
         const response = await fetch(`${baseUrl}/internship_spaces/${internshipSpacedId}`, {
@@ -51,4 +89,8 @@ const deleteInternshipSpace = async (internshipSpacedId) => {
     }
 };
 
-export { getAllInternshipSpaces, createInternshipSpace, deleteInternshipSpace };
+
+export { getAllInternshipSpaces, getOneInternshipSpace, createInternshipSpace, editInternshipSpace, deleteInternshipSpace };
+
+
+

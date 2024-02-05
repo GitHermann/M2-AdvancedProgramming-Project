@@ -41,9 +41,6 @@ export default {
       } catch (error) {
         console.error('An error occurred while fetching internship spaces:', error);
       }
-    },
-    print() {
-      console.log(this.internshipSpaces);
     }
   },
 };
