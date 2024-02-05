@@ -26,6 +26,18 @@ class InternshipSpaces:
             'startSubmissionDate': self.startSubmissionDate,
             'endSubmissionDate': self.endSubmissionDate
         }
+    
+    @staticmethod
+    def returnFormat(internship_space):
+        return {
+            "id": str(internship_space["_id"]),
+            "name": internship_space["name"],
+            "promotion": internship_space["promotion"],
+            "students_instruction": internship_space["students_instruction"],
+            "tutors_instruction": internship_space["tutors_instruction"],
+            "startSubmissionDate": internship_space["startSubmissionDate"].date().isoformat(),
+            "endSubmissionDate": internship_space["endSubmissionDate"].date().isoformat()
+        }
 
     @staticmethod
     def createIntershipSpaces(data):
@@ -39,34 +51,15 @@ class InternshipSpaces:
 
         internship_spaces = InternshipSpaces.internship_spaces_collection.find()
 
-        transformed_internship_spaces = [
-            {
-                "id": str(internship_space["_id"]),
-                "name": internship_space["name"],
-                "promotion": internship_space["promotion"],
-                "students_instruction": internship_space["students_instruction"],
-                "tutors_instruction": internship_space["tutors_instruction"],
-                "startSubmissionDate": internship_space["startSubmissionDate"].date().isoformat(),
-                "endSubmissionDate": internship_space["endSubmissionDate"].date().isoformat()
-            }
-            for internship_space in internship_spaces
-        ]
+        transformed_internship_spaces = [InternshipSpaces.returnFormat(internship_space) for internship_space in internship_spaces]
 
         return transformed_internship_spaces, 201
 
     @staticmethod
     def getInternshipSpaces(id):
-        internshipSpace = InternshipSpaces.internship_spaces_collection.find_one({'_id': ObjectId(id)})
-        if internshipSpace:
-            transformed_internship_space = {
-                "id": str(internshipSpace["_id"]),
-                "name": internshipSpace["name"],
-                "promotion": internshipSpace["promotion"],
-                "students_instruction": internshipSpace["students_instruction"],
-                "tutors_instruction": internshipSpace["tutors_instruction"],
-                "startSubmissionDate": internshipSpace["startSubmissionDate"].date().isoformat(),
-                "endSubmissionDate": internshipSpace["endSubmissionDate"].date().isoformat()
-            }
+        internship_space = InternshipSpaces.internship_spaces_collection.find_one({'_id': ObjectId(id)})
+        if internship_space:
+            transformed_internship_space = InternshipSpaces.returnFormat(internship_space)
             return transformed_internship_space, 200
         else:
             return {'message': 'Internship space not found'}, 404

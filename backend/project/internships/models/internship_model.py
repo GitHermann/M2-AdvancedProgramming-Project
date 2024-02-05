@@ -31,11 +31,35 @@ class Internship:
             'startDate': self.startDate,
             'endDate': self.endDate,
             'company': self.company,
-            'studentId': self.studentId,
+            'studentId': ObjectId(self.studentId),
             'academicTutor': self.academicTutor,
-            'companyTuto': self.companyTutor,
+            'companyTutor': self.companyTutor,
             'internshipSpace': ObjectId(self.internshipSpace),
             'status': self.status.value
+        }
+    
+    @staticmethod
+    def returnFormat(internship):
+        status = str()
+        match (internship["status"]):
+            case 0:
+                status = "Ongoing"
+            case 1:
+                status = "Validated"
+            case 2:
+                status = "Rejected"
+        
+        return {
+            "id": str(internship["_id"]),
+            "studentId": str(internship["studentId"]),
+            "academicTutor": internship["academicTutor"],
+            "company": internship["company"],
+            "companyTutor": internship["companyTutor"],
+            "startDate": internship["startDate"].date().isoformat(),
+            "endDate": internship["endDate"].date().isoformat(),
+            "internshipSpace": str(internship["internshipSpace"]),
+            "status": status,
+            "title": internship["title"]
         }
 
     @staticmethod
@@ -60,12 +84,12 @@ class Internship:
             filter_condition = {
                 '$or': [
                     {'_id': ObjectId(id)},
-                    {'student': ObjectId(id)}
+                    {'studentId': ObjectId(id)}
                 ]
             }
             internship = Internship.internships_collection.find_one(filter_condition)
             if internship:
-                return internship, 200
+                return Internship.returnFormat(internship), 200
             else:
                 return {'message': 'Internship not found'}, 404
         else:
