@@ -32,5 +32,5 @@ def hello():
 
 if __name__ == "__main__":
     app.config['DEBUG'] = True
-    app.run(host='0.0.0.0', port=5002)
+    app.run(host='my-internships.com', port=5002)
 
