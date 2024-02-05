@@ -65,9 +65,13 @@ export default {
   mounted() {
     this.internshipSpaceId = this.$route.params.id
     this.getAllInternships()
+    this.internships.first_name = this.userFirstName
+    this.internships.last_name = this.userLastName
   },
   computed: {
-    ...mapWritableState(useStore, ['internship'])
+    ...mapWritableState(useStore, ['internship']),
+    ...mapWritableState(useStore, ['userFirstName']),
+    ...mapWritableState(useStore, ['userLastName'])
   },
   methods: {
     async getAllInternships() {

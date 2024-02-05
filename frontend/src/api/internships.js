@@ -18,6 +18,25 @@ const getAllInternshipsInSpace = async (internshipSpaceId) => {
   }
 }
 
+const setInternshipStatus = async (internshipId, status) => {
+  try {
+    const formattedStatus = {
+      status: status
+    }
+
+    const response = await fetch(`${baseUrl}/internships/${internshipId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formattedStatus)
+    });
+    return await response.json();
+  } catch (error) {
+    return { error: error.message || 'An error occured' };
+  }
+}
+
 const addInternship = async (internship, internshipSpaceId, internshipOrStudentId) => {
   try {
     const startDateArray = internship.startDate.split('-').map(Number);
@@ -45,4 +64,4 @@ const addInternship = async (internship, internshipSpaceId, internshipOrStudentI
   }
 }
 
-export { getOneInternship, getAllInternshipsInSpace, addInternship };
+export { getOneInternship, getAllInternshipsInSpace, setInternshipStatus, addInternship };

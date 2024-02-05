@@ -26,6 +26,15 @@ def get_internship(id, internship_space_id):
 def update_internship(id):
     return 'Hello World!'
 
+@app.route('/internships/<id>', methods=['POST'])
+def set_internship_status(id):
+    try:
+        status = request.json['status']
+        response = Internship.setStatus(id, status)
+        return json.loads(json_util.dumps(response[0])), response[1]
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 @app.route('/internship_spaces/<internship_space_id>/internships/<id>', methods=['DELETE'])
 def delete_internship(id, internship_space_id):
     try:

@@ -30,6 +30,28 @@
       <h2>Date de fin des soumissions :{{ internshipSpace.endSubmissionDate }}</h2>
     </div> -->
     <div class="details-container" v-if="found">
+      <h2>Intitulé du stage :</h2>
+      <p>{{ internship.title }}</p>
+      <hr />
+      <h2>Status :</h2>
+      <p>{{ internship.status }}</p>
+      <hr />
+      <h2>Nom de l'entreprise :</h2>
+      <p>{{ internship.company }}</p>
+      <hr />
+      <h2>Nom du tuteur entreprise :</h2>
+      <p>{{ internship.companyTutor }}</p>
+      <hr />
+      <h2>Nom du tuteur école :</h2>
+      <p>{{ internship.academicTutor }}</p>
+      <hr />
+      <h2>Début du stage :</h2>
+      <p>{{ internship.startDate }}</p>
+      <hr />
+      <h2>Fin du stage :</h2>
+      <p>{{ internship.endDate }}</p>
+    </div>
+    <!-- <div class="details-container" v-if="found">
       <h2>Intitulé du stage : {{ internship.title }}</h2>
       <h2>Status : {{ internship.status }}</h2>
       <h2>Nom de l'entreprise : {{ internship.company }}</h2>
@@ -37,7 +59,7 @@
       <h2>Nom du tuteur école : {{ internship.academicTutor }}</h2>
       <h2>Début du stage : {{ internship.startDate }}</h2>
       <h2>Fin du stage : {{ internship.endDate }}</h2>
-    </div>
+    </div> -->
     <div class="action-buttons-container" v-if="!found">
       <RouterLink to="/student/internships/add" class="button" @click="">
         <i class="ri-file-add-line"></i>
@@ -88,6 +110,7 @@ export default {
   flex-wrap: wrap;
   justify-content: center;
 }
+
 .details-container-internship-space {
   width: 80%;
   margin-bottom: 30px;
@@ -111,16 +134,51 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  background-color: rgba(250, 250, 250, 1);
+  background-color: #fafafa;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
   padding: 10px;
   border-radius: 10px;
 }
 .details-container-internship-space main article h2 {
   width: 100%;
+  color: #0d3765;
+}
+.details-container-internship-space main article p {
+  width: 100%;
 }
 
 .details-container {
+  width: 80%;
+  margin-bottom: 30px;
+  padding: 10px 25px 10px 25px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-family: Verdana, sans-serif;
+  font-size: 12px;
+  text-align: left;
+  background-color: #f0f6fb;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+.details-container h2 {
+  width: 50%;
+  color: #0d3765;
+}
+.details-container p {
+  width: 50%;
+  color: rgb(100, 100, 100);
+}
+
+hr {
+  width: 100%;
+  height: 0.5px;
+  margin: 0px;
+  background-color: rgb(200, 200, 200);
+  border: 0;
+}
+
+/* .details-container {
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -135,9 +193,10 @@ export default {
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
   font-size: 12px;
   font-family: Verdana, sans-serif;
-}
+} */
 
 .page-title {
+  width: 100%;
   margin-bottom: 20px;
   display: flex;
   justify-content: center;

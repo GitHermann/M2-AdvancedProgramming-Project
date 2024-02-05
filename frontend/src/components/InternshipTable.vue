@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     navigateToDetails(item) {
-      this.internshipSpace = item
+      this.internship = item
       this.$router.push(`/admin/internship-spaces/${item.internshipSpace}/internships/${item.id}`)
     }
   },

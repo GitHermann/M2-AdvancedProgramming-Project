@@ -106,6 +106,14 @@ class Internship:
             return {'message': 'Internship space not found'}, 404
         
     @staticmethod
+    def setStatus(id, status):
+        updatedInternship = Internship.internships_collection.find_one_and_update({'_id': ObjectId(id)}, {'$set': {'status': status}})
+        if updatedInternship:
+            return updatedInternship, 200
+        else:
+            return {'message': 'Internship not found'}, 404
+        
+    @staticmethod
     def deleteInternship(id, internship_space_id):
         internshipSpace = Internship.internship_spaces_collection.find_one({'_id': ObjectId(internship_space_id)})
         if internshipSpace:
@@ -116,5 +124,3 @@ class Internship:
                 return {'message': 'Internship not found'}, 204
         else:
             return {'message': 'Internship space not found'}, 404
-        
-
