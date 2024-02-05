@@ -32,7 +32,7 @@ def student_log_in():
         if status_code == 200:
             user = json.loads(json_util.dumps(message['user'], default=str))
             session['user'] = user["_id"]["$oid"]
-            return jsonify({"message": message['message'], "user": user}), 200
+            return jsonify({"message": message['message'], "userId": user["_id"]["$oid"]}), 200
         else:
             return jsonify({"message": message, "code": status_code}), 400
 
