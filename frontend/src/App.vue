@@ -28,11 +28,13 @@ import { getAuthenticatedUser } from '@/api/users/student'
         <span class="text">Administrateur</span>
       </div>
       <div class="user-name-container">
-        <p>{{ userFirstName }} {{ userLastName }}</p>
+        <p>{{ first_name }} {{ last_name }}</p>
       </div>
       <div class="user-icon-container">
         <i class="icon ri-account-circle-line"></i>
       </div>
+
+
     </div>
   </header>
   <main>
@@ -44,18 +46,23 @@ import { getAuthenticatedUser } from '@/api/users/student'
 import {useUserStore} from "@/stores/store.js";
 
 export default {
-  computed: {
-    ...mapWritableState(useStore, ['userFirstName']),
-    ...mapWritableState(useStore, ['userLastName'])
+  data() {
+    return {
+      first_name: '',
+      last_name: ''
+    }
+  },
+  created() {
+    this.logUser()
   },
   methods: {
     async logUser() {
       try {
         const store = useUserStore()
         this.user = await getAuthenticatedUser()
-        console.log(this.user)
         store.setUser(this.user)
-        console.log(store.getUser)
+        this.first_name = store.getUser.user.first_name
+        this.last_name = store.getUser.user.last_name
       } catch (error) {
         console.error('An error occurred while fetching user:', error)
       }
