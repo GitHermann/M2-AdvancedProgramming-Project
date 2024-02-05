@@ -30,7 +30,7 @@ def get_internship_spaces(id):
   except Exception as e:
     return jsonify({'error': str(e)}), 500
   
-@app.route('/internship_spaces/<id>', methods=['POST'])
+@app.route('/internship_spaces/<id>', methods=['PUT'])
 def edit_internship_spaces(id):
   try:
     data = request.json
