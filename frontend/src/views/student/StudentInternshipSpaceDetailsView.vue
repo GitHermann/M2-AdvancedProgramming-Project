@@ -23,12 +23,6 @@
         </article>
       </main>
     </div>
-    <!-- <div class="details-container-internship-space">
-      <h2>Promotion : {{ internshipSpace.promotion }}</h2>
-      <h2>Instructions pour les étudiants : {{ internshipSpace.students_instruction }}</h2>
-      <h2>Date de début des soumissions : {{ internshipSpace.startSubmissionDate }}</h2>
-      <h2>Date de fin des soumissions :{{ internshipSpace.endSubmissionDate }}</h2>
-    </div> -->
     <div class="details-container" v-if="found">
       <h2>Intitulé du stage :</h2>
       <p>{{ internship.title }}</p>
@@ -51,15 +45,6 @@
       <h2>Fin du stage :</h2>
       <p>{{ internship.endDate }}</p>
     </div>
-    <!-- <div class="details-container" v-if="found">
-      <h2>Intitulé du stage : {{ internship.title }}</h2>
-      <h2>Status : {{ internship.status }}</h2>
-      <h2>Nom de l'entreprise : {{ internship.company }}</h2>
-      <h2>Nom du tuteur entreprise : {{ internship.companyTutor }}</h2>
-      <h2>Nom du tuteur école : {{ internship.academicTutor }}</h2>
-      <h2>Début du stage : {{ internship.startDate }}</h2>
-      <h2>Fin du stage : {{ internship.endDate }}</h2>
-    </div> -->
     <div class="action-buttons-container" v-if="!found">
       <RouterLink to="/student/internships/add" class="button" @click="">
         <i class="ri-file-add-line"></i>
@@ -177,23 +162,6 @@ hr {
   background-color: rgb(200, 200, 200);
   border: 0;
 }
-
-/* .details-container {
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  padding: 10px;
-  margin: 0 auto;
-  padding-left: 40px;
-  margin-bottom: 30px;
-  background-color: #f0f0f0;
-  border: none;
-  border-radius: 10px;
-  width: 80%;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-  font-size: 12px;
-  font-family: Verdana, sans-serif;
-} */
 
 .page-title {
   width: 100%;

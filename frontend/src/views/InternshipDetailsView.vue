@@ -1,18 +1,35 @@
 <template>
-  <div>
+  <div class="InternshipDetailsViewBody">
     <div class="page-title">
       <h1>{{ internship.title }}</h1>
     </div>
     <div class="details-container">
-      <h2>Nom élève : {{}}</h2>
-      <h2>Prénom élève : {{}}</h2>
-      <h2>Intitulé du stage : {{ internship.title }}</h2>
-      <h2>Status : {{ internship.status }}</h2>
-      <h2>Nom de l'entreprise : {{ internship.company }}</h2>
-      <h2>Nom du tuteur entreprise : {{ internship.companyTutor }}</h2>
-      <h2>Nom du tuteur école : {{ internship.academicTutor }}</h2>
-      <h2>Début du stage : {{ internship.startDate }}</h2>
-      <h2>Fin du stage : {{ internship.endDate }}</h2>
+      <h2>Nom élève :</h2>
+      <p>{{}}</p>
+      <hr />
+      <h2>Prénom élève :</h2>
+      <p>{{}}</p>
+      <hr />
+      <h2>Intitulé du stage :</h2>
+      <p>{{ internship.title }}</p>
+      <hr />
+      <h2>Status :</h2>
+      <p>{{ internship.status }}</p>
+      <hr />
+      <h2>Nom de l'entreprise :</h2>
+      <p>{{ internship.company }}</p>
+      <hr />
+      <h2>Nom du tuteur entreprise :</h2>
+      <p>{{ internship.companyTutor }}</p>
+      <hr />
+      <h2>Nom du tuteur école :</h2>
+      <p>{{ internship.academicTutor }}</p>
+      <hr />
+      <h2>Début du stage :</h2>
+      <p>{{ internship.startDate }}</p>
+      <hr />
+      <h2>Fin du stage :</h2>
+      <p>{{ internship.endDate }}</p>
     </div>
     <div class="action-buttons-container">
       <button
@@ -60,24 +77,44 @@ export default {
 </script>
 
 <style scoped>
-.details-container {
+.InternshipDetailsViewBody {
   display: flex;
-  flex-direction: column;
-  align-items: left;
-  padding: 10px;
-  margin: 0 auto;
-  padding-left: 40px;
-  margin-bottom: 30px;
-  background-color: #f0f0f0;
-  border: none;
-  border-radius: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.details-container {
   width: 80%;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-  font-size: 12px;
+  margin-bottom: 30px;
+  padding: 10px 25px 10px 25px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   font-family: Verdana, sans-serif;
+  font-size: 12px;
+  text-align: left;
+  background-color: #f0f6fb;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+.details-container h2 {
+  width: 50%;
+  color: #0d3765;
+}
+.details-container p {
+  width: 50%;
+  color: rgb(100, 100, 100);
+}
+
+hr {
+  width: 100%;
+  height: 0.5px;
+  margin: 0px;
+  background-color: rgb(200, 200, 200);
+  border: 0;
 }
 
 .page-title {
+  width: 100%;
   margin-bottom: 20px;
   display: flex;
   justify-content: center;
