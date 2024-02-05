@@ -5,7 +5,7 @@ pipeline {
   stages {
     stage('Cloning Github Repository') {
       steps {
-        git branch: 'main', credentialsId: 'GitHubFchar', url: 'https://github.com/GitHermann/M2-AdvancedProgramming-Project.git'
+        git branch: 'microserv', credentialsId: 'GitHubFchar', url: 'https://github.com/GitHermann/M2-AdvancedProgramming-Project.git'
       }
     }
     stage('Building Frontend Image') {
@@ -78,13 +78,13 @@ pipeline {
         bat 'docker push francoischarvet/advanced-programming-documents:1.0'
       }
     }
-	  stage('Starting Minikube') {
-	    steps {
-	      script {
-		      bat 'minikube start'
-		    }
-	    }
-	  }
+	  #stage('Starting Minikube') {
+	  #  steps {
+	  #    script {
+		#      bat 'minikube start'
+		#    }
+	  #  }
+	  #}
 	  stage('Enable Ingress') {
 	    steps {
 	      script {
