@@ -22,9 +22,9 @@
 </template>
   
 <script>
-
 import { useStore } from '@/stores/store'
 import { mapWritableState } from 'pinia'
+import { studentLogin } from '@/api/users/student'
 
 export default {
   props: ['login'],
@@ -38,8 +38,25 @@ export default {
     ...mapWritableState(useStore, ['userType']),
   },
   methods: {
-    handleLogin() {
+    async handleLogin() {
       console.log('Login:', this.username, this.password);
+      if (this.$route.path.includes('student')) {
+        try {
+        this.loading = true;
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        const response = await studentLogin({
+          email: this.username,
+          password: this.password,
+        });
+        console.log('userId', response);
+        //this.resetForm();
+      } catch (error) {
+          console.error('Error submitting form:', error);
+      } finally {
+        this.loading = false;
+        //this.$router.push('/admin/internship-spaces');
+      }
+      }
     },
   },
 };
