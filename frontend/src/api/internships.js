@@ -14,7 +14,6 @@ const addInternship = async (internship, internshipSpaceId, internshipOrStudentI
     const startDateArray = internship.startDate.split('-').map(Number);
     const endDateArray = internship.endDate.split('-').map(Number);
 
-    console.log("WE FETCH")
     const formattedInternship = {
       title: internship.title,
       startDate: startDateArray,
@@ -23,8 +22,7 @@ const addInternship = async (internship, internshipSpaceId, internshipOrStudentI
       academicTutor: internship.academicTutor,
       companyTutor: internship.companyTutor
     }
-    console.log("Hey!: "+ internshipSpaceId)
-    console.log(internshipOrStudentId)
+
     const response = await fetch(`${baseUrl}/internship_spaces/${internshipSpaceId}/internships/${internshipOrStudentId}`, {
       method: 'POST',
       headers: {
