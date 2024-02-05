@@ -17,19 +17,19 @@ export default defineConfig({
     host: '0.0.0.0',
     proxy: {
       '/internships': {
-        target: 'http://localhost:5001',
+        target: 'http://my-internships.com:5001',
         changeOrigin: true
       },
       '/internship_spaces': {
-        target: 'http://localhost:5002',
+        target: 'http://my-internships.com:5002',
         changeOrigin: true
       },
       '/user': {
-        target: 'http://localhost:5003',
+        target: 'http://my-internships.com:5003',
         changeOrigin: true
       },
       '/documents': {
-        target: 'http://localhost:5004',
+        target: 'http://my-internships.com:5004',
         changeOrigin: true
       }
     },
