@@ -38,7 +38,7 @@
 <script>
 import { useStore } from '@/stores/store'
 import { mapWritableState } from 'pinia'
-//import { studentLogin } from '@/api/users/student'
+import { studentLogin } from '@/api/users/student'
 
 export default {
   props: ['login'],

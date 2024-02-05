@@ -10,7 +10,7 @@ config.read(os.path.join(os.path.dirname(__file__), ".ini"))
 
 # create and initialize a new Flask app
 app = Flask(__name__)
-CORS(app)
+CORS(app, supports_credentials=True)
 
 # Get the MongoDB URI from the config file
 mongo_uri = config['PROD']['DB_URI']

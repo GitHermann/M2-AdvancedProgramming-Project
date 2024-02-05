@@ -3,6 +3,7 @@ from flask import make_response
 from flask import request, jsonify
 import bson.json_util as json_util
 import jwt
+from datetime import datetime, timedelta
 from student.models.student_model import Student
 from app import app, session
 
@@ -40,7 +41,7 @@ def student_log_in():
 
             # Create an HTTP-only cookie
             resp = make_response(jsonify({"message": message['message'], "user": user}))
-            resp.set_cookie('access_token', token, httponly=True)
+            resp.set_cookie('access_token', token, httponly=True, expires=datetime.now() + timedelta(days=30))
             return resp, 200
         else:
             return jsonify({"message": message, "code": status_code}), 400
