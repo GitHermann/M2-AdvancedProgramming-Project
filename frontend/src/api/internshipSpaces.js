@@ -1,4 +1,4 @@
-const baseUrl = ' http://127.0.0.1:5000';
+const baseUrl = ' http://127.0.0.1:5002';
 
 const getAllinternshipSpaces = async () => {
     try {
