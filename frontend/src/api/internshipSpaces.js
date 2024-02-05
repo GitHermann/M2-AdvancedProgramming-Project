@@ -88,7 +88,7 @@ const deleteInternshipSpace = async (internshipSpacedId) => {
 };
 
 
-export { getAllinternshipSpaces, getOneInternshipSpace, createInternshipSpace, editInternshipSpace, deleteInternshipSpace };
+export { getAllInternshipSpaces, getOneInternshipSpace, createInternshipSpace, editInternshipSpace, deleteInternshipSpace };
 
 
 
