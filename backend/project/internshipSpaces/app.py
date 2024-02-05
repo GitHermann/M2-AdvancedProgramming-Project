@@ -10,7 +10,7 @@ config.read(os.path.join(os.path.dirname(__file__), ".ini"))
 
 # create and initialize a new Flask app
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app, resources={r"/*": {"origins": ["https://my-internships.com", "http://localhost:8082"]}})
 
 # Get the MongoDB URI from the config file
 mongo_uri = config['PROD']['DB_URI']
