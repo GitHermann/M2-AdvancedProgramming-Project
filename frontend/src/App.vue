@@ -41,6 +41,8 @@ import { getAuthenticatedUser } from '@/api/users/student'
 </template>
 
 <script>
+import {useUserStore} from "@/stores/store.js";
+
 export default {
   computed: {
     ...mapWritableState(useStore, ['userFirstName']),
@@ -49,7 +51,11 @@ export default {
   methods: {
     async logUser() {
       try {
+        const store = useUserStore()
         this.user = await getAuthenticatedUser()
+        console.log(this.user)
+        store.setUser(this.user)
+        console.log(store.getUser)
       } catch (error) {
         console.error('An error occurred while fetching user:', error)
       }
