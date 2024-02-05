@@ -77,22 +77,28 @@ def get_student_by_id(id):
 @app.route('/users/student/profile', methods=['GET'])
 def get_authenticated_student_profile():
     try:
-        if 'user' in session:
-            user_id = session['user']
-            student_instance = Student(collection_name="students")
-            response = student_instance.get_student_by_id(user_id)
-            user_data, status_code = response
-            if user_data and status_code == 200:
-                user = json.loads(json_util.dumps(user_data['user']))
-                user_data.pop('password', None)
-                return jsonify({"user": user}), 200
-            else:
-                return jsonify({"message": "User not found"}), 404
-        else:
-            return jsonify({"message": "User not authenticated"}), 401
+        # Retrieve the token from the request headers or cookies
+        token = request.cookies.get('access_token')
 
-    except ValueError as e:
-        return jsonify({"error": str(e)}), 400
+        if not token:
+            return jsonify({"error": "Token is missing"}), 401
+
+        # Decode the token
+        decoded_token = jwt.decode(token, 'ssss', algorithms=['HS256'])
+
+        # Extract user data from the decoded token
+        user_data = decoded_token.get('user')
+
+        if not user_data:
+            return jsonify({"error": "Invalid token"}), 401
+
+        return jsonify({"user": user_data}), 200
+
+    except jwt.ExpiredSignatureError:
+        return jsonify({"error": "Token has expired"}), 401
+
+    except jwt.InvalidTokenError:
+        return jsonify({"error": "Invalid token"}), 401
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500

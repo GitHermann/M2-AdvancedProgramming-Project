@@ -4,14 +4,13 @@
       <div>
         <h2 class="title">Vous êtes :</h2>
       </div>
-      <RouterLink to="/student/internship-spaces" class="button" @click="updateUserType('student')">
+      <RouterLink to="/student/internship-spaces" class="button">
         <i class="icon ri-graduation-cap-line"></i>
         <span class="text">Étudiant</span>
       </RouterLink>
       <RouterLink
         to="/academic-tutor/login"
         class="button"
-        @click="updateUserType('academic-tutor')"
       >
         <i class="icon ri-school-line"></i>
         <span class="text">Tuteur École</span>
@@ -19,12 +18,11 @@
       <RouterLink
         to="/company-tutor/evaluation-forms"
         class="button"
-        @click="updateUserType('company-tutor')"
       >
         <i class="icon ri-building-4-line"></i>
         <span class="text">Tuteur Entreprise</span>
       </RouterLink>
-      <RouterLink to="/admin/internship-spaces" class="button" @click="updateUserType('admin')">
+      <RouterLink to="/admin/internship-spaces" class="button">
         <i class="icon ri-admin-line"></i>
         <span class="text">Administrateur</span>
       </RouterLink>
@@ -40,6 +38,7 @@ export default {
   props: ['login'],
   data() {
     return {
+      user: {},
       username: '',
       password: ''
     }
@@ -50,6 +49,13 @@ export default {
   methods: {
     updateUserType(type) {
       this.userType = type
+    },
+    async logUser() {
+      try {
+        this.user = await getAuthenticatedUser();
+      } catch (error) {
+        console.error('An error occurred while fetching user:', error);
+      }
     }
   }
 }

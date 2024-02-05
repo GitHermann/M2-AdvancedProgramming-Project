@@ -1,5 +1,3 @@
-import Cookies from 'js-cookie';
-
 const baseUrl = 'http://localhost:5000';
 
 const studentLogin = async (credentials) => {
@@ -26,4 +24,20 @@ const studentLogin = async (credentials) => {
     }
 };
 
-export { studentLogin };
+const getAuthenticatedUser = async () => {
+    try {
+        const response = await fetch(`${baseUrl}/users/student/profile`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+        });
+        return await response.json();
+    } catch (error) {
+        return { error: error.message || 'An error occurred' };
+    }
+};
+
+
+export { studentLogin, getAuthenticatedUser };

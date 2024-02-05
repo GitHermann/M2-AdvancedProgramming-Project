@@ -2,6 +2,7 @@
 import { RouterView } from 'vue-router'
 import { useStore } from '@/stores/store'
 import { mapWritableState } from 'pinia'
+import { getAuthenticatedUser } from '@/api/users/student'
 </script>
 
 <template>
@@ -44,7 +45,15 @@ export default {
   computed: {
     ...mapWritableState(useStore, ['userFirstName']),
     ...mapWritableState(useStore, ['userLastName']),
-  }
+  },
+  methods: {
+    async logUser() {
+      try {
+        this.user = await getAuthenticatedUser();
+      } catch (error) {
+        console.error('An error occurred while fetching user:', error);
+      }
+    }
 };
 </script>
 
