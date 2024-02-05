@@ -26,12 +26,13 @@ def admin_log_in():
         data = request.json
         admin_instance = Admin(collection_name="admins")
         response = admin_instance.admin_log_in(data)
-        if response['code'] == 200:
-            user = json.loads(json_util.dumps(response['user']))
+        message, status_code = response
+        if status_code == 200:
+            user = json.loads(json_util.dumps(message['user']))
             session['user'] = user["_id"]["$oid"]
-            return jsonify({"message": response['message'], "user": user})
+            return jsonify({"message": message['message'], "user": user}), 200
         else:
-            return jsonify({"message": response['message'], "code": response['code']})
+            return jsonify({"message": message['message'], "code": status_code}), 400
 
     except ValueError as e:
         return jsonify({"error": str(e)}), 400
@@ -56,9 +57,9 @@ def admin_logout():
 def get_admin_by_id(id):
     try:
         admin_instance = Admin(collection_name="admins")
-        user_data = admin_instance.get_user_by_id(id)
-        print(user_data)
-        if user_data:
+        response = admin_instance.get_user_by_id(id)
+        user_data, status_code = response
+        if user_data and status_code == 200:
             user_data['user'].pop('password', None)
             user = json.loads(json_util.dumps(user_data['user']))
             return jsonify({"user": user}), 200
@@ -78,9 +79,10 @@ def get_authenticated_admin_profile():
         if 'user' in session:
             user_id = session['user']
             admin_instance = Admin(collection_name="admins")
-            user_data = admin_instance.get_admin_by_id(user_id)
-            user = json.loads(json_util.dumps(user_data['user']))
-            if user_data:
+            response = admin_instance.get_admin_by_id(user_id)
+            user_data, status_code = response
+            if user_data and status_code == 200:
+                user = json.loads(json_util.dumps(user_data['user']))
                 user_data.pop('password', None)
                 return jsonify({"user": user}), 200
             else:

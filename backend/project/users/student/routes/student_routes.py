@@ -71,7 +71,6 @@ def get_authenticated_student_profile():
             user_id = session['user']
             student_instance = Student(collection_name="students")
             response = student_instance.get_student_by_id(user_id)
-            print(response)
             user_data, status_code = response
             if user_data and status_code == 200:
                 user = json.loads(json_util.dumps(user_data['user']))

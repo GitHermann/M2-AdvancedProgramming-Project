@@ -4,15 +4,23 @@
       <div>
         <h2 class="title">Vous êtes :</h2>
       </div>
-      <RouterLink to="/student/internships" class="button" @click="updateUserType('student')">
+      <RouterLink to="/student/internship-spaces" class="button" @click="updateUserType('student')">
         <i class="icon ri-graduation-cap-line"></i>
         <span class="text">Étudiant</span>
       </RouterLink>
-      <RouterLink to="/academic-tutor/login" class="button" @click="updateUserType('academic-tutor')">
+      <RouterLink
+        to="/academic-tutor/login"
+        class="button"
+        @click="updateUserType('academic-tutor')"
+      >
         <i class="icon ri-school-line"></i>
         <span class="text">Tuteur École</span>
       </RouterLink>
-      <RouterLink to="/company-tutor/evaluation-forms" class="button" @click="updateUserType('company-tutor')">
+      <RouterLink
+        to="/company-tutor/evaluation-forms"
+        class="button"
+        @click="updateUserType('company-tutor')"
+      >
         <i class="icon ri-building-4-line"></i>
         <span class="text">Tuteur Entreprise</span>
       </RouterLink>
@@ -33,23 +41,21 @@ export default {
   data() {
     return {
       username: '',
-      password: '',
-    };
+      password: ''
+    }
   },
   computed: {
-    ...mapWritableState(useStore, ['userType']),
+    ...mapWritableState(useStore, ['userType'])
   },
   methods: {
     updateUserType(type) {
-      this.userType = type;
-    },
-  },
-};
+      this.userType = type
+    }
+  }
+}
 </script>
 
-
 <style scoped>
-
 .button-container {
   margin: 0 auto;
   margin-top: 50px;
@@ -128,7 +134,7 @@ export default {
 
 @media (min-width: 481px) and (max-width: 767px) {
   .button-container {
-    margin-top: 30px; 
+    margin-top: 30px;
   }
 
   .button {
@@ -154,7 +160,7 @@ export default {
 
 @media (min-width: 768px) {
   .button-container {
-    margin-top: 40px; 
+    margin-top: 40px;
   }
 
   .button {
@@ -177,5 +183,4 @@ export default {
     font-size: 18px;
   }
 }
-
 </style>

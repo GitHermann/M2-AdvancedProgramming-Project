@@ -4,46 +4,44 @@
       <h1>Espaces de stage</h1>
     </div>
     <Table :columns="tableColumns" :items="internshipSpaces" />
-    <div class="submit-button-container">
-      <RouterLink to="/admin/internship-spaces/add" class="link">
-        <button class="submit-button" type="submit">Créer un espace de stage</button>
-      </RouterLink>
-    </div>
   </div>
 </template>
 
 <script>
-import Table from "@/components/Table.vue";
-import { getAllInternshipSpaces } from "@/api/internshipSpaces";
+import Table from '@/components/Table.vue'
+import { getAllinternshipSpaces } from '@/api/internshipSpaces'
 
 export default {
   components: {
-    Table,
+    Table
   },
   data() {
     return {
       tableColumns: [
-        { key: "name", label: "Intitulé" },
-        { key: "promotion", label: "Promotion" },
-        { key: "startSubmissionDate", label: "Début des soumissions" },
-        { key: "endSubmissionDate", label: "Fin des soumissions" },
+        { key: 'name', label: 'Intitulé' },
+        { key: 'promotion', label: 'Promotion' },
+        { key: 'startSubmissionDate', label: 'Début des soumissions' },
+        { key: 'endSubmissionDate', label: 'Fin des soumissions' }
       ],
-      internshipSpaces : [],
-    };
+      internshipSpaces: []
+    }
   },
   mounted() {
-    this.fetchInternshipSpaces();
+    this.fetchInternshipSpaces()
   },
   methods: {
     async fetchInternshipSpaces() {
       try {
-        this.internshipSpaces = await getAllInternshipSpaces();
+        this.internshipSpaces = await getAllinternshipSpaces()
       } catch (error) {
-        console.error('An error occurred while fetching internship spaces:', error);
+        console.error('An error occurred while fetching internship spaces:', error)
       }
+    },
+    print() {
+      console.log(this.internshipSpaces)
     }
-  },
-};
+  }
+}
 </script>
 
 <style scoped>
