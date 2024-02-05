@@ -5,11 +5,11 @@ from flask import request, jsonify
 from app import app
 from models.internship_model import Internship
 
-@app.route('/internship_spaces/<internship_space_id>/internships', methods=['POST'])
-def add_internship(internship_space_id):
+@app.route('/internship_spaces/<internship_space_id>/internships/<student_id>', methods=['POST'])
+def add_internship(internship_space_id, student_id):
     try:
         data = request.json
-        response = Internship.createInternship(data, internship_space_id)
+        response = Internship.createInternship(data, internship_space_id, student_id)
         return jsonify(response[0]), response[1]
     except Exception as e:
         return jsonify({"error": str(e)}), 500

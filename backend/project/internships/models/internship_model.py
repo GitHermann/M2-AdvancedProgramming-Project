@@ -14,12 +14,12 @@ class Internship:
     internships_collection = database_client['Project']['internships']
     internship_spaces_collection = database_client['Project']['internship_spaces']
 
-    def __init__(self, data, internship_space_id):
+    def __init__(self, data, internship_space_id, student_id):
         self.title = data['title']
         self.startDate = datetime.datetime(data['startDate'][0], data['startDate'][1], data['startDate'][2])
         self.endDate = datetime.datetime(data['endDate'][0], data['endDate'][1], data['endDate'][2])
         self.company = data['company']
-        self.student = session['user']
+        self.studentId = student_id
         self.academicTutor = data['academicTutor']
         self.companyTutor = data['companyTutor']
         self.internshipSpace = internship_space_id
@@ -31,7 +31,7 @@ class Internship:
             'startDate': self.startDate,
             'endDate': self.endDate,
             'company': self.company,
-            'student': ObjectId(self.student),
+            'studentId': self.studentId,
             'academicTutor': self.academicTutor,
             'companyTuto': self.companyTutor,
             'internshipSpace': ObjectId(self.internshipSpace),
@@ -39,12 +39,12 @@ class Internship:
         }
 
     @staticmethod
-    def createInternship(data, internship_space_id):
+    def createInternship(data, internship_space_id, student_id):
         internshipSpace = Internship.internship_spaces_collection.find_one({'_id': ObjectId(internship_space_id)})
         if internshipSpace:
-            newInternship = Internship(data, internship_space_id)
+            newInternship = Internship(data, internship_space_id, student_id)
             existingInternship = Internship.internships_collection.find_one(
-            {'internshipSpace': ObjectId(newInternship.internshipSpace), 'student': ObjectId(newInternship.student)})
+            {'internshipSpace': ObjectId(newInternship.internshipSpace), 'studentId': ObjectId(student_id)})
             if existingInternship:
                 return {'message': 'Stage déjà créé'}, 400
             response = Internship.internships_collection.insert_one(newInternship.jsonify())
