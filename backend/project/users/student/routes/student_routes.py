@@ -1,8 +1,8 @@
 import json
-
+from flask import make_response
 from flask import request, jsonify
 import bson.json_util as json_util
-
+import jwt
 from student.models.student_model import Student
 from app import app, session
 
@@ -34,7 +34,14 @@ def student_log_in():
             user.pop('password', None)
             user['userId'] = user["_id"]["$oid"]
             user.pop('_id', None)
-            return jsonify({"message": message['message'], "user": user}), 200
+
+            # Generate JWT token
+            token = jwt.encode({'user': user}, 'ssss', algorithm='HS256')
+
+            # Create an HTTP-only cookie
+            resp = make_response(jsonify({"message": message['message'], "user": user}))
+            resp.set_cookie('access_token', token, httponly=True)
+            return resp, 200
         else:
             return jsonify({"message": message, "code": status_code}), 400
 
