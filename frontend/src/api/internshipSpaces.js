@@ -1,8 +1,6 @@
-const baseUrl = ' http://localhost:5002';
-
 const getAllInternshipSpaces = async () => {
     try {
-        const response = await fetch(`${baseUrl}/internship_spaces`);
+        const response = await fetch(`/internship_spaces`);
         return await response.json();
     } catch (error) {
         return { error: error.message || 'An error occurred' };
@@ -12,7 +10,7 @@ const getAllInternshipSpaces = async () => {
 
 const getOneInternshipSpace = async (internshipSpaceId) => {
     try {
-        const response = await fetch(`${baseUrl}/internship_spaces/${internshipSpaceId}`);
+        const response = await fetch(`/internship_spaces/${internshipSpaceId}`);
         return await response.json();
     } catch (error) {
         return { error: error.message || 'An error occurred' };
@@ -33,7 +31,7 @@ const createInternshipSpace = async (internshipSpace) => {
             endSubmissionDate: endSubmissionDateArray,
         };
 
-        const response = await fetch(`${baseUrl}/internship_spaces`, {
+        const response = await fetch(`/internship_spaces`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -62,7 +60,7 @@ const editInternshipSpace = async (internshipSpace) => {
             endSubmissionDate: endSubmissionDateArray,
         };
 
-        const response = await fetch(`${baseUrl}/internship_spaces/${internshipSpace.id}`, {
+        const response = await fetch(`/internship_spaces/${internshipSpace.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -79,7 +77,7 @@ const editInternshipSpace = async (internshipSpace) => {
 
 const deleteInternshipSpace = async (internshipSpacedId) => {
     try {
-        const response = await fetch(`${baseUrl}/internship_spaces/${internshipSpacedId}`, {
+        const response = await fetch(`/internship_spaces/${internshipSpacedId}`, {
             method: 'DELETE',
         });
 
