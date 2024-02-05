@@ -16,6 +16,8 @@ spec:
         - name: advanced-programming-frontend
           image: francoischarvet/advanced-programming-frontend:1.0
           imagePullPolicy: Always
+          ports:
+            - containerPort: 8082
 
 ---
 
@@ -37,6 +39,8 @@ spec:
         - name: advanced-programming-internships
           image: francoischarvet/advanced-programming-internships:1.0
           imagePullPolicy: Always
+          ports:
+            - containerPort: 5001
 
 ---
 
@@ -58,6 +62,8 @@ spec:
         - name: advanced-programming-internshipspaces
           image: francoischarvet/advanced-programming-internshipspaces:1.0
           imagePullPolicy: Always
+          ports:
+            - containerPort: 5002
 
 ---
 
@@ -79,6 +85,8 @@ spec:
         - name: advanced-programming-users
           image: francoischarvet/advanced-programming-users:1.0
           imagePullPolicy: Always
+          ports:
+            - containerPort: 5003
 
 ---
 
@@ -100,3 +108,5 @@ spec:
         - name: advanced-programming-documents
           image: francoischarvet/advanced-programming-documents:1.0
           imagePullPolicy: Always
+          ports:
+          - containerPort: 5004
