@@ -13,32 +13,32 @@ spec:
               service:
                 name: advanced-programming-frontend
                 port:
-                  number: 80
+                  number: 8082
           - path: /internships
             pathType: Prefix
             backend:
               service:
                 name: advanced-programming-internships
                 port:
-                  number: 80
+                  number: 5001
           - path: /internship_spaces
             pathType: Prefix
             backend:
               service:
                 name: advanced-programming-internshipspaces
                 port:
-                  number: 80
+                  number: 5002
           - path: /users
             pathType: Prefix
             backend:
               service:
                 name: advanced-programming-users
                 port:
-                  number: 80
+                  number: 5003
           - path: /documents
             pathType: Prefix
             backend:
               service:
                 name: advanced-programming-documents
                 port:
-                  number: 80
+                  number: 5004
