@@ -73,7 +73,7 @@ export default {
           console.error('Error submitting form:', error)
         } finally {
           this.loading = false
-          //this.$router.push('/admin/internship-spaces');
+          this.$router.push('/student/internship-spaces');
         }
       }
     }
