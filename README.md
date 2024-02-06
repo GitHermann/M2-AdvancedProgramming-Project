@@ -103,6 +103,12 @@ Change the dockerHub credentials ID with the one you defined prviously.
 You can now start the pipeline by clicking Build Now.
 It should download the project to the agent's remote directory, build and publish the service images, start minikube, apply every kube and ingress configuration files.
 
+## Start the minikube tunnel
+In a CLI run the command:
+```bash
+minikube tunnel
+```
+
 ## Log in
 The adress we defined is: my-internships.com
 If you login with https protocol, since the SSL certificate is self-signed, it will fire a security alert.
