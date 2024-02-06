@@ -84,11 +84,11 @@ npm run dev
 Install kubernetes as minikube and Jenkins in docker containers.
 
 ## Create credentials
+Login to the Jenkins web interface.
 Go to : Dashboard -> Credentials → Global → Add credentials 
 Fill out the form with your username, password and ID. You will need this ID later for the pipeline script.
 
 ## Create the agent
-Login to the Jenkins web interface.
 Go to : Dashboard -> Administrate jenkins -> Nodes -> New Node
 Create a permanent agent, and give it a name and a remote directory. The other options are not mandatory.
 Depending on you operating system, choose the correct commands to download and execute the jar file to start your agent.
@@ -110,5 +110,8 @@ minikube tunnel
 ```
 
 ## Log in
-The adress we defined is: my-internships.com
+The adress we defined is: 
+```
+my-internships.com
+```
 If you login with https protocol, since the SSL certificate is self-signed, it will fire a security alert.
