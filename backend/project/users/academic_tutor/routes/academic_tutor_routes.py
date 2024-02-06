@@ -54,11 +54,12 @@ def academic_tutor_logout():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route('/users/academic-tutor/<id>', methods=['GET'])
-def get_academic_tutor_by_id(id):
+
+@app.route('/users/academic-tutor/<academic_tutor_id>', methods=['GET'])
+def get_academic_tutor_by_id(academic_tutor_id):
     try:
         academic_tutor_instance = AcademicTutor(collection_name="academic_tutors")
-        response = academic_tutor_instance.get_user_by_id(id)
+        response = academic_tutor_instance.get_user_by_id(academic_tutor_id)
         user_data, status_code = response
         if user_data and status_code == 200:
             user_data['user'].pop('password', None)
@@ -96,22 +97,3 @@ def get_authenticated_academic_tutor_profile():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-@app.route('/users/tutorAcademic', methods=['POST'])
-def add_user_tutor_academic():
-    return 'Hello World!'
-
-
-@app.route('/users/tutorAcademic/<id>', methods=['GET'])
-def get_user_tutor_academic(id):
-    return 'Hello World!'
-
-
-@app.route('/users/tutorAcademic/<id>', methods=['PUT'])
-def update_user_tutor_academic(id):
-    return 'Hello World!'
-
-
-@app.route('/users/tutorAcademic/<id>', methods=['DELETE'])
-def delete_user_tutor_academic(id):
-    return 'Hello World!'

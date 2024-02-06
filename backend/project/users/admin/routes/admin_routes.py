@@ -5,6 +5,7 @@ import bson.json_util as json_util
 from admin.models.admin_model import Admin
 from app import app, session
 
+
 @app.route('/users/admin/signin', methods=['POST'])
 def admin_sign_in():
     try:
@@ -40,6 +41,7 @@ def admin_log_in():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+
 @app.route('/users/admin/logout', methods=['POST'])
 def admin_logout():
     try:
@@ -54,10 +56,10 @@ def admin_logout():
 
 
 @app.route('/users/admin/<id>', methods=['GET'])
-def get_admin_by_id(id):
+def get_admin_by_id(admin_id):
     try:
         admin_instance = Admin(collection_name="admins")
-        response = admin_instance.get_user_by_id(id)
+        response = admin_instance.get_user_by_id(admin_id)
         user_data, status_code = response
         if user_data and status_code == 200:
             user_data['user'].pop('password', None)
@@ -95,23 +97,3 @@ def get_authenticated_admin_profile():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-
-@app.route('/users/admin', methods=['POST'])
-def add_user_admin():
-    return 'Hello World!'
-
-
-@app.route('/users/admin/<id>', methods=['GET'])
-def get_user_admin(id):
-    return 'Hello World!'
-
-
-@app.route('/users/admin/<id>', methods=['PUT'])
-def update_user_admin(id):
-    return 'Hello World!'
-
-
-@app.route('/users/admin/<id>', methods=['DELETE'])
-def delete_user_admin(id):
-    return 'Hello World!'
