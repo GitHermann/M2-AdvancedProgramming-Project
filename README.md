@@ -20,6 +20,7 @@ Run the tests
 pytest
 '''
 
+# Manual 
 ## Run the backend services
 
 Open a terminal: 
@@ -78,3 +79,30 @@ npm install
 npm run dev
 ```
 
+# Automated
+## Install Minikube and Jenkins
+Install kubernetes as minikube and Jenkins in docker containers.
+
+## Create credentials
+Go to : Dashboard -> Credentials → Global → Add credentials 
+Fill out the form with your username, password and ID. You will need this ID later for the pipeline script.
+
+## Create the agent
+Login to the Jenkins web interface.
+Go to : Dashboard -> Administrate jenkins -> Nodes -> New Node
+Create a permanent agent, and give it a name and a remote directory. The other options are not mandatory.
+Depending on you operating system, choose the correct commands to download and execute the jar file to start your agent.
+
+## Create the pipeline
+Go back to the Dashboard 
+Go to : Dashboard -> New item -> Pipeline
+Give it a name, then in the pipeline script, paste the jenkins.sh you will find in the "config" repertory of the project
+Change the dockerHub credentials ID with the one you defined prviously.
+
+## Start the pipeline
+You can now start the pipeline by clicking Build Now.
+It should download the project to the agent's remote directory, build and publish the service images, start minikube, apply every kube and ingress configuration files.
+
+## Log in
+The adress we defined is: my-internships.com
+If you login with https protocol, since the SSL certificate is self-signed, it will fire a security alert.
