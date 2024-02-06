@@ -19,26 +19,29 @@ def test_student_sign_in():
     assert response.status_code == 201
 
 
-
 def test_student_log_in_success():
     tester = app.test_client()
     response = tester.post('/users/student/login', json={'email': 'test@efrei.net', 'password': 'test'})
     assert response.status_code == 200
+
 
 def test_student_log_in_fail():
     tester = app.test_client()
     response = tester.post('/users/student/login', json={'email': 'test@efrei.net', 'password': 'tfefhh'})
     assert response.status_code == 400
 
+
 def test_get_student_by_id_success():
     tester = app.test_client()
     response = tester.get('/users/student/65affeb2eb2708310e6404bd')
     assert response.status_code == 200
 
+
 def test_get_student_by_id_fail():
     tester = app.test_client()
     response = tester.get('/users/student/65affeb2eb2708310e6404bf')
     assert response.status_code == 404
+
 
 def test_get_authenticated_student_profile_success():
     tester = app.test_client()
@@ -57,10 +60,12 @@ def test_get_authenticated_student_profile_success():
         response = tester.get('/users/student/profile')
         assert response.status_code == 200
 
+
 def test_get_authenticated_student_profile_fail():
     tester = app.test_client()
     response = tester.get('/users/student/profile')
     assert response.status_code == 401
+
 
 def test_student_logout_success():
     tester = app.test_client()
@@ -77,9 +82,9 @@ def test_student_logout_success():
     response = client.post('/users/student/logout')
     assert response.status_code == 200
 
+
 def test_student_logout_fail():
     tester = app.test_client()
     response = tester.post('/users/student/logout')
     assert response.status_code == 401  # Assuming not authenticated
     # Add more tests with authenticated user
-
