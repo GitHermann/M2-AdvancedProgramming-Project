@@ -12,9 +12,11 @@ class InternshipSpaces:
         self.promotion = data['promotion']
         self.tutors_instruction = data['tutors_instruction']
         self.students_instruction = data['students_instruction']
-        self.start_submission_date = datetime.datetime(data['startSubmissionDate'][0], data['startSubmissionDate'][1],
+        self.start_submission_date = datetime.datetime(data['startSubmissionDate'][0],
+                                                       data['startSubmissionDate'][1],
                                                        data['startSubmissionDate'][2])
-        self.end_submission_date = datetime.datetime(data['endSubmissionDate'][0], data['endSubmissionDate'][1],
+        self.end_submission_date = datetime.datetime(data['endSubmissionDate'][0],
+                                                     data['endSubmissionDate'][1],
                                                      data['endSubmissionDate'][2])
 
     def jsonify(self):
@@ -54,7 +56,7 @@ class InternshipSpaces:
         transformed_internship_spaces = \
             [InternshipSpaces.return_format(internship_space) for internship_space in internship_spaces]
 
-        return transformed_internship_spaces, 201
+        return transformed_internship_spaces, 200
 
     @staticmethod
     def get_internship_spaces(internship_space_id):
