@@ -121,7 +121,6 @@ export default {
   justify-content: space-around;
   background-color: #fafafa;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-  padding: 10px;
   border-radius: 10px;
 }
 .details-container-internship-space main article h2 {
@@ -197,7 +196,6 @@ h1 {
   color: #f7f7f7;
   font-family: Verdana, sans-serif;
   font-weight: 800;
-  border: solid 1px #c7c4c4;
   cursor: pointer;
 }
 

@@ -8,7 +8,7 @@
 </template>
   
 <script>
-import Table from "@/components/Table.vue";
+import Table from "@/components/PrettyTable.vue";
 import { useStore } from '@/stores/store'
 import { mapWritableState } from 'pinia'
 

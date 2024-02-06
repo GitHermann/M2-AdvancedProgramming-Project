@@ -1,6 +1,9 @@
 import json
 from app import app
 
+STUDENT_LOGIN_URL = '/users/student/login'
+STUDENT_MAIL = 'test@efrei.net'
+
 
 def test_student_sign_in():
     test_student = {
@@ -21,13 +24,13 @@ def test_student_sign_in():
 
 def test_student_log_in_success():
     tester = app.test_client()
-    response = tester.post('/users/student/login', json={'email': 'test@efrei.net', 'password': 'test'})
+    response = tester.post(STUDENT_LOGIN_URL, json={'email': STUDENT_MAIL, 'password': 'test'})
     assert response.status_code == 200
 
 
 def test_student_log_in_fail():
     tester = app.test_client()
-    response = tester.post('/users/student/login', json={'email': 'test@efrei.net', 'password': 'tfefhh'})
+    response = tester.post(STUDENT_LOGIN_URL, json={'email': STUDENT_MAIL, 'password': 'tfefhh'})
     assert response.status_code == 400
 
 
@@ -47,7 +50,7 @@ def test_get_authenticated_student_profile_success():
     tester = app.test_client()
 
     # Log in the user
-    login_response = tester.post('/users/student/login', json={'email': 'test@efrei.net', 'password': 'test'})
+    login_response = tester.post(STUDENT_LOGIN_URL, json={'email': STUDENT_MAIL, 'password': 'test'})
     assert login_response.status_code == 200
 
     # Use a context manager to make the request with the logged-in session
@@ -70,7 +73,7 @@ def test_get_authenticated_student_profile_fail():
 def test_student_logout_success():
     tester = app.test_client()
     # Log in the user
-    login_response = tester.post('/users/student/login', json={'email': 'test@efrei.net', 'password': 'test'})
+    login_response = tester.post(STUDENT_LOGIN_URL, json={'email': STUDENT_MAIL, 'password': 'test'})
     assert login_response.status_code == 200
 
     # Use a context manager to make the request with the logged-in session

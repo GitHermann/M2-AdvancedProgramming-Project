@@ -1,7 +1,5 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import { useStore } from '@/stores/store'
-import { mapWritableState } from 'pinia'
 import { getAuthenticatedUser } from '@/api/users/student'
 </script>
 

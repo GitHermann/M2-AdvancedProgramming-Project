@@ -36,8 +36,7 @@
 </template>
 
 <script>
-import { useStore } from '@/stores/store'
-import {useUserStore} from "@/stores/store";
+import { useStore, useUserStore } from '@/stores/store'
 import { mapWritableState } from 'pinia'
 import { studentLogin } from '@/api/users/student'
 
@@ -68,12 +67,11 @@ export default {
           store.setUser(response.user);
           store.setToken(response.token);
           console.log('userId', response)
-          //this.resetForm();
         } catch (error) {
           console.error('Error submitting form:', error)
         } finally {
           this.loading = false
-          //this.$router.push('/admin/internship-spaces');
+          this.$router.push('/student/internship-spaces');
         }
       }
     }
@@ -127,7 +125,6 @@ export default {
   color: #f7f7f7;
   font-family: Verdana, sans-serif;
   font-weight: 800;
-  border: solid 1px #c7c4c4;
   cursor: pointer;
 }
 

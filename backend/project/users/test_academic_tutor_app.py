@@ -1,6 +1,9 @@
 import json
 from app import app
 
+ACADEMIC_TUTOR_LOGIN_URL = '/users/academic-tutor/login'
+ACADEMIC_TUTOR_MAIL = 'test@academictutor.efrei.net'
+
 
 def test_academic_tutor_sign_in():
     test_academic_tutor = {
@@ -20,15 +23,15 @@ def test_academic_tutor_sign_in():
 
 def test_academic_tutor_log_in_success():
     tester = app.test_client()
-    response = tester.post('/users/academic-tutor/login',
-                           json={'email': 'test@academictutor.efrei.net', 'password': 'test'})
+    response = tester.post(ACADEMIC_TUTOR_LOGIN_URL,
+                           json={'email': ACADEMIC_TUTOR_MAIL, 'password': 'test'})
     assert response.status_code == 200
 
 
 def test_academic_tutor_log_in_fail():
     tester = app.test_client()
-    response = tester.post('/users/academic-tutor/login',
-                           json={'email': 'test@academictutor.efrei.net', 'password': 'tfefhh'})
+    response = tester.post(ACADEMIC_TUTOR_LOGIN_URL,
+                           json={'email': ACADEMIC_TUTOR_MAIL, 'password': 'tfefhh'})
     assert response.status_code == 400
 
 
@@ -48,8 +51,8 @@ def test_get_authenticated_academic_tutor_profile_success():
     tester = app.test_client()
 
     # Log in the user
-    login_response = tester.post('/users/academic-tutor/login',
-                                 json={'email': 'test@academictutor.efrei.net', 'password': 'test'})
+    login_response = tester.post(ACADEMIC_TUTOR_LOGIN_URL,
+                                 json={'email': ACADEMIC_TUTOR_MAIL, 'password': 'test'})
     assert login_response.status_code == 200
 
     # Use a context manager to make the request with the logged-in session
@@ -72,8 +75,8 @@ def test_get_authenticated_academic_tutor_profile_fail():
 def test_academic_tutor_logout_success():
     tester = app.test_client()
     # Log in the user
-    login_response = tester.post('/users/academic-tutor/login',
-                                 json={'email': 'test@academictutor.efrei.net', 'password': 'test'})
+    login_response = tester.post(ACADEMIC_TUTOR_LOGIN_URL,
+                                 json={'email': ACADEMIC_TUTOR_MAIL, 'password': 'test'})
     assert login_response.status_code == 200
 
     # Use a context manager to make the request with the logged-in session

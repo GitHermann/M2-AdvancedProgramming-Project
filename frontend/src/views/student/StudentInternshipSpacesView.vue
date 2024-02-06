@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Table from '@/components/Table.vue'
+import Table from '@/components/PrettyTable.vue'
 import { getAllInternshipSpaces } from '@/api/internshipSpaces'
 import { useStore } from '@/stores/store'
 import { mapWritableState } from 'pinia'
@@ -75,7 +75,6 @@ h1 {
   color: #f7f7f7;
   font-family: Verdana, sans-serif;
   font-weight: 800;
-  border: solid 1px #c7c4c4;
   cursor: pointer;
 }
 

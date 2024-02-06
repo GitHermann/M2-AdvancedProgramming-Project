@@ -1,6 +1,9 @@
 import json
 from app import app
 
+COMPANY_TUTOR_LOGIN_URL = '/users/company-tutor/login'
+COMPANY_TUTOR_MAIL = 'test@companytutor.efrei.net'
+
 
 def test_company_tutor_sign_in():
     test_company_tutor = {
@@ -14,36 +17,40 @@ def test_company_tutor_sign_in():
     }
 
     tester = app.test_client()
-    response = tester.post('/users/company-tutor/signin', json=test_company_tutor)
+    response = tester.post(COMPANY_TUTOR_LOGIN_URL, json=test_company_tutor)
     assert response.status_code == 201
-
 
 
 def test_company_tutor_log_in_success():
     tester = app.test_client()
-    response = tester.post('/users/company-tutor/login', json={'email': 'test@companytutor.efrei.net', 'password': 'test'})
+    response = tester.post(COMPANY_TUTOR_LOGIN_URL, json={'email': COMPANY_TUTOR_MAIL, 'password': 'test'})
     assert response.status_code == 200
+
 
 def test_company_tutor_log_in_fail():
     tester = app.test_client()
-    response = tester.post('/users/company-tutor/login', json={'email': 'test@efrei.net', 'password': 'tfefhh'})
+    response = tester.post(COMPANY_TUTOR_LOGIN_URL, json={'email': 'test@efrei.net', 'password': 'tfefhh'})
     assert response.status_code == 400
+
 
 def test_get_company_tutor_by_id_success():
     tester = app.test_client()
     response = tester.get('/users/company-tutor/65bfb6c9fad170a15ca0c744')
     assert response.status_code == 200
 
+
 def test_get_company_tutor_by_id_fail():
     tester = app.test_client()
     response = tester.get('/users/company-tutor/65affeb2eb2708310e6404bf')
     assert response.status_code == 404
 
+
 def test_get_authenticated_company_tutor_profile_success():
     tester = app.test_client()
 
     # Log in the user
-    login_response = tester.post('/users/company-tutor/login', json={'email': 'test@companytutor.efrei.net', 'password': 'test'})
+    login_response = tester.post(COMPANY_TUTOR_LOGIN_URL,
+                                 json={'email': COMPANY_TUTOR_MAIL, 'password': 'test'})
     assert login_response.status_code == 200
 
     # Use a context manager to make the request with the logged-in session
@@ -56,15 +63,18 @@ def test_get_authenticated_company_tutor_profile_success():
         response = tester.get('/users/company-tutor/profile')
         assert response.status_code == 200
 
+
 def test_get_authenticated_company_tutor_profile_fail():
     tester = app.test_client()
     response = tester.get('/users/company-tutor/profile')
     assert response.status_code == 401
 
+
 def test_company_tutor_logout_success():
     tester = app.test_client()
     # Log in the user
-    login_response = tester.post('/users/company-tutor/login', json={'email': 'test@companytutor.efrei.net', 'password': 'test'})
+    login_response = tester.post(COMPANY_TUTOR_LOGIN_URL,
+                                 json={'email': COMPANY_TUTOR_MAIL, 'password': 'test'})
     assert login_response.status_code == 200
 
     # Use a context manager to make the request with the logged-in session
@@ -76,9 +86,9 @@ def test_company_tutor_logout_success():
     response = client.post('/users/company-tutor/logout')
     assert response.status_code == 200
 
+
 def test_company_tutor_logout_fail():
     tester = app.test_client()
     response = tester.post('/users/company-tutor/logout')
     assert response.status_code == 401  # Assuming not authenticated
     # Add more tests with authenticated user
-
