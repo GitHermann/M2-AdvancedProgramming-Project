@@ -11,19 +11,19 @@ import { getAuthenticatedUser } from '@/api/users/student'
       <RouterLink to="/">
         <img src="./assets/LOGO_EFREI-WEB_blanc.png" alt="LOGO_EFREI-WEB_blanc" />
       </RouterLink>
-      <div v-if="this.$route.path.includes('student')" class="user-type-container">
+      <div v-if="$route.path.includes('student')" class="user-type-container">
         <i class="icon ri-graduation-cap-line"></i>
         <span class="text">Étudiant</span>
       </div>
-      <div v-if="this.$route.path.includes('academic-tutor')" class="user-type-container">
+      <div v-if="$route.path.includes('academic-tutor')" class="user-type-container">
         <i class="icon ri-school-line"></i>
         <span class="text">Tuteur École</span>
       </div>
-      <div v-if="this.$route.path.includes('company-tutor')" class="user-type-container">
+      <div v-if="$route.path.includes('company-tutor')" class="user-type-container">
         <i class="icon ri-building-4-line"></i>
         <span class="text">Tuteur Entreprise</span>
       </div>
-      <div v-if="this.$route.path.includes('admin')" class="user-type-container">
+      <div v-if="$route.path.includes('admin')" class="user-type-container">
         <i class="icon ri-admin-line"></i>
         <span class="text">Administrateur</span>
       </div>

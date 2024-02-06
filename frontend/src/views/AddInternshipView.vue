@@ -86,7 +86,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 50px;
   width: 70%;
   margin: 0 auto;
 }
@@ -111,10 +110,8 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
-  padding-top: 50px;
-  margin: 10px;
-  margin-bottom: 30px;
+  padding: 50px 10px 10px;
+  margin: 10px 10px 30px;
   background-color: #f0f0f0;
   border: none;
   border-radius: 10px;
@@ -165,7 +162,6 @@ h1 {
   color: #f7f7f7;
   font-family: Verdana, sans-serif;
   font-weight: 800;
-  border: solid 1px #c7c4c4;
   cursor: pointer;
 }
 
