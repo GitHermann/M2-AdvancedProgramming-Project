@@ -12,10 +12,10 @@ class InternshipSpaces:
         self.promotion = data['promotion']
         self.tutors_instruction = data['tutors_instruction']
         self.students_instruction = data['students_instruction']
-        self.startSubmissionDate = datetime.datetime(data['startSubmissionDate'][0], data['startSubmissionDate'][1],
-                                                     data['startSubmissionDate'][2])
-        self.endSubmissionDate = datetime.datetime(data['endSubmissionDate'][0], data['endSubmissionDate'][1],
-                                                   data['endSubmissionDate'][2])
+        self.start_submission_date = datetime.datetime(data['startSubmissionDate'][0], data['startSubmissionDate'][1],
+                                                       data['startSubmissionDate'][2])
+        self.end_submission_date = datetime.datetime(data['endSubmissionDate'][0], data['endSubmissionDate'][1],
+                                                     data['endSubmissionDate'][2])
 
     def jsonify(self):
         return {
@@ -23,12 +23,12 @@ class InternshipSpaces:
             'promotion': self.promotion,
             'tutors_instruction': self.tutors_instruction,
             'students_instruction': self.students_instruction,
-            'startSubmissionDate': self.startSubmissionDate,
-            'endSubmissionDate': self.endSubmissionDate
+            'startSubmissionDate': self.start_submission_date,
+            'endSubmissionDate': self.end_submission_date
         }
-    
+
     @staticmethod
-    def returnFormat(internship_space):
+    def return_format(internship_space):
         return {
             "id": str(internship_space["_id"]),
             "name": internship_space["name"],
@@ -40,46 +40,50 @@ class InternshipSpaces:
         }
 
     @staticmethod
-    def createIntershipSpaces(data):
-        newInternshipSpaces = InternshipSpaces(data)
+    def create_internship_spaces(data):
+        new_internship_spaces = InternshipSpaces(data)
 
-        response = InternshipSpaces.internship_spaces_collection.insert_one(newInternshipSpaces.jsonify())
-        return {'message': 'Intership spaces successfully created', 'inserted_id': str(response.inserted_id)}, 201
+        response = InternshipSpaces.internship_spaces_collection.insert_one(new_internship_spaces.jsonify())
+        return {'message': 'Internship spaces successfully created', 'inserted_id': str(response.inserted_id)}, 201
 
     @staticmethod
-    def getAllInternshipSpaces():
+    def get_all_internship_spaces():
 
         internship_spaces = InternshipSpaces.internship_spaces_collection.find()
 
-        transformed_internship_spaces = [InternshipSpaces.returnFormat(internship_space) for internship_space in internship_spaces]
+        transformed_internship_spaces = \
+            [InternshipSpaces.return_format(internship_space) for internship_space in internship_spaces]
 
         return transformed_internship_spaces, 201
 
     @staticmethod
-    def getInternshipSpaces(id):
-        internship_space = InternshipSpaces.internship_spaces_collection.find_one({'_id': ObjectId(id)})
+    def get_internship_spaces(internship_space_id):
+        internship_space = InternshipSpaces.internship_spaces_collection.find_one(
+            {'_id': ObjectId(internship_space_id)})
         if internship_space:
-            transformed_internship_space = InternshipSpaces.returnFormat(internship_space)
+            transformed_internship_space = InternshipSpaces.return_format(internship_space)
             return transformed_internship_space, 200
         else:
             return {'message': 'Internship space not found'}, 404
 
     @staticmethod
-    def editInternshipSpaces(id, data):
-        updatedInternshipSpaces = InternshipSpaces(data)
-        updateResult = InternshipSpaces.internship_spaces_collection.update_one({'_id': ObjectId(id)}, {
-            '$set': updatedInternshipSpaces.jsonify()})
-        if updateResult.matched_count and updateResult.modified_count:
+    def edit_internship_spaces(internship_space_id, data):
+        updated_internship_spaces = InternshipSpaces(data)
+        update_result = InternshipSpaces.internship_spaces_collection.update_one({
+            '_id': ObjectId(internship_space_id)}, {
+            '$set': updated_internship_spaces.jsonify()
+        })
+        if update_result.matched_count and update_result.modified_count:
             return {'message': 'Internship spaces found and modified'}, 200
-        elif updateResult.matched_count and not updateResult.modified_count:
+        elif update_result.matched_count and not update_result.modified_count:
             return {'message': 'Internship spaces unmodified'}, 204
         else:
             return {'message': 'Resource not found'}, 404
 
     @staticmethod
-    def deleteInternshipSpaces(id):
-        deleteResult = InternshipSpaces.internship_spaces_collection.delete_one({'_id': ObjectId(id)})
-        if deleteResult.deleted_count:
+    def delete_internship_spaces(internship_id):
+        delete_result = InternshipSpaces.internship_spaces_collection.delete_one({'_id': ObjectId(internship_id)})
+        if delete_result.deleted_count:
             return {'message': 'Internship spaces successfully deleted'}, 200
         else:
             return {'message': 'Internship spaces not found'}, 204
