@@ -3,7 +3,7 @@
     <div class="page-title">
       <h1>Espaces de stage</h1>
     </div>
-    <Table :columns="tableColumns" :items="internshipSpaces" />
+    <PrettyTable :columns="tableColumns" :items="internshipSpaces" />
     <div class="submit-button-container">
       <RouterLink to="/admin/internship-spaces/add" class="link">
         <button class="submit-button" type="submit">Créer un espace de stage</button>
@@ -13,12 +13,12 @@
 </template>
 
 <script>
-import Table from "@/components/Table.vue";
+import PrettyTable from "@/components/PrettyTable.vue";
 import { getAllInternshipSpaces } from "@/api/internshipSpaces";
 
 export default {
   components: {
-    Table,
+    PrettyTable,
   },
   data() {
     return {
@@ -71,7 +71,6 @@ h1 {
   color: #f7f7f7;
   font-family: Verdana, sans-serif;
   font-weight: 800;
-  border: solid 1px #c7c4c4;
   cursor: pointer;
 }
 

@@ -28,7 +28,6 @@ class User:
         return {'message': 'Sign In successful', 'user': new_user}, 201
 
     def user_log_in(self, data):
-        # Validation des données
         if 'email' not in data or 'password' not in data:
             return {'message': 'Missing email or password'}, 400
 
@@ -41,7 +40,6 @@ class User:
             return {'message': 'Invalid email or password'}, 400
 
     def get_user_by_id(self, user_id):
-
         user_data = self.users_collection.find_one({"_id": ObjectId(user_id)})
         if user_data:
             return {'user': user_data}, 200

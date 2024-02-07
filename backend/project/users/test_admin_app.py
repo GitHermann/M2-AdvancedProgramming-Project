@@ -1,6 +1,9 @@
 import json
 from app import app
 
+ADMIN_LOGIN_URL = '/users/admin/login'
+ADMIN_MAIL = 'test@admin.efrei.net'
+
 
 def test_admin_sign_in():
     test_admin = {
@@ -18,32 +21,35 @@ def test_admin_sign_in():
     assert response.status_code == 201
 
 
-
 def test_admin_log_in_success():
     tester = app.test_client()
-    response = tester.post('/users/admin/login', json={'email': 'test@admin.efrei.net', 'password': 'test'})
+    response = tester.post(ADMIN_LOGIN_URL, json={'email': ADMIN_MAIL, 'password': 'test'})
     assert response.status_code == 200
+
 
 def test_admin_log_in_fail():
     tester = app.test_client()
-    response = tester.post('/users/admin/login', json={'email': 'test@efrei.net', 'password': 'tfefhh'})
+    response = tester.post(ADMIN_LOGIN_URL, json={'email': 'test@efrei.net', 'password': 'tfefhh'})
     assert response.status_code == 400
+
 
 def test_get_admin_by_id_success():
     tester = app.test_client()
     response = tester.get('/users/admin/65affa1e4301362bf130d993')
     assert response.status_code == 200
 
+
 def test_get_admin_by_id_fail():
     tester = app.test_client()
     response = tester.get('/users/admin/65affeb2eb2708310e6404bf')
     assert response.status_code == 404
 
+
 def test_get_authenticated_admin_profile_success():
     tester = app.test_client()
 
     # Log in the user
-    login_response = tester.post('/users/admin/login', json={'email': 'test@admin.efrei.net', 'password': 'test'})
+    login_response = tester.post(ADMIN_LOGIN_URL, json={'email': ADMIN_MAIL, 'password': 'test'})
     assert login_response.status_code == 200
 
     # Use a context manager to make the request with the logged-in session
@@ -56,15 +62,17 @@ def test_get_authenticated_admin_profile_success():
         response = tester.get('/users/admin/profile')
         assert response.status_code == 200
 
+
 def test_get_authenticated_admin_profile_fail():
     tester = app.test_client()
     response = tester.get('/users/admin/profile')
     assert response.status_code == 401
 
+
 def test_admin_logout_success():
     tester = app.test_client()
     # Log in the user
-    login_response = tester.post('/users/admin/login', json={'email': 'test@admin.efrei.net', 'password': 'test'})
+    login_response = tester.post(ADMIN_LOGIN_URL, json={'email': ADMIN_MAIL, 'password': 'test'})
     assert login_response.status_code == 200
 
     # Use a context manager to make the request with the logged-in session
@@ -76,9 +84,9 @@ def test_admin_logout_success():
     response = client.post('/users/admin/logout')
     assert response.status_code == 200
 
+
 def test_admin_logout_fail():
     tester = app.test_client()
     response = tester.post('/users/admin/logout')
     assert response.status_code == 401  # Assuming not authenticated
     # Add more tests with authenticated user
-

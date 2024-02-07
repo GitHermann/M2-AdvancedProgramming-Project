@@ -208,8 +208,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
-  padding-top: 50px;
+  padding: 50px 10px 10px;
   margin: 10px;
   margin-bottom: 30px;
   background-color: #f0f0f0;

@@ -35,7 +35,7 @@
       <button
         class="action-button"
         id="edit"
-        v-if="internship.status == 'En cours de validation'"
+        v-if="internship.status === 'En cours de validation'"
         @click="validate"
       >
         Approuver stage
@@ -43,7 +43,7 @@
       <button
         class="action-button"
         id="delete"
-        v-if="internship.status == 'En cours de validation'"
+        v-if="internship.status === 'En cours de validation'"
         @click="reject"
       >
         Rejeter stage
@@ -147,7 +147,6 @@ h1 {
   color: #f7f7f7;
   font-family: Verdana, sans-serif;
   font-weight: 800;
-  border: solid 1px #c7c4c4;
   cursor: pointer;
 }
 
